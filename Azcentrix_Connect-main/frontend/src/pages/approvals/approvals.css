@@ -1,0 +1,110 @@
+/* Approvals – prototype v18 R.approvals / apDetail (strip of seven, axm purpose bar, apc8 purpose pill, chain, wide ax-* drawer).
+   Scoped to .bwi; base classes from notifications/inbox.css, customers/c360.css (.strip), leads/leads.css (.bwi-dw drawer). */
+
+/* seven KPI cards in one row on desktop */
+.crm-shell .bwi.apv8 .strip.ap7 { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+.crm-shell .bwi.apv8 .strip.ap7 .st.clk { cursor: pointer; }
+.crm-shell .bwi.apv8 .strip.ap7 .st.clk:hover { background: var(--bw-hd); }
+.crm-shell .bwi.apv8 .strip.ap7 .st label { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+.crm-shell .bwi.apv8 .strip.ap7 .st.twarn b { color: var(--bw-wa); } .crm-shell .bwi.apv8 .strip.ap7 .st.tbad b { color: var(--bw-ba); } .crm-shell .bwi.apv8 .strip.ap7 .st.tok b { color: var(--bw-ok); }
+@media (max-width: 1100px) { .crm-shell .bwi.apv8 .strip.ap7 { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .crm-shell .bwi.apv8 .strip.ap7 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.crm-shell .bwi.apv8 .tabs.mb { margin-bottom: 0; border: 0; border-bottom: 1px solid var(--bw-ln); border-radius: 0; box-shadow: none; }
+.crm-shell .bwi.apv8 .ctools { display: inline-flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.crm-shell .bwi.apv8 .ctools .in.sm { height: 24px; font-size: 12px; width: auto; max-width: 160px; }
+
+/* purpose distribution (axm) */
+.crm-shell .bwi .axm { padding: 10px 14px 8px; border-bottom: 1px solid var(--bw-ln2); }
+.crm-shell .bwi .axm-bar { display: flex; height: 8px; border-radius: 6px; overflow: hidden; gap: 2px; margin-bottom: 8px; }
+.crm-shell .bwi .axm-bar i { cursor: pointer; min-width: 6px; transition: opacity .15s; }
+.crm-shell .bwi .axm-lg { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 12.5px; }
+.crm-shell .bwi .axm-lg a { display: inline-flex; align-items: center; gap: 6px; color: var(--bw-mu); cursor: pointer; padding: 3px 0; border-bottom: 2px solid transparent; text-decoration: none !important; }
+.crm-shell .bwi .axm-lg a i { width: 8px; height: 8px; border-radius: 50%; background: var(--pc); }
+.crm-shell .bwi .axm-lg a svg { color: var(--pc); }
+.crm-shell .bwi .axm-lg a b { color: var(--bw-tx); font-weight: 600; }
+.crm-shell .bwi .axm-lg a:hover { color: var(--bw-tx); }
+.crm-shell .bwi .axm-lg a.on { color: var(--bw-tx); font-weight: 600; border-bottom-color: var(--pc, var(--bw-ac)); }
+.crm-shell .bwi .apc8-p { display: inline-flex; align-items: center; gap: 5px; color: var(--pc); font-weight: 600; font-size: 12px; }
+
+/* approval chain (grid) and user cells */
+.crm-shell .bwi .chain { display: inline-flex; align-items: center; gap: 3px; white-space: nowrap; }
+.crm-shell .bwi .chain .cn { display: inline-flex; align-items: center; gap: 4px; padding: 1px 7px 1px 2px; border-radius: 11px; border: 1px solid var(--bw-ln); font-size: 11px; background: var(--bw-sf); }
+.crm-shell .bwi .chain .cn .av { width: 18px; height: 18px; font-size: 8px; }
+.crm-shell .bwi .chain .cn.Approved { border-color: var(--bw-ok); }
+.crm-shell .bwi .chain .cn.Pending { border-color: var(--bw-wa); background: color-mix(in srgb, var(--bw-wa) 10%, var(--bw-sf)); }
+.crm-shell .bwi .chain .cn.Rejected { border-color: var(--bw-ba); }
+.crm-shell .bwi .chain .cn.Waiting, .crm-shell .bwi .chain .cn.Skipped, .crm-shell .bwi .chain .cn.Withdrawn { border-style: dashed; color: var(--bw-mu); }
+.crm-shell .bwi .chain .ar { color: var(--bw-mu); font-size: 11px; }
+.crm-shell .bwi .ucell { display: inline-flex; gap: 5px; align-items: center; }
+.crm-shell .bwi .ucell small { display: block; color: var(--bw-mu); }
+
+/* wide drawer (prototype ap8-dw / ax-*) */
+.crm-shell .bwi-dw.ap8-dw { width: min(1080px, 100%); }
+.crm-shell .bwi-dw.ap8-dw > .db.z { padding: 0; display: flex; flex-direction: column; background: var(--bw-sf); }
+.crm-shell .bwi-dw .dh .sub .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.crm-shell .bwi .ax-hero { padding: 16px 20px 14px; background: linear-gradient(180deg, color-mix(in srgb, var(--pc) 9%, var(--bw-sf)), var(--bw-sf)); border-bottom: 1px solid var(--bw-ln2); }
+.crm-shell .bwi .ax-top { display: flex; gap: 12px; align-items: flex-start; }
+.crm-shell .bwi .ax-pi { width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; background: var(--pc); color: #fff; flex: none; }
+.crm-shell .bwi .ax-pl { font-size: 11.5px; font-weight: 700; color: var(--pc); }
+.crm-shell .bwi .ax-top h2 { font-size: 17px; line-height: 1.35; margin: 2px 0 6px; }
+.crm-shell .bwi .ax-by { display: flex; align-items: center; gap: 6px; font-size: 12.5px; flex-wrap: wrap; }
+.crm-shell .bwi .ax-by span { color: var(--bw-mu); }
+.crm-shell .bwi .ax-kpi { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 14px; }
+.crm-shell .bwi .ax-kpi > div { background: var(--bw-sf); border: 1px solid var(--bw-ln); border-radius: 12px; padding: 10px 12px; display: flex; flex-direction: column; min-width: 0; }
+.crm-shell .bwi .ax-kpi small { color: var(--bw-mu); font-size: 11px; font-weight: 600; }
+.crm-shell .bwi .ax-kpi b { font-size: 19px; line-height: 1.3; font-variant-numeric: tabular-nums; }
+.crm-shell .bwi .ax-kpi b.tbad { color: var(--bw-ba); } .crm-shell .bwi .ax-kpi b.twarn { color: var(--bw-wa); } .crm-shell .bwi .ax-kpi b.tok { color: var(--bw-ok); }
+.crm-shell .bwi .ax-kpi span { font-size: 11.5px; color: var(--bw-mu); }
+.crm-shell .bwi .ax-dots { display: flex; gap: 4px; margin-top: 4px; }
+.crm-shell .bwi .ax-dots i { width: 22px; height: 5px; border-radius: 3px; background: var(--bw-ln); }
+.crm-shell .bwi .ax-dots i.ok { background: var(--bw-ok); } .crm-shell .bwi .ax-dots i.ba { background: var(--bw-ba); } .crm-shell .bwi .ax-dots i.cur { background: var(--bw-ac); }
+.crm-shell .bwi .ax-grid { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 16px; padding: 16px 20px; flex: 1; }
+.crm-shell .bwi .ax-ask { display: flex; gap: 12px; padding: 12px 14px; border-radius: 12px; border: 1px solid color-mix(in srgb, var(--bw-ac) 30%, var(--bw-ln)); background: color-mix(in srgb, var(--bw-ac) 6%, var(--bw-sf)); line-height: 1.5; }
+.crm-shell .bwi .ax-ask > span { color: var(--bw-ac); margin-top: 2px; }
+.crm-shell .bwi .ax-ask small { font-weight: 700; color: var(--bw-ac); font-size: 11px; }
+.crm-shell .bwi .ax-side { display: flex; flex-direction: column; gap: 12px; }
+.crm-shell .bwi .ax-card { border: 1px solid var(--bw-ln); border-radius: 12px; padding: 12px 14px; background: var(--bw-sf); }
+.crm-shell .bwi .ax-card h4 { font-size: 12px; color: var(--bw-mu); margin: 0 0 10px; }
+.crm-shell .bwi .ax-card p { font-size: 12.5px; line-height: 1.5; margin: 0; }
+.crm-shell .bwi .ax-card > a { display: inline-flex; gap: 5px; align-items: center; margin-top: 10px; font-size: 12.5px; cursor: pointer; }
+.crm-shell .bwi .ax-pol { display: flex; gap: 6px; align-items: flex-start; font-size: 12px; margin-top: 8px; padding: 7px 9px; border-radius: 8px; background: var(--bw-hd); }
+.crm-shell .bwi .ax-chain > div { display: flex; gap: 10px; position: relative; padding-bottom: 14px; }
+.crm-shell .bwi .ax-chain > div:not(:last-child)::after { content: ""; position: absolute; left: 12px; top: 26px; bottom: 2px; width: 2px; background: var(--bw-ln); }
+.crm-shell .bwi .ax-chain > div.ok::after { background: var(--bw-ok); }
+.crm-shell .bwi .ax-chain > div > span { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-size: 11px; font-weight: 700; background: var(--bw-hd); border: 2px solid var(--bw-ln); flex: none; z-index: 1; }
+.crm-shell .bwi .ax-chain .ok > span { background: var(--bw-ok); border-color: var(--bw-ok); color: #fff; }
+.crm-shell .bwi .ax-chain .ba > span { background: var(--bw-ba); border-color: var(--bw-ba); color: #fff; }
+.crm-shell .bwi .ax-chain .cur > span { border-color: var(--bw-ac); color: var(--bw-ac); box-shadow: 0 0 0 4px color-mix(in srgb, var(--bw-ac) 14%, transparent); }
+.crm-shell .bwi .ax-chain > div > div { display: flex; flex-direction: column; font-size: 12.5px; min-width: 0; gap: 1px; }
+.crm-shell .bwi .ax-chain small { font-size: 11.5px; display: inline-flex; align-items: center; gap: 4px; }
+.crm-shell .bwi .ax-chain small .av { width: 16px; height: 16px; font-size: 7px; }
+.crm-shell .bwi .ax-chain i { font-size: 11.5px; color: var(--bw-mu); margin-top: 2px; }
+.crm-shell .bwi .ax-dec { position: sticky; bottom: 0; border-top: 1px solid var(--bw-ln); background: var(--bw-sf); padding: 10px 20px 12px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 -8px 20px rgba(16, 24, 40, .06); }
+.crm-shell .bwi .ax-qr { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.crm-shell .bwi .ax-btns { display: flex; flex-direction: column; gap: 6px; }
+.crm-shell .bwi .ax-btns .btn { justify-content: center; min-width: 150px; }
+.crm-shell .bwi .ap8-sec { margin-top: 16px; }
+.crm-shell .bwi .ap8-sec > h4 { font-size: 12px; font-weight: 700; color: var(--bw-mu); margin: 0 0 8px; display: flex; align-items: center; gap: 6px; }
+.crm-shell .bwi .ap8-sec a { cursor: pointer; display: inline-flex; gap: 5px; align-items: center; }
+.crm-shell .bwi .ap8-kv { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); border: 1px solid var(--bw-ln2); border-radius: 10px; overflow: hidden; }
+.crm-shell .bwi .ap8-kv > div { padding: 8px 12px; border-bottom: 1px solid var(--bw-ln2); border-right: 1px solid var(--bw-ln2); min-width: 0; }
+.crm-shell .bwi .ap8-kv label { display: block; font-size: 11px; color: var(--bw-mu); margin-bottom: 2px; }
+.crm-shell .bwi .ap8-kv > div > div { font-size: 13px; overflow-wrap: anywhere; }
+.crm-shell .bwi .ap8-chk { display: grid; border: 1px solid var(--bw-ln2); border-radius: 10px; overflow: hidden; }
+.crm-shell .bwi .ap8-chk > div { display: grid; grid-template-columns: 10px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 8px 12px; border-bottom: 1px solid var(--bw-ln2); font-size: 12.5px; }
+.crm-shell .bwi .ap8-chk > div:last-child { border: 0; }
+.crm-shell .bwi .ap8-chk i { width: 9px; height: 9px; border-radius: 50%; background: var(--bw-ok); }
+.crm-shell .bwi .ap8-chk i.wa { background: var(--bw-wa); } .crm-shell .bwi .ap8-chk i.ba { background: var(--bw-ba); } .crm-shell .bwi .ap8-chk i.inf { background: var(--bw-in); }
+.crm-shell .bwi .ap8-chk span { color: var(--bw-mu); text-align: right; }
+.crm-shell .bwi .ap8-move { display: flex; align-items: center; gap: 12px; margin-top: 14px; }
+.crm-shell .bwi .ap8-move > div { display: flex; flex-direction: column; padding: 8px 12px; border: 1px solid var(--bw-ln); border-radius: 10px; }
+.crm-shell .bwi .ap8-move > div.to { border-color: var(--bw-ac); background: color-mix(in srgb, var(--bw-ac) 6%, var(--bw-sf)); }
+.crm-shell .bwi .ap8-move small { color: var(--bw-mu); font-size: 11px; }
+.crm-shell .bwi .tl8 > div { display: grid; grid-template-columns: 62px 12px minmax(0, 1fr); gap: 8px; position: relative; padding-bottom: 12px; }
+.crm-shell .bwi .tl8 > div::after { content: ""; position: absolute; left: 68px; top: 14px; bottom: 0; width: 2px; background: var(--bw-ln2); }
+.crm-shell .bwi .tl8 > div:last-child::after { display: none; }
+.crm-shell .bwi .tl8-d { font-size: 10.5px; color: var(--bw-mu); text-align: right; }
+.crm-shell .bwi .tl8-i { width: 12px; height: 12px; border-radius: 50%; margin-top: 3px; background: var(--bw-ac); box-shadow: 0 0 0 3px var(--bw-sf); position: relative; z-index: 1; }
+.crm-shell .bwi .tl8-b { display: flex; flex-direction: column; font-size: 12.5px; min-width: 0; }
+.crm-shell .bwi .tl8-b small { color: var(--bw-mu); font-size: 11.5px; }
+@media (max-width: 860px) { .crm-shell .bwi .ax-grid { grid-template-columns: minmax(0, 1fr); } .crm-shell .bwi .ax-kpi { grid-template-columns: 1fr 1fr; } }

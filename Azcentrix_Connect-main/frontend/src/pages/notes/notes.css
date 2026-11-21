@@ -1,0 +1,33 @@
+/* Notes & Pinboard – prototype v17 (.g.g4, .sn) scoped to .bwi; footer Quick note panel (.tn-qn). */
+
+.crm-shell .bwi .pg .cnt { color: var(--bw-mu); }
+.crm-shell .bwi .g { display: grid; gap: 8px; }
+.crm-shell .bwi .g.g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 1000px) { .crm-shell .bwi .g.g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 700px) { .crm-shell .bwi .g.g4 { grid-template-columns: minmax(0, 1fr); } }
+
+/* sticky note: pastel paper with dark ink in both themes, as in the prototype */
+.crm-shell .bwi .sn, .crm-shell .bwi-ov .sn { padding: 10px; border-radius: 2px; min-height: 130px; color: #2a2a24; display: flex; flex-direction: column; gap: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .18); transition: background-color .15s; }
+.crm-shell .bwi .sn .snt, .crm-shell .bwi-ov .sn .snt { flex: 1; outline: none; white-space: pre-wrap; word-break: break-word; min-height: 1.4em; cursor: text; }
+.crm-shell .bwi .sn .snt:focus { box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .25); }
+.crm-shell .bwi .sn.saving .snt { opacity: .7; }
+.crm-shell .bwi .sn .snc { width: 12px; height: 12px; border-radius: 50%; border: 1px solid rgba(0, 0, 0, .3); cursor: pointer; flex: none; }
+.crm-shell .bwi .sn .snc:focus-visible { outline: 2px solid #222; outline-offset: 1px; }
+.crm-shell .bwi .sn .btn.snb { color: #222; }
+.crm-shell .bwi .sn .btn.snb:hover { background: rgba(0, 0, 0, .08); }
+.crm-shell .bwi .sn .btn.snb.on svg { stroke-width: 2.6 !important; }          /* prototype: pinned → bold pin */
+.crm-shell .bwi .sn .snl { color: #555; font-size: 11px; }
+.crm-shell .bwi .sn .snl a { color: #1f4f8f; text-decoration: underline; }
+
+/* footer Quick note (prototype ftPanel 'note') */
+.crm-shell .tn-qn { width: min(390px, calc(100vw - 20px)); }
+.crm-shell .tn-qn textarea { width: 100%; min-height: 0; border: 1px solid transparent; border-radius: 8px; background: var(--bw-hd); color: var(--bw-tx); padding: 6px 8px;
+  font: 13px/1.5 var(--font-family, inherit); resize: vertical; }
+.crm-shell .tn-qn textarea:focus { outline: none; background: var(--bw-sf); border-color: var(--bw-ac); box-shadow: 0 0 0 3px color-mix(in srgb, var(--bw-ac) 18%, transparent); }
+.crm-shell .tn-qn .ftf { padding: 8px 12px; border-top: 1px solid var(--bw-ln); display: flex; gap: 6px; align-items: center; }
+.crm-shell .tn-qn .qbtn { display: inline-flex; align-items: center; gap: 5px; height: 26px; padding: 0 9px; border: 1px solid var(--bw-ln); border-radius: 5px; background: var(--bw-sf); color: var(--bw-tx);
+  font: 500 12px/1 var(--font-family, inherit); cursor: pointer; white-space: nowrap; }
+.crm-shell .tn-qn .qbtn:hover { background: var(--bw-hd); border-color: color-mix(in srgb, var(--bw-ac) 35%, var(--bw-ln)); }
+.crm-shell .tn-qn .qbtn.p { background: linear-gradient(180deg, color-mix(in srgb, var(--bw-ac) 90%, #fff), var(--bw-ac)); border-color: var(--bw-ac); color: #fff; }
+.crm-shell .tn-qn .qbtn:disabled { opacity: .6; cursor: default; }

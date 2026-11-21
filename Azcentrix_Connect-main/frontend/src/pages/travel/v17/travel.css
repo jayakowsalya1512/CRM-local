@@ -1,0 +1,50 @@
+/* Travel & Expense – prototype v17 (listPage('travel'), Expense claims strip + table, Upcoming & ongoing trips list,
+   openRec('travel') drawer with Itinerary & expenses, formPage('travel')). Base controls: notifications/inbox.css; strip,
+   tables, list: customers/c360.css; drawer: leads/leads.css. Only what those sheets don't cover lives here. */
+
+/* Expense claims: three KPI cards on one row at desktop widths (prototype auto-fit strip) */
+.crm-shell .bwi.trv .strip .st .sth { display: block; }
+@media (min-width: 701px) { .crm-shell .bwi.trv .strip.k3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+.crm-shell .bwi.trv .ctools { display: inline-flex; gap: 6px; align-items: center; }
+.crm-shell .bwi.trv .tabs.mb { border: 1px solid var(--bw-ln); }
+.crm-shell .bwi.trv .mu, .crm-shell .bwi-dw.trv .mu { color: var(--bw-mu); }
+
+/* Upcoming & ongoing trips (prototype .list rows: date block · avatar · purpose / route · status) */
+.crm-shell .bwi.trv .list > div > .dt { width: 120px; flex: none; line-height: 1.3; }
+.crm-shell .bwi.trv .list > div > .dt small, .crm-shell .bwi.trv .list > div small { color: var(--bw-mu); font-size: 11.5px; }
+.crm-shell .bwi.trv .list .fl { min-width: 0; line-height: 1.3; }
+.crm-shell .bwi.trv .list .fl a { color: var(--bw-tx); cursor: pointer; }
+@media (max-width: 560px) { .crm-shell .bwi.trv .list > div { flex-wrap: wrap; } .crm-shell .bwi.trv .list > div > .dt { width: 100%; } }
+
+/* drawer: prototype kv() two-column key / value grid, Expenses table, Add expense */
+.crm-shell .bwi-dw.trv .kvp { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 18px; background: var(--bw-sf); border: 1px solid var(--bw-ln); border-radius: 10px; padding: 4px 14px; }
+@media (max-width: 560px) { .crm-shell .bwi-dw.trv .kvp { grid-template-columns: minmax(0, 1fr); } }
+.crm-shell .bwi-dw.trv .kvp > div { display: flex; justify-content: space-between; gap: 10px; padding: 6px 0; border-bottom: 1px solid var(--bw-ln2); font-size: 13px; }
+.crm-shell .bwi-dw.trv .kvp > div > span:first-child { color: var(--bw-mu); }
+.crm-shell .bwi-dw.trv .kvp > div > span:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+.crm-shell .bwi-dw.trv h3 { font-size: 13px; font-weight: 600; margin: 12px 0 8px; }
+.crm-shell .bwi-dw.trv table.t { background: var(--bw-sf); border: 1px solid var(--bw-ln); border-radius: 8px; overflow: hidden; }
+.crm-shell .bwi-dw.trv table.t td.r, .crm-shell .bwi-dw.trv table.t th.r { text-align: right; }
+.crm-shell .bwi-dw.trv .rc { display: inline-flex; gap: 4px; flex-wrap: wrap; }
+.crm-shell .bwi-dw.trv .rc a { font-size: 11.5px; color: var(--bw-ac); }
+.crm-shell .bwi-dw.trv .note { margin-top: 10px; }
+.crm-shell .bwi-dw.trv .row.mt { gap: 6px; flex-wrap: wrap; }
+.crm-shell .bwi-dw.trv .tl > div { padding-bottom: 10px; }
+.crm-shell .bwi-dw.trv .tl small { color: var(--bw-mu); }
+
+/* forms (modal fields) */
+.crm-shell .bwi-ov .fg2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px 12px; }
+.crm-shell .bwi-ov .fg2 .f1 { grid-column: 1 / -1; }
+.crm-shell .bwi-ov .fg2 label { display: block; font-size: 12px; color: var(--bw-mu); margin-bottom: 2px; }
+.crm-shell .bwi-ov .in.bad, .crm-shell .bwi.trv .in.bad { border-color: var(--bw-ba); }
+.crm-shell .bwi-ov .ferr, .crm-shell .bwi.trv .ferr { color: var(--bw-ba); font-size: 11.5px; margin-top: 2px; }
+
+/* New / Edit trip – prototype formPage(): fp-grid, fsec with a 2-column field grid, side Summary / Completeness / Tips */
+.crm-shell .bwi.trv .fgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 14px; }
+.crm-shell .bwi.trv .fgrid .w2 { grid-column: 1 / -1; }
+.crm-shell .bwi.trv .fgrid label { display: block; font-size: 12px; color: var(--bw-mu); margin-bottom: 3px; }
+@media (max-width: 640px) { .crm-shell .bwi.trv .fgrid { grid-template-columns: minmax(0, 1fr); } }
+.crm-shell .bwi.trv .fsh small { margin-left: auto; }
+.crm-shell .bwi.trv .pm { width: 100%; height: 8px; background: var(--bw-ln2); border-radius: 4px; overflow: hidden; }
+.crm-shell .bwi.trv .pm i { display: block; height: 100%; border-radius: 4px; transition: width .3s; }

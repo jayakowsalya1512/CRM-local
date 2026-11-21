@@ -1,0 +1,105 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: azcentrix-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend:
+    name: Backend tests
+    runs-on: ubuntu-latest
+    env:
+      MASTER_DATABASE_URL: mysql+pymysql://ci:ci@127.0.0.1:3306/azcentrix_ci
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: backend/requirements.txt
+
+      - name: Install backend dependencies
+        run: python -m pip install -r backend/requirements.txt pytest
+
+      - name: Run backend tests
+        working-directory: backend
+        run: python -m pytest tests
+
+  frontend:
+    name: Frontend build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: npm ci
+
+      - name: Build frontend
+        working-directory: frontend
+        run: npm run build
+
+  images:
+    name: Build Docker images
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Build backend image
+        run: docker build -t azcentrix-crm-backend:ci ./backend
+
+      - name: Build frontend image
+        run: docker build -t azcentrix-crm-frontend:ci ./frontend
+
+  staging:
+    name: Deploy staging
+    needs: [backend, frontend, images]
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main' && vars.STAGING_DEPLOY_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - name: Deploy tested commit over SSH
+        env:
+          STAGING_HOST: ${{ secrets.STAGING_HOST }}
+          STAGING_USER: ${{ secrets.STAGING_USER }}
+          STAGING_SSH_KEY: ${{ secrets.STAGING_SSH_KEY }}
+          STAGING_KNOWN_HOSTS: ${{ secrets.STAGING_KNOWN_HOSTS }}
+          STAGING_DEPLOY_PATH: ${{ vars.STAGING_DEPLOY_PATH }}
+          DEPLOY_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          : "${STAGING_HOST:?Set the STAGING_HOST repository secret}"
+          : "${STAGING_USER:?Set the STAGING_USER repository secret}"
+          : "${STAGING_SSH_KEY:?Set the STAGING_SSH_KEY repository secret}"
+          : "${STAGING_KNOWN_HOSTS:?Set the STAGING_KNOWN_HOSTS repository secret}"
+          : "${STAGING_DEPLOY_PATH:?Set the STAGING_DEPLOY_PATH repository variable}"
+
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$STAGING_SSH_KEY" > ~/.ssh/id_ed25519
+          printf '%s\n' "$STAGING_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/id_ed25519 ~/.ssh/known_hosts
+
+          ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes "$STAGING_USER@$STAGING_HOST" \
+            "cd '$STAGING_DEPLOY_PATH' && git fetch origin '$DEPLOY_SHA' && git checkout --detach '$DEPLOY_SHA' && docker compose -f docker-compose.staging.yml build && docker compose -f docker-compose.staging.yml up -d --remove-orphans"

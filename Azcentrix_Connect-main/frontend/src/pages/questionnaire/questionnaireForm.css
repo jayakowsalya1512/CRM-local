@@ -1,0 +1,32 @@
+/* Customer Questionnaire – entry/wizard pages (continue-filling & view) restyled to match the shared
+   v17 visual language used across other modules (no literal prototype page exists for this module –
+   bidwise-crm-prototype-v17.html has no content for Questionnaire). Base classes come from
+   notifications/inbox.css (.pg .panel .pill .tabs .in .btn) and customers/c360.css (.fph .fsec .fg
+   .fmbar on .bwi.fpage). Everything below is specific to the question/answer card layout that isn't
+   covered by those shared files. */
+
+.crm-shell .bwi.fpage .qf-layout { display: grid; gap: 14px; align-items: start; margin-top: 4px; }
+@media (max-width: 900px) { .crm-shell .bwi.fpage .qf-layout { grid-template-columns: minmax(0, 1fr) !important; } }
+
+.crm-shell .bwi .qf-sidebar.list { max-height: 560px; overflow-y: auto; }
+.crm-shell .bwi .qf-sidebar-label { overflow-wrap: anywhere; }
+.crm-shell .bwi .qf-legend { display: flex; gap: 14px; padding: 9px 14px; border-top: 1px solid var(--bw-ln2); font-size: 11px; color: var(--bw-mu); }
+.crm-shell .bwi .qf-dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; background: var(--bw-ln2); }
+.crm-shell .bwi .qf-dot.ok { background: var(--bw-ok); }
+.crm-shell .bwi .qf-dot.inf { background: var(--bw-in); }
+.crm-shell .bwi .qf-dot.mu { background: var(--bw-ln); }
+
+.crm-shell .bwi .qf-qcard { border: 1px solid var(--bw-ln2); border-radius: 10px; padding: 12px 14px; margin-bottom: 10px; background: var(--bw-sf); }
+.crm-shell .bwi .qf-qcard:last-child { margin-bottom: 0; }
+.crm-shell .bwi .qf-qhead { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.crm-shell .bwi .qf-qcode { flex-shrink: 0; margin-top: 1px; font-family: ui-monospace, monospace; font-size: 11px; font-weight: 600; color: var(--bw-mu);
+  background: var(--bw-hd); border-radius: 4px; padding: 1px 6px; }
+.crm-shell .bwi .qf-qlabel { font-size: 13px; font-weight: 600; color: var(--bw-tx); }
+.crm-shell .bwi .qf-fields { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px 16px; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--bw-ln2); }
+.crm-shell .bwi .qf-field label { display: block; font-size: 11px; font-weight: 600; color: var(--bw-mu); margin-bottom: 3px; }
+.crm-shell .bwi .qf-remarks { margin-top: 8px; padding: 8px 10px; border-radius: 6px; background: var(--bw-hd); font-size: 12px; color: var(--bw-tx); }
+
+/* Entry page: locked/complete section step tabs layered on top of shared .tabs/.tab */
+.crm-shell .bwi .qf-step.locked { opacity: .55; cursor: not-allowed; }
+.crm-shell .bwi .qf-step.complete { color: var(--bw-ok); }
+.crm-shell .bwi .qf-step.complete.on { border-bottom-color: var(--bw-ok); }

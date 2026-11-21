@@ -1,0 +1,16 @@
+/* Data Hub – Bidwise prototype v17 (R.datahub: step pills, drop zone, mapping table, duplicates with match bar, mass update form, jobs table).
+   Scoped to .bwi; base classes from inbox.css, c360.css (.bar), appSettings.css, admin360.css (.fg .lb). */
+
+.crm-shell .bwi .tabs.mb { margin-bottom: 0; border: 0; border-bottom: 1px solid var(--bw-ln); border-radius: 0; box-shadow: none; }
+.crm-shell .bwi .drop { display: grid; place-items: center; gap: 6px; min-height: 130px; border: 2px dashed var(--bw-ln); border-radius: 10px; background: var(--bw-hd); color: var(--bw-mu); text-align: center; cursor: pointer; padding: 16px; }
+.crm-shell .bwi .drop:hover { border-color: var(--bw-ac); color: var(--bw-ac); }
+.crm-shell .bwi .drop small { display: block; color: var(--bw-mu); }
+.crm-shell .bwi .g.g2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.crm-shell .bwi .g.g3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 900px) { .crm-shell .bwi .g.g2, .crm-shell .bwi .g.g3 { grid-template-columns: 1fr; } }
+.crm-shell .bwi .srcc > .ph { font-size: 12.5px; }
+.crm-shell .bwi .pill.ac { color: var(--bw-ac); background: color-mix(in srgb, var(--bw-ac) 12%, var(--bw-sf)); }
+.crm-shell .bwi .list.bx { border: 1px solid var(--bw-ln); border-radius: 8px; background: var(--bw-sf); }
+.crm-shell .bwi .pgn { display: flex; align-items: center; gap: 6px; padding: 6px 8px; border-top: 1px solid var(--bw-ln); color: var(--bw-mu); font-size: 12px; }
+.crm-shell .bwi .tbad { color: var(--bw-ba); }
+.crm-shell .bwi .panel > .pb.z .tbr { border-bottom: 1px solid var(--bw-ln); }

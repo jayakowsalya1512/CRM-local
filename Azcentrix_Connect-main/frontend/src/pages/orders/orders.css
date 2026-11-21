@@ -1,0 +1,49 @@
+/* Orders & Projects – prototype v17 (listPage('wo'), olHeader tabs, kanban, openRec('wo') drawer, formPage('wo')).
+   Base controls come from notifications/inbox.css, grid / panels / form page from customers/c360.css, board, drawer, stage
+   path and journey from leads/leads.css + deals/deals.css. Colours use the theme tokens (light and dark). */
+
+/* olHeader(): lifecycle tabs above the page header (All contracts · Project / Supply · AMC …) */
+.crm-shell .bwi > .tabs.mb { border-radius: 8px; background: var(--bw-sf); padding: 0 6px; overflow-x: auto; }
+.crm-shell .bwi > .tabs.mb .tab small { margin-left: 4px; color: var(--bw-mu); }
+
+/* currency inputs inside the milestone / invoice dialogs (modal layer .bwi-ov) */
+.crm-shell .bwi-ov .cur-in, .bwi-ov .cur-in { position: relative; }
+.bwi-ov .cur-in > span { position: absolute; left: 9px; top: 50%; transform: translateY(-50%); color: var(--bw-mu); font-size: 13px; pointer-events: none; }
+.bwi-ov .cur-in > .in { padding-left: 22px; }
+
+/* milestones table rows open the milestone editor */
+.crm-shell .bwi-dw .dcard table.t tr[data-a] { cursor: pointer; }
+.crm-shell .bwi-dw .dcard table.t td.tbad { color: var(--bw-ba); }
+
+/* grid Company column (prototype colsOf: w 96 accent pill) – long names truncate inside the column */
+.crm-shell .bwi .pill.oco { max-width: 100%; overflow: hidden; text-overflow: ellipsis; vertical-align: middle; }
+
+/* ── v18 · payment collection (prototype seg8, mbar8, py8-*) ─────────────────────────────────────────── */
+/* segmented switch Orders & projects | Collections & finance, plan Single | Stage-wise */
+.crm-shell .bwi .seg8 { display: inline-flex; flex-wrap: wrap; gap: 2px; padding: 3px; background: var(--bw-hd); border: 1px solid var(--bw-ln); border-radius: 10px; }
+.crm-shell .bwi .seg8 button { border: 0; background: none; padding: 5px 12px; border-radius: 7px; cursor: pointer; font: inherit; font-weight: 500; color: var(--bw-mu); white-space: nowrap; }
+.crm-shell .bwi .seg8 button:hover { color: var(--bw-tx); }
+.crm-shell .bwi .seg8 button.on { background: var(--bw-sf); color: var(--bw-tx); box-shadow: var(--bw-sh1); }
+.crm-shell .bwi .seg8 small { color: inherit; opacity: .75; margin-left: 3px; font-variant-numeric: tabular-nums; }
+.crm-shell .bwi .mbar8 { position: relative; display: block; width: 100%; height: 6px; border-radius: 4px; background: var(--bw-ln2); overflow: hidden; margin: 6px 0 4px; }
+.crm-shell .bwi .mbar8 i { display: block; height: 100%; border-radius: 4px; background: var(--bw-ac); transition: width .3s; }
+/* Payments tab: six tiles, received bar, Against / Plan strip */
+.crm-shell .bwi .py8-t { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); border: 1px solid var(--bw-ln); border-radius: 10px; overflow: hidden; }
+.crm-shell .bwi .py8-t > div { padding: 9px 11px; border-right: 1px solid var(--bw-ln2); min-width: 0; }
+.crm-shell .bwi .py8-t > div:last-child { border: 0; }
+.crm-shell .bwi .py8-t small { display: block; color: var(--bw-mu); font-size: 11px; }
+.crm-shell .bwi .py8-t b { font-size: 14px; white-space: nowrap; }
+.crm-shell .bwi .py8-bar { display: flex; align-items: center; gap: 10px; margin: 8px 0; }
+.crm-shell .bwi .py8-bar .mbar8 { flex: 1; margin: 0; background: var(--bw-ln); }
+.crm-shell .bwi .py8-ref { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; padding: 9px 12px; border: 1px solid var(--bw-ln2); border-radius: 10px; background: var(--bw-hd); font-size: 12.5px; }
+.crm-shell .bwi .py8-h { margin: 14px 0 6px; font-size: 14px; }
+.crm-shell .bwi .tw.fit { overflow-x: auto; }
+.crm-shell .bwi .tw.fit table.t td .btn + .btn { margin-left: 4px; }
+/* Finance acknowledgement queue rows */
+.crm-shell .bwi .py8-q > div { display: flex; align-items: center; gap: 10px; }
+.crm-shell .bwi .py8-q > div > .fl { min-width: 0; }
+@media (max-width: 900px) { .crm-shell .bwi .py8-t { grid-template-columns: repeat(3, minmax(0, 1fr)); } .crm-shell .bwi .py8-t > div:nth-child(3) { border-right: 0; } .crm-shell .bwi .py8-t > div:nth-child(-n+3) { border-bottom: 1px solid var(--bw-ln2); } }
+@media (max-width: 560px) {
+  .crm-shell .bwi .seg8 { display: grid; grid-template-columns: 1fr 1fr; } .crm-shell .bwi .seg8 button { padding: 5px 6px; font-size: 12px; }
+  .crm-shell .bwi .py8-q > div { flex-wrap: wrap; }
+}

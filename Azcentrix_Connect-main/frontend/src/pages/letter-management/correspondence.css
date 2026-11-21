@@ -1,0 +1,16 @@
+/* Correspondence – Bidwise prototype v17 (R.letters: tabs, register table, compose with merge chips + .lt live preview, campaigns, sequences, mailbox setup).
+   Scoped to .bwi; base classes from inbox.css, c360.css (.strip .bar .list), appSettings.css, admin360.css (.fg .lb). */
+
+.crm-shell .bwi .tabs.mb { margin-bottom: 0; border: 0; border-bottom: 1px solid var(--bw-ln); border-radius: 0; box-shadow: none; }
+.crm-shell .bwi .panel > .pb.z .tbr { border-bottom: 1px solid var(--bw-ln); }
+.crm-shell .bwi .tbr .chip { height: 24px; }
+.crm-shell .bwi .b { font-weight: 600; }
+.crm-shell .bwi .lt { background: var(--bw-sf); border: 1px solid var(--bw-ln); border-radius: 10px; padding: 18px 20px; white-space: pre-wrap; font-family: Georgia, 'Times New Roman', serif; font-size: 13.5px; line-height: 1.6; min-height: 380px; }
+.crm-shell .bwi textarea.in.lbody { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12.5px; line-height: 1.5; }
+.crm-shell .bwi .g.g2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.crm-shell .bwi .g.g3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 900px) { .crm-shell .bwi .g.g2, .crm-shell .bwi .g.g3 { grid-template-columns: 1fr; } }
+.crm-shell .bwi .list.bx { border: 1px solid var(--bw-ln); border-radius: 8px; background: var(--bw-sf); }
+.crm-shell .bwi .pgn { display: flex; align-items: center; gap: 6px; padding: 6px 8px; border-top: 1px solid var(--bw-ln); color: var(--bw-mu); font-size: 12px; }
+.crm-shell .bwi .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; }
+.crm-shell .bwi label.row { display: flex; align-items: center; gap: 6px; font-size: 13px; cursor: pointer; }

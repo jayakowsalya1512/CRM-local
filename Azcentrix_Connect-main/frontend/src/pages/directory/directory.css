@@ -1,0 +1,30 @@
+/* Partners & OEM / Competitive Intel – Bidwise prototype v17 (listPage + openRec drawer: Overview kv · extra tab · Activity · Documents · Notes).
+   Scoped to .bwi; base classes from notifications/inbox.css, customers/c360.css (.strip .tl), leads/leads.css (.bwi-dw drawer), settings/admin360.css (.fg .lb). */
+
+.crm-shell .bwi .stars { color: var(--bw-wa); letter-spacing: 1px; font-size: 13px; }
+.crm-shell .bwi .tok { color: var(--bw-ok); }
+.crm-shell .bwi .tbad { color: var(--bw-ba); }
+.crm-shell .bwi .pg .cnt { color: var(--bw-mu); }
+.crm-shell .bwi .ucell a, .crm-shell .bwi .t td a.rec { color: var(--bw-tx); font-weight: 600; cursor: pointer; }
+.crm-shell .bwi .t td a.rec:hover, .crm-shell .bwi .ucell a:hover { color: var(--bw-ac); }
+
+/* drawer body (prototype kv / strip / tl / list / note) */
+.crm-shell .bwi-dw .kv { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 18px; }
+.crm-shell .bwi-dw .kv > div { display: flex; justify-content: space-between; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--bw-ln2); font-size: 13px; min-width: 0; }
+.crm-shell .bwi-dw .kv > div > span:first-child { color: var(--bw-mu); white-space: nowrap; }
+.crm-shell .bwi-dw .kv > div > span:last-child { text-align: right; overflow: hidden; text-overflow: ellipsis; }
+@media (max-width: 640px) { .crm-shell .bwi-dw .kv { grid-template-columns: minmax(0, 1fr); } }
+.crm-shell .bwi-dw h3 { font-size: 13px; font-weight: 600; margin: 0; }
+.crm-shell .bwi-dw .strip { margin-bottom: 12px; }
+.crm-shell .bwi-dw .note { border-radius: 8px; padding: 9px 13px; line-height: 1.5; font-size: 12px; }
+.crm-shell .bwi-dw .tl { margin-top: 4px; }
+.crm-shell .bwi-dw .tl small { color: var(--bw-mu); }
+.crm-shell .bwi-dw .list > div { padding: 8px 10px; }
+.crm-shell .bwi-dw .list.bx { border: 1px solid var(--bw-ln); border-radius: 8px; background: var(--bw-sf); }
+.crm-shell .bwi-dw textarea.in { min-height: 70px; }
+.crm-shell .bwi-dw table.t td { white-space: normal; }
+.crm-shell .bwi-dw .dh .sub .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.crm-shell .bwi-dw .btn.ib { width: 30px; padding: 0; justify-content: center; }
+.crm-shell .bwi-ov .md .pb .fg { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.crm-shell .bwi-ov .md .pb .fg > .f1 { grid-column: 1 / -1; }
+.crm-shell .bwi-ov .md .pb .fg label { display: block; font-size: 12px; color: var(--bw-mu); margin-bottom: 2px; }

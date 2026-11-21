@@ -1,0 +1,22 @@
+/* Masters – Bidwise prototype v17 (R.masters: .split with .side list, value table with inline inputs, "Where this master is used").
+   Scoped to .bwi; base classes from notifications/inbox.css, customers/c360.css, settings/appSettings.css (.split .side) and settings/admin360.css (.fg .lb). */
+
+.crm-shell .bwi .mside .side > div { gap: 6px; }
+.crm-shell .bwi .mside .side > div.child { padding-left: 22px; }
+.crm-shell .bwi .mside .side > div.child.on { padding-left: 19px; }
+.crm-shell .bwi .mside .side > div.child .fl::before { content: '› '; color: var(--bw-mu); }
+.crm-shell .bwi .mside .side > div .pill.ac { font-size: 9px; padding: 0 6px; line-height: 15px; margin-left: 4px; vertical-align: middle; }
+.crm-shell .bwi .mside .side h6 { margin: 0; padding: 8px 10px 3px; font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--bw-mu); border-bottom: 1px solid var(--bw-ln2); }
+.crm-shell .bwi .mtb { display: flex; gap: 6px; align-items: center; padding: 8px; border-bottom: 1px solid var(--bw-ln); flex-wrap: wrap; }
+.crm-shell .bwi .mdesc { padding: 8px 12px; }
+.crm-shell .bwi table.t.mv td { vertical-align: middle; }
+.crm-shell .bwi table.t.mv td .in.sm { min-width: 0; }
+.crm-shell .bwi table.t.mv td.nw { white-space: nowrap; }
+.crm-shell .bwi table.t.mv td.c { text-align: center; }
+.crm-shell .bwi table.t.mv .btn.g.s { padding: 0 6px; }
+.crm-shell .bwi .pgn { display: flex; align-items: center; gap: 6px; padding: 6px 8px; border-top: 1px solid var(--bw-ln); color: var(--bw-mu); font-size: 12px; }
+.crm-shell .bwi .pill.ac { color: var(--bw-ac); background: color-mix(in srgb, var(--bw-ac) 12%, var(--bw-sf)); }
+.crm-shell .bwi .embed { background: var(--bw-sf); border: 1px solid var(--bw-ln); border-radius: 12px; padding: 10px; min-height: 300px; }
+.crm-shell .bwi .embed.tall { height: calc(100vh - 210px); min-height: 0; overflow: hidden; }
+.crm-shell .bwi .pg .cnt { color: var(--bw-mu); }
+.crm-shell .bwi-ov .md .pb textarea.in { min-height: 90px; }

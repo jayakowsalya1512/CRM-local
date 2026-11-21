@@ -1,0 +1,31 @@
+/* Customization Studio – Bidwise prototype v17 (R.forms: .fld field rows, .cv canvas, 3-column builder, custom-object cards).
+   Scoped to .bwi; base classes from notifications/inbox.css, customers/c360.css, settings/admin360.css (.snav .fg .lb). */
+
+.crm-shell .bwi .fbg { display: grid; grid-template-columns: 190px minmax(0, 1fr) 270px; gap: 10px; align-items: start; }
+@media (max-width: 1100px) { .crm-shell .bwi .fbg { grid-template-columns: minmax(0, 1fr); } }
+.crm-shell .bwi .fbg .list > div { cursor: pointer; gap: 6px; }
+.crm-shell .bwi .fbg .list > div:hover { background: color-mix(in srgb, var(--bw-ac) 6%, var(--bw-sf)); color: var(--bw-ac); }
+.crm-shell .bwi .cv { background: var(--bw-hd); padding: 10px; min-height: 260px; }
+.crm-shell .bwi .fld { background: var(--bw-sf); border: 1px solid var(--bw-ln); padding: 7px 9px; margin-bottom: 6px; border-radius: 6px; cursor: pointer; display: flex; gap: 8px; align-items: center; transition: border-color .12s, box-shadow .12s; }
+.crm-shell .bwi .fld.on { border-color: var(--bw-ac); box-shadow: 0 0 0 1px var(--bw-ac); }
+.crm-shell .bwi .fld.off { opacity: .55; }
+.crm-shell .bwi .fld.drop { border-top: 2px solid var(--bw-ac); }
+.crm-shell .bwi .fld .grip { color: var(--bw-mu); cursor: grab; }
+.crm-shell .bwi .fld .prev { width: 34%; min-width: 120px; pointer-events: none; }
+.crm-shell .bwi .fld .prev .in { height: 26px; font-size: 12px; }
+.crm-shell .bwi .fld small { display: block; }
+.crm-shell .bwi .fg.one { grid-template-columns: 1fr; }
+.crm-shell .bwi .fg .f2 { grid-column: 1 / -1; }
+.crm-shell .bwi .pill.mu { margin: 0 2px 2px 0; display: inline-block; }
+.crm-shell .bwi .g.g3 { display: grid; }
+.crm-shell .bwi .vr { background: var(--bw-sf); border: 1px solid var(--bw-ln); border-radius: 10px; }
+.crm-shell .bwi .vr > div { display: flex; gap: 10px; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--bw-ln2); }
+.crm-shell .bwi .vr > div:last-child { border-bottom: 0; }
+.crm-shell .bwi .vr code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; }
+.crm-shell .bwi .cocard .pb { display: flex; flex-direction: column; gap: 8px; }
+.crm-shell .bwi .cocard .pills { display: flex; flex-wrap: wrap; gap: 3px; }
+.crm-shell .bwi .pvf { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.crm-shell .bwi .pvf > .f2 { grid-column: 1 / -1; }
+.crm-shell .bwi .pvf label { display: block; font-size: 12px; color: var(--bw-mu); margin-bottom: 2px; }
+.crm-shell .bwi .pvf small { display: block; margin-top: 2px; }
+.crm-shell .bwi .snav { margin-top: 2px; }

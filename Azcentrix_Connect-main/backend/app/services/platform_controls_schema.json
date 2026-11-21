@@ -1,0 +1,4402 @@
+[
+ {
+  "id": "c0",
+  "name": "Tenancy & provisioning",
+  "icon": "server",
+  "groups": [
+   {
+    "name": "Provisioning",
+    "controls": [
+     {
+      "key": "autoProv",
+      "type": "sw",
+      "label": "Auto-provision tenants on sign-up",
+      "prototype_label": "Auto-provision tenants on sign-up",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": "There is no self-service sign-up; tenants are created by platform staff",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "defPlan",
+      "type": "sel",
+      "label": "Default plan for new tenants",
+      "prototype_label": "Default plan for new tenants",
+      "default": "Growth",
+      "options": [
+       "Starter",
+       "Growth",
+       "Enterprise"
+      ],
+      "prototype_options": [
+       "Starter",
+       "Growth",
+       "Enterprise"
+      ],
+      "status": "live",
+      "note": "Pre-selected plan in the New tenant wizard",
+      "dynamic": "plans",
+      "platform_only": true
+     },
+     {
+      "key": "isoModel",
+      "type": "sel",
+      "label": "Isolation model",
+      "prototype_label": "Isolation model",
+      "default": "Database per tenant",
+      "options": [
+       "Database per tenant"
+      ],
+      "prototype_options": [
+       "Schema per tenant",
+       "Database per tenant",
+       "Shared tables with RLS"
+      ],
+      "status": "fixed",
+      "note": "Every tenant has its own MariaDB database",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "provSla",
+      "type": "num",
+      "label": "Provisioning SLA (minutes)",
+      "prototype_label": "Provisioning SLA (minutes)",
+      "default": 10,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "seedData",
+      "type": "sel",
+      "label": "Seed new tenants with",
+      "prototype_label": "Seed new tenants with",
+      "default": "Industry template",
+      "options": [
+       "Nothing",
+       "Industry template"
+      ],
+      "prototype_options": [
+       "Nothing",
+       "Industry template",
+       "Demo data"
+      ],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "trialAuto",
+      "type": "sw",
+      "label": "Start every new tenant on a trial",
+      "prototype_label": "Start every new tenant on a trial",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "New tenants start as trial; when off they are created active",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "trialDays",
+      "type": "num",
+      "label": "Trial length (days)",
+      "prototype_label": "Trial length (days)",
+      "default": 30,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Onboarding: trial length of new tenants (also edited in Add-ons & usage pricing → Free trial)",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "slugRules",
+      "type": "sw",
+      "label": "Enforce reserved sub-domain list",
+      "prototype_label": "Enforce reserved sub-domain list",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     }
+    ]
+   },
+   {
+    "name": "Naming & limits",
+    "controls": [
+     {
+      "key": "slugPattern",
+      "type": "txt",
+      "label": "Tenant slug pattern",
+      "prototype_label": "Tenant slug pattern",
+      "default": "^[a-z0-9_]{3,60}$",
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Sub-domains must match this pattern when a tenant is created (adapted: database names use underscores)",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "maxTenants",
+      "type": "num",
+      "label": "Maximum tenants per platform",
+      "prototype_label": "Maximum tenants per platform",
+      "default": 5000,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Tenant creation is refused at this limit",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "maxGroupKids",
+      "type": "num",
+      "label": "Maximum companies per parent group",
+      "prototype_label": "Maximum companies per parent group",
+      "default": 50,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Attaching more companies to a parent group is refused at this limit",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "dupDomains",
+      "type": "sw",
+      "label": "Block duplicate company domains",
+      "prototype_label": "Block duplicate company domains",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "c1",
+  "name": "Hierarchy & groups",
+  "icon": "building",
+  "groups": [
+   {
+    "name": "Parent groups",
+    "controls": [
+     {
+      "key": "grpEnable",
+      "type": "sw",
+      "label": "Enable parent-group tenants",
+      "prototype_label": "Enable parent-group tenants",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "When off, new parent groups cannot be created",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "grpVisible",
+      "type": "sel",
+      "label": "Default parent visibility",
+      "prototype_label": "Default parent visibility",
+      "default": "Full data & workspace",
+      "options": [
+       "Full data & workspace",
+       "Consolidated reports only",
+       "None"
+      ],
+      "prototype_options": [
+       "Full data & workspace",
+       "Consolidated reports only",
+       "None"
+      ],
+      "status": "live",
+      "note": "Default parent visibility for new parent groups (companies joining a group take the group default)",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "grpSwitch",
+      "type": "sw",
+      "label": "Company switcher for group admins",
+      "prototype_label": "Company switcher for group admins",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "grpShareMaster",
+      "type": "sw",
+      "label": "Allow shared master data across companies",
+      "prototype_label": "Allow shared master data across companies",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Companies joining a group get this shared-masters policy; when off, shared masters cannot be turned on",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "grpShareRoles",
+      "type": "sw",
+      "label": "Allow shared role templates",
+      "prototype_label": "Allow shared role templates",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "grpConsolBill",
+      "type": "sw",
+      "label": "Consolidated billing for groups",
+      "prototype_label": "Consolidated billing for groups",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "grpInter",
+      "type": "sw",
+      "label": "Inter-company transactions",
+      "prototype_label": "Inter-company transactions",
+      "default": false,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "grpNested",
+      "type": "sw",
+      "label": "Allow nested groups (2 levels)",
+      "prototype_label": "Allow nested groups (2 levels)",
+      "default": false,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "grpMaxDepth",
+      "type": "num",
+      "label": "Maximum hierarchy depth",
+      "prototype_label": "Maximum hierarchy depth",
+      "default": 2,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "c2",
+  "name": "Plans & entitlements",
+  "icon": "plug",
+  "groups": [
+   {
+    "name": "Plan rules",
+    "controls": [
+     {
+      "key": "planUpgrade",
+      "type": "sw",
+      "label": "Self-service upgrades",
+      "prototype_label": "Self-service upgrades",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "planDowngrade",
+      "type": "sw",
+      "label": "Self-service downgrades",
+      "prototype_label": "Self-service downgrades",
+      "default": false,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "planProrate",
+      "type": "sel",
+      "label": "Proration on plan change",
+      "prototype_label": "Proration on plan change",
+      "default": "Prorate daily",
+      "options": [
+       "Prorate daily",
+       "Next cycle",
+       "None"
+      ],
+      "prototype_options": [
+       "Prorate daily",
+       "Next cycle",
+       "None"
+      ],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "planGrand",
+      "type": "sw",
+      "label": "Grandfather legacy plans",
+      "prototype_label": "Grandfather legacy plans",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "planCustom",
+      "type": "sw",
+      "label": "Allow custom enterprise plans",
+      "prototype_label": "Allow custom enterprise plans",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "planAddons",
+      "type": "sw",
+      "label": "Enable add-on catalogue",
+      "prototype_label": "Enable add-on catalogue",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "planGrace",
+      "type": "num",
+      "label": "Over-limit grace period (days)",
+      "prototype_label": "Over-limit grace period (days)",
+      "default": 7,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "planOver",
+      "type": "sel",
+      "label": "Over-limit behaviour",
+      "prototype_label": "Over-limit behaviour",
+      "default": "Soft – allow and bill",
+      "options": [
+       "Soft – allow and bill",
+       "Hard – block",
+       "Warn only"
+      ],
+      "prototype_options": [
+       "Soft – allow and bill",
+       "Hard – block",
+       "Warn only"
+      ],
+      "status": "live",
+      "note": "Billing & Metering: usage above the allowance is billed only with “Soft – allow and bill” and an overage price",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "modGate",
+      "type": "sw",
+      "label": "Gate modules by plan",
+      "prototype_label": "Gate modules by plan",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "modPreview",
+      "type": "sw",
+      "label": "Allow trial of locked modules",
+      "prototype_label": "Allow trial of locked modules",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "c3",
+  "name": "Billing & invoicing",
+  "icon": "card",
+  "groups": [
+   {
+    "name": "Invoicing",
+    "controls": [
+     {
+      "key": "invCycle",
+      "type": "sel",
+      "label": "Default billing cycle",
+      "prototype_label": "Default billing cycle",
+      "default": "Annual",
+      "options": [
+       "Monthly",
+       "Quarterly",
+       "Annual"
+      ],
+      "prototype_options": [
+       "Monthly",
+       "Quarterly",
+       "Annual"
+      ],
+      "status": "live",
+      "note": "Billing & Metering: the period each invoicing run bills (tenant overrides apply)",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "invCur",
+      "type": "sel",
+      "label": "Invoice currency",
+      "prototype_label": "Invoice currency",
+      "default": "INR",
+      "options": [
+       "INR",
+       "USD",
+       "EUR",
+       "GBP",
+       "AED"
+      ],
+      "prototype_options": [
+       "INR",
+       "USD",
+       "EUR",
+       "GBP",
+       "AED"
+      ],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "invPrefix",
+      "type": "txt",
+      "label": "Invoice number prefix",
+      "prototype_label": "Invoice number prefix",
+      "default": "INV-",
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Billing & Metering: invoice numbers are <prefix><YYMM>-<sequence>",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "invDue",
+      "type": "num",
+      "label": "Payment terms (days)",
+      "prototype_label": "Payment terms (days)",
+      "default": 15,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Billing & Metering: invoice due date = issue date + these days",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "invAuto",
+      "type": "sw",
+      "label": "Auto-generate invoices",
+      "prototype_label": "Auto-generate invoices",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "invEmail",
+      "type": "sw",
+      "label": "Email invoices to billing contact",
+      "prototype_label": "Email invoices to billing contact",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "invPdf",
+      "type": "sw",
+      "label": "Attach PDF to invoice email",
+      "prototype_label": "Attach PDF to invoice email",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "invTax",
+      "type": "sw",
+      "label": "Calculate tax automatically",
+      "prototype_label": "Calculate tax automatically",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Billing & Metering: adds GST to every invoice at the rate, GSTIN and place of supply set in Invoices & dunning → Tax & e-invoice",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "invFooter",
+      "type": "txt",
+      "label": "Invoice footer text",
+      "prototype_label": "Invoice footer text",
+      "default": "Thank you for your business",
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "invCredit",
+      "type": "sw",
+      "label": "Allow credit notes",
+      "prototype_label": "Allow credit notes",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Invoices & dunning: off blocks issuing credit notes",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "invMulti",
+      "type": "sw",
+      "label": "Multi-currency invoicing",
+      "prototype_label": "Multi-currency invoicing",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "c4",
+  "name": "Pricing, coupons & tax",
+  "icon": "tag",
+  "groups": [
+   {
+    "name": "Pricing",
+    "controls": [
+     {
+      "key": "coupons",
+      "type": "sw",
+      "label": "Enable coupons",
+      "prototype_label": "Enable coupons",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Discounts & coupons: while off, coupons can't be redeemed (existing redemptions keep applying)",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "couponMax",
+      "type": "num",
+      "label": "Maximum discount (%)",
+      "prototype_label": "Maximum discount (%)",
+      "default": 30,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Discounts & coupons: cap on the combined percentage discount of an invoice (shown there as “Maximum stackable discount”)",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "couponStack",
+      "type": "sw",
+      "label": "Allow stacking coupons",
+      "prototype_label": "Allow stacking coupons",
+      "default": false,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Discounts & coupons: whether a tenant may hold more than one coupon at a time",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "regional",
+      "type": "sw",
+      "label": "Regional pricing",
+      "prototype_label": "Regional pricing",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "volume",
+      "type": "sw",
+      "label": "Volume-based pricing",
+      "prototype_label": "Volume-based pricing",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Discounts & coupons: seat-based volume tiers apply to subscription invoices while on",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "taxEngine",
+      "type": "sel",
+      "label": "Tax engine",
+      "prototype_label": "Tax engine",
+      "default": "Built-in GST / VAT",
+      "options": [
+       "Built-in GST / VAT",
+       "Avalara",
+       "TaxJar"
+      ],
+      "prototype_options": [
+       "Built-in GST / VAT",
+       "Avalara",
+       "TaxJar"
+      ],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "taxExempt",
+      "type": "sw",
+      "label": "Support tax-exempt customers",
+      "prototype_label": "Support tax-exempt customers",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "reverseCharge",
+      "type": "sw",
+      "label": "Reverse-charge for EU customers",
+      "prototype_label": "Reverse-charge for EU customers",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "einvoice",
+      "type": "sw",
+      "label": "E-invoicing (India IRN)",
+      "prototype_label": "E-invoicing (India IRN)",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "dcAnnual",
+      "type": "num",
+      "label": "Discount when paying yearly (%)",
+      "prototype_label": "Discount when paying yearly (%)",
+      "default": 15,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Applied to annual invoices of plans without a separate yearly price (a yearly price already includes it)",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "dcMulti2",
+      "type": "num",
+      "label": "Multi-year discount – 2 years (%)",
+      "prototype_label": "Multi-year discount – 2 years (%)",
+      "default": 20,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": "Stored: billing has no multi-year cycle yet (Monthly / Quarterly / Annual)",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "dcMulti3",
+      "type": "num",
+      "label": "Multi-year discount – 3 years (%)",
+      "prototype_label": "Multi-year discount – 3 years (%)",
+      "default": 25,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": "Stored: billing has no multi-year cycle yet (Monthly / Quarterly / Annual)",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "dcStackVol",
+      "type": "sw",
+      "label": "Coupons and volume discounts can stack",
+      "prototype_label": "Coupons and volume discounts can stack",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "While off, a coupon replaces the volume discount for the months it applies",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "dcNegReplace",
+      "type": "sw",
+      "label": "Negotiated discounts replace volume discounts",
+      "prototype_label": "Negotiated discounts replace volume discounts",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "While on, an active negotiated discount replaces the volume discount",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "dcShowInv",
+      "type": "sw",
+      "label": "Show discount on invoices",
+      "prototype_label": "Show discount on invoices",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "On: one discount line per source; off: the subscription line is billed at the net price",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "dcApproval",
+      "type": "sw",
+      "label": "Discounts above 20% need a second approver",
+      "prototype_label": "Discounts above 20% need a second approver",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Negotiated discounts above 20% wait for approval by another billing manager",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "refPct",
+      "type": "num",
+      "label": "Referral discount for new customer (%)",
+      "prototype_label": "Referral discount for new customer (%)",
+      "default": 10,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": "Stored: tenants have no referred-by record yet, so it is not applied",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "refCredit",
+      "type": "num",
+      "label": "Reward for referring tenant (credit ₹)",
+      "prototype_label": "Reward for referring tenant (credit ₹)",
+      "default": 25000,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": "Stored: no referral tracking or credit balance exists yet",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "npoPct",
+      "type": "num",
+      "label": "Non-profit & education discount (%)",
+      "prototype_label": "Non-profit & education discount (%)",
+      "default": 30,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": "Stored: tenants have no non-profit / education flag yet, so it is not applied",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "npoVerify",
+      "type": "sw",
+      "label": "Non-profit: require document verification",
+      "prototype_label": "Non-profit: require document verification",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": "Stored with the non-profit discount",
+      "dynamic": null,
+      "platform_only": true
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "c5",
+  "name": "Metering & quotas",
+  "icon": "chart",
+  "groups": [
+   {
+    "name": "Usage metering",
+    "controls": [
+     {
+      "key": "meterOn",
+      "type": "sw",
+      "label": "Enable usage metering",
+      "prototype_label": "Enable usage metering",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "meterAgg",
+      "type": "sel",
+      "label": "Aggregation window",
+      "prototype_label": "Aggregation window",
+      "default": "Hourly",
+      "options": [
+       "Real-time",
+       "Hourly",
+       "Daily"
+      ],
+      "prototype_options": [
+       "Real-time",
+       "Hourly",
+       "Daily"
+      ],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "meterAPI",
+      "type": "sw",
+      "label": "Meter API calls",
+      "prototype_label": "Meter API calls",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "meterAI",
+      "type": "sw",
+      "label": "Meter AI queries",
+      "prototype_label": "Meter AI queries",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "meterStore",
+      "type": "sw",
+      "label": "Meter storage",
+      "prototype_label": "Meter storage",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "meterSeat",
+      "type": "sw",
+      "label": "Meter active seats",
+      "prototype_label": "Meter active seats",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "meterOcr",
+      "type": "sw",
+      "label": "Meter OCR pages",
+      "prototype_label": "Meter OCR pages",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "meterEmail",
+      "type": "sw",
+      "label": "Meter outbound emails",
+      "prototype_label": "Meter outbound emails",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "meterAlert",
+      "type": "num",
+      "label": "Usage alert threshold (%)",
+      "prototype_label": "Usage alert threshold (%)",
+      "default": 80,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Storage usage at or above this share of the plan limit appears in Needs attention",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "meterExport",
+      "type": "sw",
+      "label": "Allow usage export for tenants",
+      "prototype_label": "Allow usage export for tenants",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "ovSeat",
+      "type": "num",
+      "label": "Overage price per extra user seat / month (₹)",
+      "prototype_label": null,
+      "default": 0,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Billing & Metering: 0 = extra seats are not billed",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "ovStorage",
+      "type": "num",
+      "label": "Overage price per extra GB of storage / month (₹)",
+      "prototype_label": null,
+      "default": 0,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": "Superseded: storage and AI overage are priced per plan in Add-ons & usage pricing (this value is no longer billed)",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "ovAI",
+      "type": "num",
+      "label": "Overage price per AI query above the quota (₹)",
+      "prototype_label": null,
+      "default": 0,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": "Superseded: storage and AI overage are priced per plan in Add-ons & usage pricing (this value is no longer billed)",
+      "dynamic": null,
+      "platform_only": false
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "c6",
+  "name": "Identity, SSO & directory",
+  "icon": "key",
+  "groups": [
+   {
+    "name": "Single sign-on",
+    "controls": [
+     {
+      "key": "ssoSaml",
+      "type": "sw",
+      "label": "Allow SAML 2.0",
+      "prototype_label": "Allow SAML 2.0",
+      "default": false,
+      "options": [],
+      "prototype_options": [],
+      "status": "unsupported",
+      "note": "No SAML / OpenID Connect / SCIM / LDAP connector is built on this platform",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "ssoOidc",
+      "type": "sw",
+      "label": "Allow OpenID Connect",
+      "prototype_label": "Allow OpenID Connect",
+      "default": false,
+      "options": [],
+      "prototype_options": [],
+      "status": "unsupported",
+      "note": "No SAML / OpenID Connect / SCIM / LDAP connector is built on this platform",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "ssoGoogle",
+      "type": "sw",
+      "label": "Allow Google Workspace",
+      "prototype_label": "Allow Google Workspace",
+      "default": false,
+      "options": [],
+      "prototype_options": [],
+      "status": "unsupported",
+      "note": "No SAML / OpenID Connect / SCIM / LDAP connector is built on this platform",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "ssoMs",
+      "type": "sw",
+      "label": "Allow Microsoft Entra ID",
+      "prototype_label": "Allow Microsoft Entra ID",
+      "default": false,
+      "options": [],
+      "prototype_options": [],
+      "status": "unsupported",
+      "note": "No SAML / OpenID Connect / SCIM / LDAP connector is built on this platform",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "ssoJit",
+      "type": "sw",
+      "label": "Just-in-time user provisioning",
+      "prototype_label": "Just-in-time user provisioning",
+      "default": false,
+      "options": [],
+      "prototype_options": [],
+      "status": "unsupported",
+      "note": "No SAML / OpenID Connect / SCIM / LDAP connector is built on this platform",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "scim",
+      "type": "sw",
+      "label": "SCIM user provisioning",
+      "prototype_label": "SCIM user provisioning",
+      "default": false,
+      "options": [],
+      "prototype_options": [],
+      "status": "unsupported",
+      "note": "No SAML / OpenID Connect / SCIM / LDAP connector is built on this platform",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "ssoEnforce",
+      "type": "sel",
+      "label": "SSO enforcement",
+      "prototype_label": "SSO enforcement",
+      "default": "Per tenant choice",
+      "options": [
+       "Per tenant choice",
+       "Required for Enterprise",
+       "Required for all"
+      ],
+      "prototype_options": [
+       "Per tenant choice",
+       "Required for Enterprise",
+       "Required for all"
+      ],
+      "status": "unsupported",
+      "note": "No SAML / OpenID Connect / SCIM / LDAP connector is built on this platform",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "ssoGroups",
+      "type": "sw",
+      "label": "Map directory groups to roles",
+      "prototype_label": "Map directory groups to roles",
+      "default": false,
+      "options": [],
+      "prototype_options": [],
+      "status": "unsupported",
+      "note": "No SAML / OpenID Connect / SCIM / LDAP connector is built on this platform",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "ldap",
+      "type": "sw",
+      "label": "LDAP / Active Directory connector",
+      "prototype_label": "LDAP / Active Directory connector",
+      "default": false,
+      "options": [],
+      "prototype_options": [],
+      "status": "unsupported",
+      "note": "No SAML / OpenID Connect / SCIM / LDAP connector is built on this platform",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "ssoLogout",
+      "type": "sw",
+      "label": "Single logout",
+      "prototype_label": "Single logout",
+      "default": false,
+      "options": [],
+      "prototype_options": [],
+      "status": "unsupported",
+      "note": "No SAML / OpenID Connect / SCIM / LDAP connector is built on this platform",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "ssoSkew",
+      "type": "num",
+      "label": "Clock skew tolerance (seconds)",
+      "prototype_label": "Clock skew tolerance (seconds)",
+      "default": 120,
+      "options": [],
+      "prototype_options": [],
+      "status": "unsupported",
+      "note": "No SAML / OpenID Connect / SCIM / LDAP connector is built on this platform",
+      "dynamic": null,
+      "platform_only": false
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "c7",
+  "name": "Authentication policy",
+  "icon": "lock",
+  "groups": [
+   {
+    "name": "Passwords & MFA",
+    "controls": [
+     {
+      "key": "pwMin",
+      "type": "num",
+      "label": "Minimum password length",
+      "prototype_label": "Minimum password length",
+      "default": 10,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Enforced for platform staff passwords (never below the application minimum)",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "pwBreach",
+      "type": "sw",
+      "label": "Block breached passwords",
+      "prototype_label": "Block breached passwords",
+      "default": false,
+      "options": [],
+      "prototype_options": [],
+      "status": "unsupported",
+      "note": "No breached-password list is available to this self-hosted deployment",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "pwHist",
+      "type": "num",
+      "label": "Password history",
+      "prototype_label": "Password history",
+      "default": 5,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Enforced for platform staff passwords; 0 turns it off",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "pwRot",
+      "type": "num",
+      "label": "Password rotation (days)",
+      "prototype_label": "Password rotation (days)",
+      "default": 90,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Platform staff must change an older password at their next sign-in; 0 = never",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "mfaPlat",
+      "type": "sw",
+      "label": "Require MFA for platform staff",
+      "prototype_label": "Require MFA for platform staff",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Email one-time password at every platform sign-in (same setting as Global Settings → OTP every sign-in)",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "mfaTenant",
+      "type": "sw",
+      "label": "Allow tenants to enforce MFA",
+      "prototype_label": "Allow tenants to enforce MFA",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "mfaMethods",
+      "type": "sel",
+      "label": "Allowed MFA methods",
+      "prototype_label": "Allowed MFA methods",
+      "default": "Email OTP",
+      "options": [
+       "Email OTP"
+      ],
+      "prototype_options": [
+       "TOTP only",
+       "TOTP + WebAuthn",
+       "TOTP + SMS + WebAuthn"
+      ],
+      "status": "fixed",
+      "note": "Email one-time passwords are the only MFA method the platform supports",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "lockout",
+      "type": "num",
+      "label": "Lock after failed attempts",
+      "prototype_label": "Lock after failed attempts",
+      "default": 5,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Failed platform sign-ins before the account is locked",
+      "dynamic": "login_attempts",
+      "platform_only": true
+     },
+     {
+      "key": "lockMin",
+      "type": "num",
+      "label": "Lockout duration (minutes)",
+      "prototype_label": "Lockout duration (minutes)",
+      "default": 15,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "How long a locked platform account stays locked",
+      "dynamic": "lockout_minutes",
+      "platform_only": true
+     },
+     {
+      "key": "passkeys",
+      "type": "sw",
+      "label": "Passkeys / WebAuthn sign-in",
+      "prototype_label": "Passkeys / WebAuthn sign-in",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "c8",
+  "name": "Platform roles & four-eyes",
+  "icon": "users",
+  "groups": [
+   {
+    "name": "Staff access",
+    "controls": [
+     {
+      "key": "rbacOn",
+      "type": "sw",
+      "label": "Role-based access for platform staff",
+      "prototype_label": "Role-based access for platform staff",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "fixed",
+      "note": "Platform staff always sign in with a role (Platform Team)",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "fourEyes",
+      "type": "sw",
+      "label": "Four-eyes approval for destructive actions",
+      "prototype_label": "Four-eyes approval for destructive actions",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Same setting as Platform Team → four-eyes approvals",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "fourDelete",
+      "type": "sw",
+      "label": "Require approval to delete a tenant",
+      "prototype_label": "Require approval to delete a tenant",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "fourMigrate",
+      "type": "sw",
+      "label": "Require approval to migrate a tenant",
+      "prototype_label": "Require approval to migrate a tenant",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "fourRestore",
+      "type": "sw",
+      "label": "Require approval to restore a backup",
+      "prototype_label": "Require approval to restore a backup",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "jit",
+      "type": "sw",
+      "label": "Just-in-time elevated access",
+      "prototype_label": "Just-in-time elevated access",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "jitMin",
+      "type": "num",
+      "label": "Elevated access duration (minutes)",
+      "prototype_label": "Elevated access duration (minutes)",
+      "default": 60,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "staffReview",
+      "type": "sw",
+      "label": "Quarterly staff access review",
+      "prototype_label": "Quarterly staff access review",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "breakGlass",
+      "type": "sw",
+      "label": "Break-glass emergency account",
+      "prototype_label": "Break-glass emergency account",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "c9",
+  "name": "Support & impersonation",
+  "icon": "life",
+  "groups": [
+   {
+    "name": "Impersonation",
+    "controls": [
+     {
+      "key": "impOn",
+      "type": "sw",
+      "label": "Allow staff to open tenant workspaces",
+      "prototype_label": "Allow staff to open tenant workspaces",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "impTicket",
+      "type": "sw",
+      "label": "Require a ticket reason",
+      "prototype_label": "Require a ticket reason",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "impApprove",
+      "type": "sw",
+      "label": "Tenant admin must approve access",
+      "prototype_label": "Tenant admin must approve access",
+      "default": false,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "impMin",
+      "type": "num",
+      "label": "Session length (minutes)",
+      "prototype_label": "Session length (minutes)",
+      "default": 60,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "impBanner",
+      "type": "sw",
+      "label": "Show banner inside the tenant",
+      "prototype_label": "Show banner inside the tenant",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "impReadonly",
+      "type": "sw",
+      "label": "Read-only by default",
+      "prototype_label": "Read-only by default",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "impAudit",
+      "type": "sw",
+      "label": "Record every action in the audit trail",
+      "prototype_label": "Record every action in the audit trail",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "impNotify",
+      "type": "sw",
+      "label": "Notify tenant admin after a session",
+      "prototype_label": "Notify tenant admin after a session",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "supHealth",
+      "type": "sw",
+      "label": "Show tenant health to support",
+      "prototype_label": "Show tenant health to support",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "c10",
+  "name": "Database & storage",
+  "icon": "db",
+  "groups": [
+   {
+    "name": "Database",
+    "controls": [
+     {
+      "key": "dbEngine",
+      "type": "sel",
+      "label": "Engine",
+      "prototype_label": "Engine",
+      "default": "PostgreSQL 15",
+      "options": [
+       "PostgreSQL 15",
+       "PostgreSQL 16"
+      ],
+      "prototype_options": [
+       "PostgreSQL 15",
+       "PostgreSQL 16"
+      ],
+      "status": "fixed",
+      "note": "Detected from the tenant database server",
+      "dynamic": "db_engine",
+      "platform_only": true
+     },
+     {
+      "key": "dbPool",
+      "type": "sw",
+      "label": "Connection pooling (SQLAlchemy)",
+      "prototype_label": "Connection pooling (PgBouncer)",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "fixed",
+      "note": "Adapted from PgBouncer: each application worker keeps a pool per tenant database",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "dbPoolMax",
+      "type": "num",
+      "label": "Pool size per tenant",
+      "prototype_label": "Pool size per tenant",
+      "default": 5,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": "Adapted: the current pool is 5 connections + 10 overflow per tenant per worker",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "dbRls",
+      "type": "sw",
+      "label": "Row-level security",
+      "prototype_label": "Row-level security",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "unsupported",
+      "note": "MariaDB has no row-level security; tenants are isolated by separate databases",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "dbReadRep",
+      "type": "sw",
+      "label": "Route reports to read replicas",
+      "prototype_label": "Route reports to read replicas",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "unsupported",
+      "note": "No read-replica server is configured",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "dbStmtTimeout",
+      "type": "num",
+      "label": "Statement timeout (seconds)",
+      "prototype_label": "Statement timeout (seconds)",
+      "default": 30,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": "Adapted: maps to MariaDB max_statement_time",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "dbSlowLog",
+      "type": "sw",
+      "label": "Capture slow queries",
+      "prototype_label": "Capture slow queries",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": "Adapted: MariaDB slow_query_log",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "dbSlowMs",
+      "type": "num",
+      "label": "Slow-query threshold (ms)",
+      "prototype_label": "Slow-query threshold (ms)",
+      "default": 500,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": "Adapted: MariaDB long_query_time",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "dbAutoVac",
+      "type": "sw",
+      "label": "Scheduled table optimisation (OPTIMIZE TABLE)",
+      "prototype_label": "Auto-vacuum tuning",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": "Adapted from PostgreSQL auto-vacuum",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "dbPart",
+      "type": "sw",
+      "label": "Partition audit tables monthly",
+      "prototype_label": "Partition audit tables monthly",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "dbPlace",
+      "type": "sel",
+      "label": "Tenant placement strategy",
+      "prototype_label": "Tenant placement strategy",
+      "default": "Least loaded",
+      "options": [
+       "Least loaded",
+       "Server affinity",
+       "Manual"
+      ],
+      "prototype_options": [
+       "Least loaded",
+       "Region affinity",
+       "Manual"
+      ],
+      "status": "saved",
+      "note": "Adapted: placement across self-hosted database servers",
+      "dynamic": null,
+      "platform_only": false
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "c11",
+  "name": "Backup & disaster recovery",
+  "icon": "db",
+  "groups": [
+   {
+    "name": "Backups",
+    "controls": [
+     {
+      "key": "bkSnap",
+      "type": "sel",
+      "label": "Snapshot frequency",
+      "prototype_label": "Snapshot frequency",
+      "default": "Daily",
+      "options": [
+       "Daily",
+       "Weekly",
+       "Monthly"
+      ],
+      "prototype_options": [
+       "Hourly",
+       "Daily",
+       "Weekly"
+      ],
+      "status": "saved",
+      "note": "Adapted to the backup scheduler's frequencies",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "bkKeep",
+      "type": "num",
+      "label": "Snapshot retention (days)",
+      "prototype_label": "Snapshot retention (days)",
+      "default": 35,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "bkPitr",
+      "type": "sw",
+      "label": "Point-in-time recovery",
+      "prototype_label": "Point-in-time recovery",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "unsupported",
+      "note": "Requires MariaDB binary-log archiving, which is not enabled",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "bkPitrDays",
+      "type": "num",
+      "label": "PITR window (days)",
+      "prototype_label": "PITR window (days)",
+      "default": 7,
+      "options": [],
+      "prototype_options": [],
+      "status": "unsupported",
+      "note": "Requires MariaDB binary-log archiving, which is not enabled",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "bkXRegion",
+      "type": "sw",
+      "label": "Off-server backup copy",
+      "prototype_label": "Cross-region copy",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": "Adapted from cross-region copy",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "bkEncrypt",
+      "type": "sw",
+      "label": "Encrypt backups",
+      "prototype_label": "Encrypt backups",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "bkDrill",
+      "type": "sw",
+      "label": "Monthly restore drills",
+      "prototype_label": "Monthly restore drills",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "rpo",
+      "type": "num",
+      "label": "Recovery point objective (minutes)",
+      "prototype_label": "Recovery point objective (minutes)",
+      "default": 5,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "rto",
+      "type": "num",
+      "label": "Recovery time objective (minutes)",
+      "prototype_label": "Recovery time objective (minutes)",
+      "default": 30,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "bkImmutable",
+      "type": "sw",
+      "label": "Immutable (WORM) backups",
+      "prototype_label": "Immutable (WORM) backups",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "unsupported",
+      "note": "Needs write-once (WORM) storage",
+      "dynamic": null,
+      "platform_only": false
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "c12",
+  "name": "Networking, domains & TLS",
+  "icon": "globe",
+  "groups": [
+   {
+    "name": "Domains",
+    "controls": [
+     {
+      "key": "domCustom",
+      "type": "sw",
+      "label": "Allow custom domains",
+      "prototype_label": "Allow custom domains",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "domAuto",
+      "type": "sw",
+      "label": "Auto-issue TLS certificates",
+      "prototype_label": "Auto-issue TLS certificates",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "unsupported",
+      "note": "Configured on the web server / reverse proxy in front of the platform, not in the application",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "tlsMin",
+      "type": "sel",
+      "label": "Minimum TLS version",
+      "prototype_label": "Minimum TLS version",
+      "default": "1.2",
+      "options": [
+       "1.2",
+       "1.3"
+      ],
+      "prototype_options": [
+       "1.2",
+       "1.3"
+      ],
+      "status": "unsupported",
+      "note": "Configured on the web server / reverse proxy in front of the platform, not in the application",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "hsts",
+      "type": "sw",
+      "label": "HSTS",
+      "prototype_label": "HSTS",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "unsupported",
+      "note": "Configured on the web server / reverse proxy in front of the platform, not in the application",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "waf",
+      "type": "sw",
+      "label": "Web application firewall",
+      "prototype_label": "Web application firewall",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "unsupported",
+      "note": "Configured on the web server / reverse proxy in front of the platform, not in the application",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "ddos",
+      "type": "sw",
+      "label": "DDoS protection",
+      "prototype_label": "DDoS protection",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "unsupported",
+      "note": "Configured on the web server / reverse proxy in front of the platform, not in the application",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "ipDeny",
+      "type": "sw",
+      "label": "Platform IP deny-list",
+      "prototype_label": "Platform IP deny-list",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "geoBlock",
+      "type": "sw",
+      "label": "Geo-blocking",
+      "prototype_label": "Geo-blocking",
+      "default": false,
+      "options": [],
+      "prototype_options": [],
+      "status": "unsupported",
+      "note": "Configured on the web server / reverse proxy in front of the platform, not in the application",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "cdn",
+      "type": "sw",
+      "label": "CDN for static assets",
+      "prototype_label": "CDN for static assets",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "unsupported",
+      "note": "Configured on the web server / reverse proxy in front of the platform, not in the application",
+      "dynamic": null,
+      "platform_only": false
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "c13",
+  "name": "Observability & alerting",
+  "icon": "chart",
+  "groups": [
+   {
+    "name": "Monitoring",
+    "controls": [
+     {
+      "key": "sloAvail",
+      "type": "num",
+      "label": "Availability SLO (%)",
+      "prototype_label": "Availability SLO (%)",
+      "default": 99.9,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "SLA target on Command Center and tenant monitoring",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "sloLat",
+      "type": "num",
+      "label": "p95 latency SLO (ms)",
+      "prototype_label": "p95 latency SLO (ms)",
+      "default": 300,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "p95 latency SLO and Apdex target on Command Center and tenant monitoring",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "alertErr",
+      "type": "num",
+      "label": "Error-rate alert threshold (%)",
+      "prototype_label": "Error-rate alert threshold (%)",
+      "default": 1,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Error budget on Command Center",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "alertCpu",
+      "type": "num",
+      "label": "CPU alert threshold (%)",
+      "prototype_label": "CPU alert threshold (%)",
+      "default": 70,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Servers at or above this CPU appear in Needs attention",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "alertLag",
+      "type": "num",
+      "label": "Replication lag alert (seconds)",
+      "prototype_label": "Replication lag alert (seconds)",
+      "default": 10,
+      "options": [],
+      "prototype_options": [],
+      "status": "unsupported",
+      "note": "No database replication is configured",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "pageOn",
+      "type": "sel",
+      "label": "On-call paging",
+      "prototype_label": "On-call paging",
+      "default": "PagerDuty",
+      "options": [
+       "PagerDuty",
+       "Opsgenie",
+       "Slack only"
+      ],
+      "prototype_options": [
+       "PagerDuty",
+       "Opsgenie",
+       "Slack only"
+      ],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "statusPublic",
+      "type": "sw",
+      "label": "Public status page",
+      "prototype_label": "Public status page",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "synthetic",
+      "type": "sw",
+      "label": "Synthetic checks every minute",
+      "prototype_label": "Synthetic checks every minute",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "unsupported",
+      "note": "No synthetic-check service is installed",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "tracing",
+      "type": "sw",
+      "label": "Distributed tracing",
+      "prototype_label": "Distributed tracing",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "unsupported",
+      "note": "No tracing backend is installed",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "apm",
+      "type": "sw",
+      "label": "Application performance monitoring",
+      "prototype_label": "Application performance monitoring",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "unsupported",
+      "note": "No APM agent is installed",
+      "dynamic": null,
+      "platform_only": false
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "c14",
+  "name": "Logging & retention",
+  "icon": "table",
+  "groups": [
+   {
+    "name": "Logs",
+    "controls": [
+     {
+      "key": "logKeep",
+      "type": "num",
+      "label": "Application log retention (days)",
+      "prototype_label": "Application log retention (days)",
+      "default": 30,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "auditKeep",
+      "type": "num",
+      "label": "Audit log retention (months)",
+      "prototype_label": "Audit log retention (months)",
+      "default": 84,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "logPii",
+      "type": "sw",
+      "label": "Redact personal data in logs",
+      "prototype_label": "Redact personal data in logs",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "logTenantAccess",
+      "type": "sw",
+      "label": "Let tenants view their own logs",
+      "prototype_label": "Let tenants view their own logs",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "logLevel",
+      "type": "sel",
+      "label": "Default log level",
+      "prototype_label": "Default log level",
+      "default": "INFO",
+      "options": [
+       "DEBUG",
+       "INFO",
+       "WARN",
+       "ERROR"
+      ],
+      "prototype_options": [
+       "DEBUG",
+       "INFO",
+       "WARN",
+       "ERROR"
+      ],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "logShip",
+      "type": "sw",
+      "label": "Ship logs to SIEM",
+      "prototype_label": "Ship logs to SIEM",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "logImmutable",
+      "type": "sw",
+      "label": "Tamper-evident audit logs",
+      "prototype_label": "Tamper-evident audit logs",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "logSampling",
+      "type": "sw",
+      "label": "Sample verbose logs",
+      "prototype_label": "Sample verbose logs",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "c15",
+  "name": "Rate limiting & API",
+  "icon": "git",
+  "groups": [
+   {
+    "name": "API gateway",
+    "controls": [
+     {
+      "key": "rlOn",
+      "type": "sw",
+      "label": "Enable rate limiting",
+      "prototype_label": "Enable rate limiting",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "API-key requests are limited per plan (Rate limits & API keys); off = no limit",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "rlBurst",
+      "type": "num",
+      "label": "Burst allowance (requests)",
+      "prototype_label": "Burst allowance (requests)",
+      "default": 200,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "rlScope",
+      "type": "sel",
+      "label": "Limit scope",
+      "prototype_label": "Limit scope",
+      "default": "Per tenant",
+      "options": [
+       "Per tenant",
+       "Per user",
+       "Per API key"
+      ],
+      "prototype_options": [
+       "Per tenant",
+       "Per user",
+       "Per API key"
+      ],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "apiVersion",
+      "type": "sw",
+      "label": "Version the public API",
+      "prototype_label": "Version the public API",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "apiDefault",
+      "type": "sel",
+      "label": "Default API version",
+      "prototype_label": "Default API version",
+      "default": "v2",
+      "options": [
+       "v1",
+       "v2"
+      ],
+      "prototype_options": [
+       "v1",
+       "v2"
+      ],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "apiDeprecate",
+      "type": "sw",
+      "label": "Warn on deprecated endpoints",
+      "prototype_label": "Warn on deprecated endpoints",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Adds Deprecation / Sunset headers to responses of a deprecated API version; the version keeps working",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "apiKeys",
+      "type": "sw",
+      "label": "Tenant-managed API keys",
+      "prototype_label": "Tenant-managed API keys",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "apiOauth",
+      "type": "sw",
+      "label": "OAuth 2.0 apps",
+      "prototype_label": "OAuth 2.0 apps",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "apiTokenMin",
+      "type": "num",
+      "label": "Access-token lifetime (minutes)",
+      "prototype_label": "Access-token lifetime (minutes)",
+      "default": 60,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "apiCors",
+      "type": "sw",
+      "label": "Per-tenant CORS rules",
+      "prototype_label": "Per-tenant CORS rules",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "apiKeyOverlap",
+      "type": "num",
+      "label": "API key rotation overlap (hours)",
+      "prototype_label": "API key rotation overlap (hours)",
+      "default": 24,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "How long a rotated API key keeps working after its replacement is issued (0–720; 0 = stops at once)",
+      "dynamic": null,
+      "platform_only": true
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "c16",
+  "name": "Webhooks & events",
+  "icon": "megaphone",
+  "groups": [
+   {
+    "name": "Delivery",
+    "controls": [
+     {
+      "key": "whOn",
+      "type": "sw",
+      "label": "Enable webhooks",
+      "prototype_label": "Enable webhooks",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "whRetry",
+      "type": "num",
+      "label": "Retry attempts",
+      "prototype_label": "Retry attempts",
+      "default": 5,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "whBackoff",
+      "type": "sel",
+      "label": "Retry back-off",
+      "prototype_label": "Retry back-off",
+      "default": "Exponential",
+      "options": [
+       "Linear",
+       "Exponential"
+      ],
+      "prototype_options": [
+       "Linear",
+       "Exponential"
+      ],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "whSign",
+      "type": "sw",
+      "label": "Sign payloads (HMAC)",
+      "prototype_label": "Sign payloads (HMAC)",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "whTimeout",
+      "type": "num",
+      "label": "Delivery timeout (seconds)",
+      "prototype_label": "Delivery timeout (seconds)",
+      "default": 10,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "whDlq",
+      "type": "sw",
+      "label": "Dead-letter queue",
+      "prototype_label": "Dead-letter queue",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "whMax",
+      "type": "num",
+      "label": "Maximum endpoints per tenant",
+      "prototype_label": "Maximum endpoints per tenant",
+      "default": 20,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "whReplay",
+      "type": "sw",
+      "label": "Allow event replay",
+      "prototype_label": "Allow event replay",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "c17",
+  "name": "Email, SMS & messaging",
+  "icon": "mail",
+  "groups": [
+   {
+    "name": "Providers",
+    "controls": [
+     {
+      "key": "emailProv",
+      "type": "sel",
+      "label": "Email provider",
+      "prototype_label": "Email provider",
+      "default": "SMTP relay",
+      "options": [
+       "SMTP relay"
+      ],
+      "prototype_options": [
+       "SES",
+       "SendGrid",
+       "SMTP relay"
+      ],
+      "status": "saved",
+      "note": "Adapted: email is sent through SMTP (tenant SMTP or platform SMTP_* settings)",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "smsProv",
+      "type": "sel",
+      "label": "SMS provider",
+      "prototype_label": "SMS provider",
+      "default": "Twilio",
+      "options": [
+       "Twilio",
+       "MSG91",
+       "None"
+      ],
+      "prototype_options": [
+       "Twilio",
+       "MSG91",
+       "None"
+      ],
+      "status": "planned",
+      "note": "No SMS gateway is integrated",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "waProv",
+      "type": "sel",
+      "label": "WhatsApp provider",
+      "prototype_label": "WhatsApp provider",
+      "default": "Meta Cloud API",
+      "options": [
+       "Meta Cloud API",
+       "None"
+      ],
+      "prototype_options": [
+       "Meta Cloud API",
+       "Gupshup",
+       "None"
+      ],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "dkim",
+      "type": "sw",
+      "label": "Sign outgoing email (DKIM)",
+      "prototype_label": "Sign outgoing email (DKIM)",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "unsupported",
+      "note": "Configured in DNS and on the mail server",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "spf",
+      "type": "sw",
+      "label": "Enforce SPF / DMARC alignment",
+      "prototype_label": "Enforce SPF / DMARC alignment",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "unsupported",
+      "note": "Configured in DNS and on the mail server",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "emailRate",
+      "type": "num",
+      "label": "Platform email rate (per minute)",
+      "prototype_label": "Platform email rate (per minute)",
+      "default": 2000,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "bounce",
+      "type": "sw",
+      "label": "Bounce handling",
+      "prototype_label": "Bounce handling",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "unsub",
+      "type": "sw",
+      "label": "Mandatory unsubscribe link",
+      "prototype_label": "Mandatory unsubscribe link",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "tplApprove",
+      "type": "sw",
+      "label": "Approve message templates",
+      "prototype_label": "Approve message templates",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "quietHours",
+      "type": "sw",
+      "label": "Honour tenant quiet hours",
+      "prototype_label": "Honour tenant quiet hours",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "c18",
+  "name": "Release & change management",
+  "icon": "git",
+  "groups": [
+   {
+    "name": "Releases",
+    "controls": [
+     {
+      "key": "relChannel",
+      "type": "sel",
+      "label": "Default release channel",
+      "prototype_label": "Default release channel",
+      "default": "Stable",
+      "options": [
+       "Stable",
+       "Early access"
+      ],
+      "prototype_options": [
+       "Stable",
+       "Early access"
+      ],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "relCanary",
+      "type": "sw",
+      "label": "Canary releases",
+      "prototype_label": "Canary releases",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "New releases start on a share of traffic and are promoted in steps (Infrastructure & releases)",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "relCanaryPct",
+      "type": "num",
+      "label": "Initial canary traffic (%)",
+      "prototype_label": "Initial canary traffic (%)",
+      "default": 10,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Share of traffic a new release starts with (1–99 %)",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "relAuto",
+      "type": "sw",
+      "label": "Auto-rollback on error spike",
+      "prototype_label": "Auto-rollback on error spike",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "A canary is rolled back when the API error rate passes the error-rate alert limit",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "relFreeze",
+      "type": "sw",
+      "label": "Change freeze windows",
+      "prototype_label": "Change freeze windows",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Changes scheduled inside a freeze period need two approvals; releases during a freeze need an approved change",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "relFreezeDates",
+      "type": "txt",
+      "label": "Change freeze periods",
+      "prototype_label": "Change freeze periods",
+      "default": "",
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "YYYY-MM-DD to YYYY-MM-DD, separate periods with ;",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "relNotes",
+      "type": "sw",
+      "label": "Publish release notes to tenants",
+      "prototype_label": "Publish release notes to tenants",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "relMaint",
+      "type": "sw",
+      "label": "Scheduled maintenance windows",
+      "prototype_label": "Scheduled maintenance windows",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "relNotice",
+      "type": "num",
+      "label": "Maintenance notice (hours)",
+      "prototype_label": "Maintenance notice (hours)",
+      "default": 48,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "relApprove",
+      "type": "sw",
+      "label": "Change approval board",
+      "prototype_label": "Change approval board",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Releases need an approved Release change for the day (Change & maintenance → approval queue)",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "relFlagFirst",
+      "type": "sw",
+      "label": "Ship features behind flags",
+      "prototype_label": "Ship features behind flags",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "c19",
+  "name": "Feature flags & experiments",
+  "icon": "flow",
+  "groups": [
+   {
+    "name": "Flags",
+    "controls": [
+     {
+      "key": "ffOn",
+      "type": "sw",
+      "label": "Enable feature flags",
+      "prototype_label": "Enable feature flags",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "ffTenant",
+      "type": "sw",
+      "label": "Per-tenant flag targeting",
+      "prototype_label": "Per-tenant flag targeting",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "ffPct",
+      "type": "sw",
+      "label": "Percentage rollouts",
+      "prototype_label": "Percentage rollouts",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "ffKill",
+      "type": "sw",
+      "label": "Kill-switch for every flag",
+      "prototype_label": "Kill-switch for every flag",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "ffExp",
+      "type": "sw",
+      "label": "A/B experiments",
+      "prototype_label": "A/B experiments",
+      "default": false,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "ffAudit",
+      "type": "sw",
+      "label": "Audit flag changes",
+      "prototype_label": "Audit flag changes",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "ffStale",
+      "type": "sw",
+      "label": "Warn about stale flags",
+      "prototype_label": "Warn about stale flags",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "ffSdk",
+      "type": "sw",
+      "label": "Server-side evaluation only",
+      "prototype_label": "Server-side evaluation only",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "c20",
+  "name": "Security & threat protection",
+  "icon": "shield",
+  "groups": [
+   {
+    "name": "Protection",
+    "controls": [
+     {
+      "key": "secScan",
+      "type": "sw",
+      "label": "Dependency vulnerability scanning",
+      "prototype_label": "Dependency vulnerability scanning",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "secPen",
+      "type": "sw",
+      "label": "Annual penetration test",
+      "prototype_label": "Annual penetration test",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "secBug",
+      "type": "sw",
+      "label": "Bug-bounty programme",
+      "prototype_label": "Bug-bounty programme",
+      "default": false,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "secAnomaly",
+      "type": "sw",
+      "label": "Anomalous sign-in detection",
+      "prototype_label": "Anomalous sign-in detection",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "secBot",
+      "type": "sw",
+      "label": "Bot protection",
+      "prototype_label": "Bot protection",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "secCsp",
+      "type": "sw",
+      "label": "Content security policy",
+      "prototype_label": "Content security policy",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "secSecrets",
+      "type": "sw",
+      "label": "Secrets manager rotation",
+      "prototype_label": "Secrets manager rotation",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "secRotate",
+      "type": "num",
+      "label": "Rotate secrets every (days)",
+      "prototype_label": "Rotate secrets every (days)",
+      "default": 90,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "secByok",
+      "type": "sw",
+      "label": "Customer-managed keys (BYOK)",
+      "prototype_label": "Customer-managed keys (BYOK)",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "unsupported",
+      "note": "No external key-management service",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "secFile",
+      "type": "sw",
+      "label": "Malware scan on uploads",
+      "prototype_label": "Malware scan on uploads",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "secDlp",
+      "type": "sw",
+      "label": "Data-loss-prevention rules",
+      "prototype_label": "Data-loss-prevention rules",
+      "default": false,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "c21",
+  "name": "Data residency & compliance",
+  "icon": "globe",
+  "groups": [
+   {
+    "name": "Residency",
+    "controls": [
+     {
+      "key": "resDefault",
+      "type": "sel",
+      "label": "Default data region",
+      "prototype_label": "Default data region",
+      "default": "India – Mumbai",
+      "options": [
+       "India – Mumbai",
+       "India – Chennai",
+       "EU – Frankfurt",
+       "US – Virginia",
+       "UAE – Dubai"
+      ],
+      "prototype_options": [
+       "India – Mumbai",
+       "India – Chennai",
+       "EU – Frankfurt",
+       "US – Virginia",
+       "UAE – Dubai"
+      ],
+      "status": "saved",
+      "note": "Adapted: regions are the self-hosted server locations (PLATFORM_SERVERS)",
+      "dynamic": "regions",
+      "platform_only": false
+     },
+     {
+      "key": "resLock",
+      "type": "sw",
+      "label": "Lock tenant data to its region",
+      "prototype_label": "Lock tenant data to its region",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "resBackup",
+      "type": "sw",
+      "label": "Keep backups in-region",
+      "prototype_label": "Keep backups in-region",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "compIso",
+      "type": "sw",
+      "label": "ISO 27001 controls",
+      "prototype_label": "ISO 27001 controls",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "compSoc",
+      "type": "sw",
+      "label": "SOC 2 controls",
+      "prototype_label": "SOC 2 controls",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "compGdpr",
+      "type": "sw",
+      "label": "GDPR controls",
+      "prototype_label": "GDPR controls",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "compDpdp",
+      "type": "sw",
+      "label": "India DPDP Act controls",
+      "prototype_label": "India DPDP Act controls",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "compHipaa",
+      "type": "sw",
+      "label": "HIPAA add-on",
+      "prototype_label": "HIPAA add-on",
+      "default": false,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "compEvidence",
+      "type": "sw",
+      "label": "Collect compliance evidence automatically",
+      "prototype_label": "Collect compliance evidence automatically",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "compSub",
+      "type": "sw",
+      "label": "Publish sub-processor list",
+      "prototype_label": "Publish sub-processor list",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "c22",
+  "name": "Privacy & data requests",
+  "icon": "eye",
+  "groups": [
+   {
+    "name": "Requests",
+    "controls": [
+     {
+      "key": "dsrOn",
+      "type": "sw",
+      "label": "Handle data-subject requests",
+      "prototype_label": "Handle data-subject requests",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "dsrSla",
+      "type": "num",
+      "label": "Response deadline (days)",
+      "prototype_label": "Response deadline (days)",
+      "default": 30,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "dsrExport",
+      "type": "sw",
+      "label": "Self-service data export",
+      "prototype_label": "Self-service data export",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "dsrErase",
+      "type": "sw",
+      "label": "Right-to-erasure workflow",
+      "prototype_label": "Right-to-erasure workflow",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "consentLog",
+      "type": "sw",
+      "label": "Log consent changes",
+      "prototype_label": "Log consent changes",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "anonymise",
+      "type": "sw",
+      "label": "Anonymise deleted users",
+      "prototype_label": "Anonymise deleted users",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "retentionAuto",
+      "type": "sw",
+      "label": "Automated retention purge",
+      "prototype_label": "Automated retention purge",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "legalHold",
+      "type": "sw",
+      "label": "Legal-hold support",
+      "prototype_label": "Legal-hold support",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "c23",
+  "name": "Marketplace & extensions",
+  "icon": "plug",
+  "groups": [
+   {
+    "name": "Apps",
+    "controls": [
+     {
+      "key": "mpOn",
+      "type": "sw",
+      "label": "Enable marketplace",
+      "prototype_label": "Enable marketplace",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "mpReview",
+      "type": "sw",
+      "label": "Review apps before publishing",
+      "prototype_label": "Review apps before publishing",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "mpPaid",
+      "type": "sw",
+      "label": "Allow paid apps",
+      "prototype_label": "Allow paid apps",
+      "default": false,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "mpSandbox",
+      "type": "sel",
+      "label": "Sandbox apps",
+      "prototype_label": "Sandbox apps",
+      "default": "Required",
+      "options": [
+       "Required",
+       "Optional"
+      ],
+      "prototype_options": [
+       "Required",
+       "Optional"
+      ],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "mpScopes",
+      "type": "sw",
+      "label": "Show requested scopes to admins",
+      "prototype_label": "Show requested scopes to admins",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "mpRevoke",
+      "type": "sw",
+      "label": "Allow instant revoke",
+      "prototype_label": "Allow instant revoke",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "mpCustom",
+      "type": "sw",
+      "label": "Allow custom (private) apps",
+      "prototype_label": "Allow custom (private) apps",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "mpWebhook",
+      "type": "sw",
+      "label": "Allow app webhooks",
+      "prototype_label": "Allow app webhooks",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "mpSign",
+      "type": "sw",
+      "label": "Require signed packages",
+      "prototype_label": "Require signed packages",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "c24",
+  "name": "White-label & resellers",
+  "icon": "tag",
+  "groups": [
+   {
+    "name": "Branding",
+    "controls": [
+     {
+      "key": "wlOn",
+      "type": "sw",
+      "label": "Allow white-labelling",
+      "prototype_label": "Allow white-labelling",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "wlDomain",
+      "type": "sw",
+      "label": "Reseller custom domains",
+      "prototype_label": "Reseller custom domains",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "wlEmail",
+      "type": "sw",
+      "label": "Reseller email branding",
+      "prototype_label": "Reseller email branding",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "wlHide",
+      "type": "sw",
+      "label": "Hide platform branding",
+      "prototype_label": "Hide platform branding",
+      "default": false,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "resComm",
+      "type": "num",
+      "label": "Default reseller commission (%)",
+      "prototype_label": "Default reseller commission (%)",
+      "default": 20,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "resSub",
+      "type": "sw",
+      "label": "Resellers can create sub-tenants",
+      "prototype_label": "Resellers can create sub-tenants",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "resBill",
+      "type": "sw",
+      "label": "Resellers can invoice customers",
+      "prototype_label": "Resellers can invoice customers",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "resSupport",
+      "type": "sw",
+      "label": "Reseller-managed support",
+      "prototype_label": "Reseller-managed support",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "resTier",
+      "type": "sel",
+      "label": "Reseller tiering",
+      "prototype_label": "Reseller tiering",
+      "default": "Revenue-based",
+      "options": [
+       "Revenue-based",
+       "Manual"
+      ],
+      "prototype_options": [
+       "Revenue-based",
+       "Manual"
+      ],
+      "status": "planned",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "c25",
+  "name": "Localisation & content",
+  "icon": "globe",
+  "groups": [
+   {
+    "name": "Languages",
+    "controls": [
+     {
+      "key": "defLang",
+      "type": "sel",
+      "label": "Default language",
+      "prototype_label": "Default language",
+      "default": "English (India)",
+      "options": [
+       "English (India)",
+       "English (US)",
+       "हिन्दी",
+       "Español",
+       "Français",
+       "العربية"
+      ],
+      "prototype_options": [
+       "English (India)",
+       "English (US)",
+       "हिन्दी",
+       "Español",
+       "Français",
+       "العربية"
+      ],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "rtl",
+      "type": "sw",
+      "label": "Right-to-left layouts",
+      "prototype_label": "Right-to-left layouts",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "tlsTrans",
+      "type": "sw",
+      "label": "Community translations",
+      "prototype_label": "Community translations",
+      "default": false,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "dateLoc",
+      "type": "sw",
+      "label": "Locale-aware dates and numbers",
+      "prototype_label": "Locale-aware dates and numbers",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "defTz",
+      "type": "sel",
+      "label": "Default time zone",
+      "prototype_label": "Default time zone",
+      "default": "Asia/Kolkata",
+      "options": [
+       "Asia/Kolkata",
+       "Asia/Dubai",
+       "Europe/London",
+       "America/New_York"
+      ],
+      "prototype_options": [
+       "Asia/Kolkata",
+       "Asia/Dubai",
+       "Europe/London",
+       "America/New_York"
+      ],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "tzUser",
+      "type": "sw",
+      "label": "Per-user time zones",
+      "prototype_label": "Per-user time zones",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "currLoc",
+      "type": "sw",
+      "label": "Per-tenant base currency",
+      "prototype_label": "Per-tenant base currency",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "termsVer",
+      "type": "sw",
+      "label": "Require terms re-acceptance on update",
+      "prototype_label": "Require terms re-acceptance on update",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "c26",
+  "name": "AI & automation platform",
+  "icon": "spark",
+  "groups": [
+   {
+    "name": "AI services",
+    "controls": [
+     {
+      "key": "aiPlat",
+      "type": "sw",
+      "label": "Enable AI services",
+      "prototype_label": "Enable AI services",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "aiVendor",
+      "type": "sel",
+      "label": "Model provider",
+      "prototype_label": "Model provider",
+      "default": "Self-hosted (Ollama)",
+      "options": [
+       "OpenAI",
+       "Self-hosted (Ollama)"
+      ],
+      "prototype_options": [
+       "Anthropic",
+       "Azure OpenAI",
+       "Self-hosted"
+      ],
+      "status": "saved",
+      "note": "Adapted to the providers this deployment uses",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "aiTier",
+      "type": "sel",
+      "label": "Default model tier",
+      "prototype_label": "Default model tier",
+      "default": "Balanced",
+      "options": [
+       "Fast",
+       "Balanced",
+       "Most capable"
+      ],
+      "prototype_options": [
+       "Fast",
+       "Balanced",
+       "Most capable"
+      ],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "aiNoTrain",
+      "type": "sw",
+      "label": "Never train on tenant data",
+      "prototype_label": "Never train on tenant data",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "aiPii",
+      "type": "sw",
+      "label": "PII scrubbing before prompts",
+      "prototype_label": "PII scrubbing before prompts",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "aiQuota",
+      "type": "num",
+      "label": "AI queries per tenant per month",
+      "prototype_label": "AI queries per tenant per month",
+      "default": 5000,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Usage Monitoring and Billing & Metering: the AI allowance compared with the last 30 days of AI queries",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "aiAudit",
+      "type": "sw",
+      "label": "Log prompts and responses",
+      "prototype_label": "Log prompts and responses",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "aiEval",
+      "type": "sw",
+      "label": "Run quality evaluations weekly",
+      "prototype_label": "Run quality evaluations weekly",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "aiTenantOff",
+      "type": "sw",
+      "label": "Let tenants switch AI off",
+      "prototype_label": "Let tenants switch AI off",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "c27",
+  "name": "Cost & capacity",
+  "icon": "server",
+  "groups": [
+   {
+    "name": "Capacity",
+    "controls": [
+     {
+      "key": "capAuto",
+      "type": "sw",
+      "label": "Autoscale services",
+      "prototype_label": "Autoscale services",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "unsupported",
+      "note": "Self-hosted servers are not autoscaled",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "capMin",
+      "type": "num",
+      "label": "Minimum replicas",
+      "prototype_label": "Minimum replicas",
+      "default": 2,
+      "options": [],
+      "prototype_options": [],
+      "status": "unsupported",
+      "note": "Self-hosted servers are not autoscaled",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "capMax",
+      "type": "num",
+      "label": "Maximum replicas",
+      "prototype_label": "Maximum replicas",
+      "default": 20,
+      "options": [],
+      "prototype_options": [],
+      "status": "unsupported",
+      "note": "Self-hosted servers are not autoscaled",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "capHead",
+      "type": "num",
+      "label": "Headroom target (%)",
+      "prototype_label": "Headroom target (%)",
+      "default": 30,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "capForecast",
+      "type": "sw",
+      "label": "Weekly capacity forecast",
+      "prototype_label": "Weekly capacity forecast",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "costTag",
+      "type": "sw",
+      "label": "Tag spend by tenant",
+      "prototype_label": "Tag spend by tenant",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "costAlert",
+      "type": "sw",
+      "label": "Budget alerts",
+      "prototype_label": "Budget alerts",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "costBudget",
+      "type": "num",
+      "label": "Monthly infra budget (₹ lakh)",
+      "prototype_label": "Monthly infra budget (₹ lakh)",
+      "default": 120,
+      "options": [],
+      "prototype_options": [],
+      "status": "saved",
+      "note": null,
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "costRateStorage",
+      "type": "num",
+      "label": "Storage cost (₹ / GB-month)",
+      "prototype_label": "Storage cost (₹ / GB-month)",
+      "default": 0,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Cost & margin: charged on each tenant's document storage, on top of server costs",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "costRateCold",
+      "type": "num",
+      "label": "Cold storage cost (₹ / GB-month)",
+      "prototype_label": "Cold storage cost (₹ / GB-month)",
+      "default": 0,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Cost & margin: sizes the saving of moving untouched files to the cold tier",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "costRateAi",
+      "type": "num",
+      "label": "AI cost (₹ / question)",
+      "prototype_label": "AI cost (₹ / question)",
+      "default": 0,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Cost & margin: charged on each AI Smart Search question",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "costRateEgress",
+      "type": "num",
+      "label": "Egress cost (₹ / GB)",
+      "prototype_label": "Egress cost (₹ / GB)",
+      "default": 0,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Cost & margin: charged on measured response bytes",
+      "dynamic": null,
+      "platform_only": true
+     },
+     {
+      "key": "costSupport",
+      "type": "num",
+      "label": "Monthly support cost (₹)",
+      "prototype_label": "Monthly support cost (₹)",
+      "default": 0,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Cost & margin: allocated by support tickets opened in the month",
+      "dynamic": null,
+      "platform_only": true
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "c28",
+  "name": "Environments & sandboxes",
+  "icon": "server",
+  "groups": [
+   {
+    "name": "Sandboxes",
+    "controls": [
+     {
+      "key": "sbOn",
+      "type": "sw",
+      "label": "Allow tenant sandboxes",
+      "prototype_label": "Allow tenant sandboxes",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "New sandboxes and refreshes are refused for a tenant while this is off (Environments & sandboxes)",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "sbMax",
+      "type": "num",
+      "label": "Sandboxes per tenant",
+      "prototype_label": "Sandboxes per tenant",
+      "default": 3,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Most sandbox databases one tenant may have at a time (0–20)",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "sbDays",
+      "type": "num",
+      "label": "Default sandbox lifetime (days)",
+      "prototype_label": "Default sandbox lifetime (days)",
+      "default": 30,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Lifetime offered for a new sandbox; expired sandboxes are dropped by the cleanup job (1–365)",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "sbMask",
+      "type": "sw",
+      "label": "Mask personal data in sandboxes",
+      "prototype_label": "Mask personal data in sandboxes",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Production copies are masked; while on, a full (unmasked) copy is refused",
+      "dynamic": null,
+      "platform_only": false
+     },
+     {
+      "key": "sbPromote",
+      "type": "sw",
+      "label": "Change-set promotion needs approval",
+      "prototype_label": "Change-set promotion needs approval",
+      "default": true,
+      "options": [],
+      "prototype_options": [],
+      "status": "live",
+      "note": "Promoting a change set to production goes to the approval queue first",
+      "dynamic": null,
+      "platform_only": false
+     }
+    ]
+   }
+  ]
+ }
+]

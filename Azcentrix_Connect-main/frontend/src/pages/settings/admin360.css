@@ -1,0 +1,42 @@
+/* Users & Teams / Roles & Security – Bidwise prototype v17 (subnav(), roles split + permission matrix, field-level security).
+   Scoped to .bwi; base classes from notifications/inbox.css, customers/c360.css and settings/appSettings.css (.split .side). */
+
+.crm-shell .bwi .snav { display: flex; gap: 2px; margin-bottom: 10px; border-bottom: 1px solid var(--bw-ln); flex-wrap: wrap; }
+.crm-shell .bwi .snav .tab { padding: 8px 12px; border-bottom: 2px solid transparent; margin-bottom: -1px; border-radius: 6px 6px 0 0; }
+
+.crm-shell .bwi .side > div small { color: var(--bw-mu); }
+.crm-shell .bwi .rolesp { grid-template-columns: 240px minmax(0, 1fr); }
+.crm-shell .bwi .panel > .ph label.row { font-weight: 400; gap: 6px; font-size: 12px; color: var(--bw-mu); }
+.crm-shell .bwi .panel > .ph label.row select.in { width: 160px; }
+.crm-shell .bwi .pmx td.c input[type="checkbox"], .crm-shell .bwi .pmx th.c { text-align: center; }
+.crm-shell .bwi .pmx input[type="checkbox"] { width: 15px; height: 15px; accent-color: var(--bw-ac); cursor: pointer; vertical-align: middle; }
+.crm-shell .bwi .pmx input[type="checkbox"]:disabled { cursor: default; opacity: .5; }
+.crm-shell .bwi .pmx td.na { color: var(--bw-mu); text-align: center; }
+.crm-shell .bwi .pmx td.all { background: var(--bw-hd); }
+.crm-shell .bwi .pmx .more { display: inline-flex; flex-wrap: wrap; gap: 4px; }
+.crm-shell .bwi .pmx .more label { display: inline-flex; align-items: center; gap: 3px; font-size: 11px; border: 1px solid var(--bw-ln); border-radius: 10px; padding: 1px 7px; cursor: pointer; white-space: nowrap; }
+.crm-shell .bwi .fls select.in.sm { width: 92px; }
+.crm-shell .bwi .fls td.c { text-align: center; }
+.crm-shell .bwi .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; }
+.crm-shell .bwi .lb { display: block; font-size: 12px; color: var(--bw-mu); margin-bottom: 2px; }
+.crm-shell .bwi .fg { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.crm-shell .bwi .fg > .f1 { grid-column: 1 / -1; }
+.crm-shell .bwi .fg label { display: block; font-size: 12px; color: var(--bw-mu); margin-bottom: 2px; }
+.crm-shell .bwi .ucell { display: inline-flex; gap: 6px; align-items: center; }
+.crm-shell .bwi .ucell a { color: var(--bw-tx); font-weight: 600; cursor: pointer; }
+.crm-shell .bwi .ucell a:hover { color: var(--bw-ac); }
+.crm-shell .bwi .tok { color: var(--bw-ok); }
+.crm-shell .bwi .tbad { color: var(--bw-ba); }
+.crm-shell .bwi .pgn { display: flex; align-items: center; gap: 6px; padding: 5px 8px; border-top: 1px solid var(--bw-ln); color: var(--bw-mu); font-size: 12px; }
+
+/* user record drawer (prototype openRec): kv · timeline · notes */
+.crm-shell .bwi-dw .kv { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 18px; }
+.crm-shell .bwi-dw .kv > div { display: flex; justify-content: space-between; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--bw-ln2); font-size: 13px; min-width: 0; }
+.crm-shell .bwi-dw .kv > div > span:first-child { color: var(--bw-mu); white-space: nowrap; }
+.crm-shell .bwi-dw .kv > div > span:last-child { text-align: right; overflow: hidden; text-overflow: ellipsis; }
+@media (max-width: 640px) { .crm-shell .bwi-dw .kv { grid-template-columns: minmax(0, 1fr); } }
+.crm-shell .bwi-dw .tl small { color: var(--bw-mu); }
+.crm-shell .bwi-dw .list.bx { border: 1px solid var(--bw-ln); border-radius: 8px; background: var(--bw-sf); }
+.crm-shell .bwi-dw .list.bx > div { padding: 8px 10px; }
+.crm-shell .bwi-dw textarea.in { min-height: 70px; }
+.crm-shell .bwi-dw .dh .sub .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }

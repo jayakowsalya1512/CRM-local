@@ -1,0 +1,58 @@
+/* Settings – Bidwise prototype v17 "p25" (R.settings: .split.setsp · .side.setnav · .setH · .setrow/.setl/.setc · .srow/.srt · .sr2).
+   Scoped to .bwi; tokens from .crm-shell.  Base classes (.pg .panel .in .btn .chip .list .sw .t .pm …) come from
+   notifications/inbox.css and customers/c360.css. */
+
+.crm-shell .bwi .split { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 10px; align-items: start; }
+.crm-shell .bwi .split.setsp { grid-template-columns: 270px minmax(0, 1fr); }
+@media (max-width: 800px) { .crm-shell .bwi .split, .crm-shell .bwi .split.setsp { grid-template-columns: minmax(0, 1fr); } }
+
+.crm-shell .bwi .side > div { padding: 7px 10px; border-bottom: 1px solid var(--bw-ln2); cursor: pointer; display: flex; gap: 8px; align-items: center; transition: background .12s; }
+.crm-shell .bwi .side > div:last-child { border-bottom: 0; }
+.crm-shell .bwi .side > div:hover { background: var(--bw-hd); }
+.crm-shell .bwi .side > div.on { background: color-mix(in srgb, var(--bw-ac) 10%, var(--bw-sf)); border-left: 3px solid var(--bw-ac); padding-left: 7px; font-weight: 500; }
+.crm-shell .bwi .side > div:focus-visible { outline: 2px solid var(--bw-ac); outline-offset: -2px; }
+.crm-shell .bwi .side.setnav > div { align-items: flex-start; padding: 9px 12px; }
+.crm-shell .bwi .side.setnav > div.on { padding-left: 9px; }
+.crm-shell .bwi .side.setnav b { display: block; font-size: 13px; line-height: 1.25; }
+.crm-shell .bwi .side.setnav small { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.crm-shell .bwi .fsi { width: 26px; height: 26px; border-radius: 7px; background: color-mix(in srgb, var(--bw-ac) 12%, var(--bw-sf)); color: var(--bw-ac); display: grid; place-items: center; flex: none; }
+.crm-shell .bwi .fsi.s { width: 24px; height: 24px; }
+.crm-shell .bwi .setH { display: flex; gap: 12px; align-items: center; margin-bottom: 12px; }
+.crm-shell .bwi .setH .fsi { width: 34px; height: 34px; border-radius: 9px; }
+.crm-shell .bwi .setH h2 { font-size: 19px; font-weight: 600; margin: 0; line-height: 1.2; }
+
+.crm-shell .bwi .setrow { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 360px); gap: 18px; align-items: center; padding: 12px 18px; border-bottom: 1px solid var(--bw-ln2); }
+.crm-shell .bwi .setrow:last-child { border-bottom: 0; }
+.crm-shell .bwi .setrow.tgl { grid-template-columns: minmax(0, 1fr) auto; }
+.crm-shell .bwi .setrow .setl b { display: block; font-weight: 500; font-size: 13px; }
+.crm-shell .bwi .setrow .setl small { display: block; margin-top: 1px; }
+.crm-shell .bwi .setrow .setc { min-width: 0; }
+.crm-shell .bwi .setrow .setc code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; background: var(--bw-hd); padding: 2px 6px; border-radius: 4px; }
+.crm-shell .bwi .setrow input[type="color"] { width: 44px; height: 30px; border: 0; padding: 0; background: none; cursor: pointer; }
+@media (max-width: 700px) { .crm-shell .bwi .setrow { grid-template-columns: minmax(0, 1fr); gap: 6px; } }
+
+.crm-shell .bwi .srow { border-bottom: 1px solid var(--bw-ln2); }
+.crm-shell .bwi .srow:last-child { border-bottom: 0; }
+.crm-shell .bwi .srow .setrow { border-bottom: 0; padding-bottom: 4px; }
+.crm-shell .bwi .srow .srt { padding: 0 18px 10px; font-size: 12px; color: var(--bw-mu); }
+.crm-shell .bwi .srow .srt a { color: var(--bw-ac); cursor: pointer; }
+.crm-shell .bwi .srow .srt a:hover { text-decoration: underline; }
+
+.crm-shell .bwi .sr2 { position: relative; width: 300px; max-width: 100%; }
+.crm-shell .bwi .sr2 .in { padding-left: 30px; }
+.crm-shell .bwi .sr2 svg { position: absolute; left: 9px; top: 8px; color: var(--bw-mu); pointer-events: none; }
+
+.crm-shell .bwi .tw.fit { max-height: none; }
+.crm-shell .bwi .t td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; }
+.crm-shell .bwi .t .c, .crm-shell .bwi .t th.c, .crm-shell .bwi .t td.c { text-align: center; }
+.crm-shell .bwi .bigv { font-size: 20px; font-weight: 600; line-height: 1.2; }
+.crm-shell .bwi .list.bx { border: 1px solid var(--bw-ln); border-radius: 8px; overflow: hidden; }
+.crm-shell .bwi .list.bx > div.add { padding: 6px; gap: 6px; }
+.crm-shell .bwi .saving { font-size: 11px; color: var(--bw-mu); }
+.crm-shell .bwi .setrow .in:disabled, .crm-shell .bwi .setrow select:disabled, .crm-shell .bwi .setrow textarea:disabled { opacity: .7; cursor: not-allowed; }
+
+/* prototype setApply(): density / animation / sidebar switches (body-level, applied by the page) */
+body.bw-noanim * { animation: none !important; transition: none !important; }
+body.bw-dens-c .crm-shell .bwi table.t td { padding-top: 3px; padding-bottom: 3px; }
+body.bw-dens-c .crm-shell .bwi .setrow { padding-top: 7px; padding-bottom: 7px; }

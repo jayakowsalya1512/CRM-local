@@ -1,0 +1,89 @@
+/* Bids & Tenders – prototype v17 (listPage('tenders'), kanban, tenderPage()). Base controls come from
+   notifications/inbox.css, panels / strip / tables / form page from customers/c360.css, board from leads/leads.css. */
+
+/* grid: Tender column = bold title + NIT number underneath (prototype wr:1) */
+.crm-shell .bwi .ttl { white-space: normal; line-height: 1.3; padding: 2px 0; }
+.crm-shell .bwi .ttl small { color: var(--bw-mu); }
+.crm-shell .bwi .kc > h4 .pill { font-size: 10px; line-height: 15px; padding: 0 6px; }
+
+/* tender page header summary row */
+.crm-shell .bwi.tpage .pg h1 { flex: 0 1 auto; min-width: 0; }
+.crm-shell .bwi .tsum { gap: 14px; align-items: center; font-size: 13px; }
+.crm-shell .bwi .tsum > span { display: inline-flex; align-items: center; gap: 4px; }
+
+/* workflow stepper (prototype .path .s chevrons) */
+.crm-shell .bwi .path { display: flex; margin: 4px 0 10px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: thin; }
+.crm-shell .bwi .path .s { flex: 1 0 auto; min-width: 70px; padding: 7px 10px 7px 20px; background: var(--bw-hd); color: var(--bw-mu); border: 0; margin-right: -3px;
+  clip-path: polygon(0 0, calc(100% - 9px) 0, 100% 50%, calc(100% - 9px) 100%, 0 100%, 9px 50%); text-align: center; white-space: nowrap; font-size: 12px; font-weight: 500; cursor: pointer; font-family: inherit; }
+.crm-shell .bwi .path .s:first-child { padding-left: 12px; clip-path: polygon(0 0, calc(100% - 9px) 0, 100% 50%, calc(100% - 9px) 100%, 0 100%); border-radius: 6px 0 0 6px; }
+.crm-shell .bwi .path .s:not(:disabled):hover { filter: brightness(.95); color: var(--bw-tx); }
+.crm-shell .bwi .path .s:disabled { cursor: default; }
+.crm-shell .bwi .path .s.done { background: color-mix(in srgb, var(--bw-ac) 24%, var(--bw-sf)); color: var(--bw-tx); }
+.crm-shell .bwi .path .s.cur { background: var(--bw-ac); color: #fff; font-weight: 600; }
+.crm-shell .bwi .path .s.won { background: var(--bw-ok); color: #fff; font-weight: 600; }
+.crm-shell .bwi .path .s.lost { background: var(--bw-ba); color: #fff; font-weight: 600; }
+.crm-shell .bwi .path .s.hold { background: var(--bw-wa); color: #fff; }
+
+/* value header (prototype recHero: .rhero .rhg .rht .rhrow .rhp .rhsig) */
+.crm-shell .bwi .rhero { border: 1px solid var(--bw-ln); border-radius: 12px; background: linear-gradient(180deg, color-mix(in srgb, var(--bw-ac) 5%, var(--bw-sf)), var(--bw-sf));
+  padding: 12px 14px; margin-bottom: 12px; box-shadow: var(--bw-sh1); }
+.crm-shell .bwi .rhg { display: grid; grid-template-columns: repeat(auto-fit, minmax(128px, 1fr)); gap: 8px; }
+.crm-shell .bwi .rht { background: var(--bw-sf); border: 1px solid var(--bw-ln2); border-radius: 9px; padding: 8px 10px; min-width: 0; }
+.crm-shell .bwi .rht label { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: .06em; color: var(--bw-mu); font-weight: 600; }
+.crm-shell .bwi .rht b { display: block; font-size: 17px; font-weight: 700; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crm-shell .bwi .rht b.twarn { color: var(--bw-wa); }
+.crm-shell .bwi .rht b.tbad { color: var(--bw-ba); }
+.crm-shell .bwi .rht > small { display: block; font-size: 11.5px; color: var(--bw-mu); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crm-shell .bwi .rhrow { display: flex; align-items: center; gap: 8px; margin-top: 10px; }
+.crm-shell .bwi .rhp { height: 7px; border-radius: 5px; background: var(--bw-ln2); overflow: hidden; margin-bottom: 4px; }
+.crm-shell .bwi .rhpb { height: 100%; border-radius: 5px; background: linear-gradient(90deg, color-mix(in srgb, var(--bw-ac) 70%, #fff), var(--bw-ac)); }
+.crm-shell .bwi .rhpb.won { background: var(--bw-ok); }
+.crm-shell .bwi .rhpb.lost { background: var(--bw-ba); }
+.crm-shell .bwi .rhsig { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.crm-shell .bwi .rhsig .sig { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border: 1px solid var(--bw-ln); border-radius: 14px; background: var(--bw-sf); font-size: 12px; }
+.crm-shell .bwi .rhsig .sig i { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
+.crm-shell .bwi .rhsig .sig.lk { color: var(--bw-ac); font-weight: 600; cursor: pointer; border-color: color-mix(in srgb, var(--bw-ac) 35%, var(--bw-ln)); }
+.crm-shell .bwi .rhero + .path { margin-top: 0; }
+
+/* journey (prototype .jy cards: Lead · Deal · Tender / bid · Work order) */
+.crm-shell .bwi.tpage .jy { background: var(--bw-sf); border: 1px solid var(--bw-ln); border-radius: 12px; margin-bottom: 12px; box-shadow: var(--bw-sh1); }
+.crm-shell .bwi.tpage .jy-h { display: flex; align-items: center; gap: 8px; padding: 11px 14px; border-bottom: 1px solid var(--bw-ln2); }
+.crm-shell .bwi.tpage .jy-h a { font-weight: 600; color: var(--bw-ac); cursor: pointer; font-size: 12.5px; }
+.crm-shell .bwi.tpage .jy-r { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; padding: 14px; position: relative; }
+@media (max-width: 640px) { .crm-shell .bwi.tpage .jy-r { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.crm-shell .bwi.tpage .jy-s { position: relative; border: 1px solid var(--bw-ln); border-radius: 10px; padding: 14px 8px 10px; text-align: center; background: var(--bw-hd); min-height: 150px;
+  display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 12px; }
+.crm-shell .bwi.tpage .jy-s[role=button] { cursor: pointer; }
+.crm-shell .bwi.tpage .jy-s + .jy-s::before { content: '›'; position: absolute; left: -11px; top: 30px; color: var(--bw-mu); font-size: 15px; }
+.crm-shell .bwi.tpage .jy-s.cur { background: color-mix(in srgb, var(--bw-wa) 7%, var(--bw-sf)); border: 2px solid color-mix(in srgb, var(--bw-wa) 60%, var(--bw-ln)); }
+.crm-shell .bwi.tpage .jy-s.done:not(.cur) { background: var(--bw-sf); }
+.crm-shell .bwi.tpage .jy-n { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: var(--bw-sf); border: 1px dashed var(--bw-ln); color: var(--bw-mu); margin-bottom: 4px; }
+.crm-shell .bwi.tpage .jy-s.done .jy-n { background: var(--bw-ac); color: #fff; border: 0; }
+.crm-shell .bwi.tpage .jy-s.cur .jy-n { background: var(--bw-wa); color: #fff; border: 0; }
+.crm-shell .bwi.tpage .jy-s b { font-size: 13px; }
+.crm-shell .bwi.tpage .jy-s .jv { font-weight: 700; font-size: 13px; }
+.crm-shell .bwi.tpage .jy-s .jd { display: flex; align-items: center; justify-content: center; gap: 4px; border-top: 1px dashed var(--bw-ln); margin-top: 4px; padding-top: 5px; width: 85%; color: var(--bw-mu); font-size: 11.5px; }
+.crm-shell .bwi .b { font-weight: 600; }
+
+/* Basic Info: three columns (prototype grid-template-columns:repeat(3,…)) */
+.crm-shell .bwi .fg.g3c { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 900px) { .crm-shell .bwi .fg.g3c { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .crm-shell .bwi .fg.g3c { grid-template-columns: minmax(0, 1fr); } }
+
+/* key / value list (prototype .kv) – price build-up uses one column */
+.crm-shell .bwi .kv { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 18px; }
+.crm-shell .bwi .kv.one { grid-template-columns: minmax(0, 1fr); }
+.crm-shell .bwi .kv > div { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 5px 0; border-bottom: 1px solid var(--bw-ln2); }
+.crm-shell .bwi .kv > div > span:first-child { color: var(--bw-mu); display: inline-flex; align-items: center; gap: 4px; }
+.crm-shell .bwi .kv .pin { width: 58px; height: 24px; padding: 0 4px; }
+
+/* tables inside tabs */
+.crm-shell .bwi .tw.fit { overflow-x: auto; }
+.crm-shell .bwi .t td.wr { white-space: normal; }
+.crm-shell .bwi .t .in.sm { height: 26px; }
+.crm-shell .bwi .tbad-ph::placeholder { color: var(--bw-ba); opacity: 1; }
+.crm-shell .bwi .dsel { width: 150px; flex: none; }
+.crm-shell .bwi .pbar { padding: 8px 14px 12px; }
+.crm-shell .bwi .pbar .bar { margin: 0; }
+.crm-shell .bwi .list.cmp > div { padding: 6px 4px; }
+.crm-shell .bwi-ov .list.tl > div, .crm-shell .list.tl > div { display: flex; gap: 8px; align-items: baseline; padding: 8px 4px; border-bottom: 1px solid var(--bw-ln2); }

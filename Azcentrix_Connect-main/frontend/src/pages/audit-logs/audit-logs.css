@@ -1,0 +1,8 @@
+/* Audit Logs – module grid page (BwGrid inside .bwi .panel, like Orders & Projects). Theme tokens only (light + dark). */
+.crm-shell .bwi .al-trunc { display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; vertical-align: middle; }
+.crm-shell .bwi .nowrap { white-space: nowrap; }
+/* toolbar filters inside the grid's tool row (same size as Approvals / Orders toolbars) */
+.crm-shell .bwi .ctools { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.crm-shell .bwi .ctools .in.sm { height: 26px; font-size: 12px; padding-top: 0; padding-bottom: 0; }
+.crm-shell .bwi .ctools select.in.on { border-color: var(--bw-ac); color: var(--bw-ac); background: color-mix(in srgb, var(--bw-ac) 10%, var(--bw-sf)); font-weight: 500; }
+@media (max-width: 760px) { .crm-shell .bwi .ctools .in.sm { width: 100% !important; } }

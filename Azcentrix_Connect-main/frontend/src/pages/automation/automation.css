@@ -1,0 +1,4 @@
+/* Automation Studio – Bidwise prototype v17 (R.auto). Base classes from notifications/inbox.css (.pg .panel .tabs .list),
+   customers/kit.tsx (.strip), settings/admin360.css (.fg .lb), approvals/approvals.css (.sw .pill). */
+
+.crm-shell .bwi .pg .cnt { color: var(--bw-mu); }

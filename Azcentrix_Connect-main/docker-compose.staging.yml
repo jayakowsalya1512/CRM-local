@@ -1,0 +1,72 @@
+
+name: azcentrix-crm-staging
+
+services:
+  frontend:
+    image: azcentrix-crm-frontend:staging
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: azcentrix-crm-frontend-staging
+    restart: unless-stopped
+
+    ports:
+      - "192.168.11.29:15177:80"
+
+    volumes:
+      - ./frontend/nginx.staging.conf:/etc/nginx/conf.d/default.conf:ro
+
+    networks:
+      - staging_access
+
+    depends_on:
+      - backend
+
+  backend:
+    image: azcentrix-crm-backend:staging
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: azcentrix-crm-backend-staging
+    restart: unless-stopped
+
+    env_file:
+      - ./backend/.env
+    environment:
+      ENABLE_BACKGROUND_WORKERS: "false"
+
+    ports:
+      - "127.0.0.1:18002:8000"
+
+    volumes:
+      - /home/ascent/crm-docker-staging/main.staging.py:/app/app/main.py:ro
+      - crm_staging_uploads:/app/uploads
+      - crm_staging_media:/app/media
+
+    command:
+      - uvicorn
+      - app.main:app
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8000"
+      - --workers
+      - "1"
+
+    networks:
+      - staging_access
+      - staging_db
+
+volumes:
+  crm_staging_uploads:
+  crm_staging_media:
+
+networks:
+  staging_access:
+    external: true
+    name: azcentrix-crm-staging-access
+
+  staging_db:
+    external: true
+    name: azcentrix-crm-db-staging_crm_staging_db_net
+

@@ -1,0 +1,39 @@
+/* Customer Questionnaires – restyled to the app's shared prototype visual language (no literal prototype page
+   exists for this module – bidwise-crm-prototype-v17.html has none). Base classes from notifications/inbox.css
+   (.pg .panel .pill .in .btn), customers/kit.tsx (.strip). DataTable itself (search/export/column-toggle/
+   pagination) is a shared component used across many other modules and is intentionally left unstyled here. */
+
+.crm-shell .bwi .pg .cnt { color: var(--bw-mu); }
+
+/* Master Setup / Form Builder tree rows (section + subsection admin list) */
+.crm-shell .bwi .qn-tree-row { border-bottom: 1px solid var(--bw-ln2); }
+.crm-shell .bwi .qn-tree-row:last-child { border-bottom: none; }
+.crm-shell .bwi .qn-tree-row .row:hover { background: var(--bw-hd); }
+
+/* Form Builder: sections/subsections picker + question list */
+.crm-shell .bwi .qn-section-card { border: 1px solid var(--bw-ln2); border-radius: 10px; background: var(--bw-hd); padding: 6px; margin-bottom: 8px; }
+.crm-shell .bwi .qn-section-btn {
+  display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; align-items: center; gap: 10px; width: 100%;
+  border: none; background: none; border-radius: 8px; padding: 8px 10px; text-align: left; cursor: pointer; color: var(--bw-tx);
+}
+.crm-shell .bwi .qn-section-btn:hover { background: var(--bw-sf); }
+.crm-shell .bwi .qn-section-btn.on { background: color-mix(in srgb, var(--bw-ac) 10%, var(--bw-sf)); color: var(--bw-ac); }
+.crm-shell .bwi .qn-subsection-btn {
+  display: flex; align-items: center; gap: 8px; width: 100%; border: none; background: none; border-radius: 8px;
+  padding: 7px 10px; text-align: left; cursor: pointer; color: var(--bw-tx);
+}
+.crm-shell .bwi .qn-subsection-btn:hover { background: var(--bw-sf); }
+.crm-shell .bwi .qn-subsection-btn.on { background: var(--bw-sf); color: var(--bw-ac); box-shadow: 0 1px 2px rgba(15,23,42,.08); }
+.crm-shell .bwi .qn-dot { width: 6px; height: 6px; flex: none; border-radius: 50%; background: var(--bw-ac); }
+
+.crm-shell .bwi .qn-question-row { display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px; border-left: 2px solid transparent; }
+.crm-shell .bwi .qn-question-row:hover { background: var(--bw-hd); }
+.crm-shell .bwi .qn-question-row.on { border-left-color: var(--bw-ac); background: color-mix(in srgb, var(--bw-ac) 8%, var(--bw-sf)); }
+
+.crm-shell .bwi .qn-icon-btn-blue:hover { color: var(--bw-ac); border-color: var(--bw-ac); }
+.crm-shell .bwi .qn-icon-btn-rose:hover { color: var(--bw-ba); border-color: var(--bw-ba); }
+.crm-shell .bwi .qn-icon-btn-emerald:hover { color: var(--bw-ok); border-color: var(--bw-ok); }
+
+.crm-shell .bwi .qn-preview-sub { border: 1px solid var(--bw-ln2); border-radius: 10px; background: var(--bw-hd); padding: 12px; }
+.crm-shell .bwi .qn-preview-question { border-radius: 10px; background: var(--bw-sf); padding: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.06); }
+.crm-shell .bwi .qn-preview-field { margin-left: 16px; margin-top: 12px; border-left: 2px solid var(--bw-ln2); padding-left: 16px; }

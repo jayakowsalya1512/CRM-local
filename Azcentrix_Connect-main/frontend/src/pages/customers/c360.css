@@ -1,0 +1,171 @@
+/* Customers & Contacts – prototype v17 components (final style layer), scoped to .bwi.
+   Base controls (.btn .chip .tabs .panel .pill .in, modal) come from pages/notifications/inbox.css. */
+
+.crm-shell .bwi .r { text-align: right; }
+.crm-shell .bwi .c { text-align: center; }
+.crm-shell .bwi .tok { color: var(--bw-ok); }
+.crm-shell .bwi .twarn { color: var(--bw-wa); }
+.crm-shell .bwi .tbad { color: var(--bw-ba); }
+.crm-shell .bwi .b { font-weight: 600; }
+.crm-shell .bwi .mono, .crm-shell .bwi-ov .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+.crm-shell .bwi .pg .cnt { color: var(--bw-mu); }
+.crm-shell .bwi .av, .crm-shell .bwi-ov .av { display: inline-grid; place-items: center; justify-content: center; align-content: center; text-align: center; line-height: 1;width: 20px; height: 20px; border-radius: 50%; font-size: 9px; font-weight: 600; color: #fff; flex: none; vertical-align: middle; }
+.crm-shell .bwi .g { display: grid; gap: 12px; }
+.crm-shell .bwi .g.g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.crm-shell .bwi .g.g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.crm-shell .bwi .g.g21 { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+@media (max-width: 1000px) { .crm-shell .bwi .g.g3, .crm-shell .bwi .g.g21 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 700px) { .crm-shell .bwi .g.g2, .crm-shell .bwi .g.g3, .crm-shell .bwi .g.g21 { grid-template-columns: minmax(0, 1fr); } }
+.crm-shell .bwi .g > div:has(> table.t), .crm-shell .bwi .pb.z:has(> table.t) { overflow-x: auto; }
+.crm-shell .bwi .g > .panel { align-self: stretch; }   /* prototype grid panels share the row height */
+
+/* KPI strip */
+.crm-shell .bwi .strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(124px, 1fr)); gap: 10px; margin-bottom: 14px; }
+.crm-shell .bwi .strip .st { position: relative; background: var(--bw-sf); border: 1px solid var(--bw-ln); border-top: 3px solid var(--bw-ac); border-radius: 10px; box-shadow: var(--bw-sh1); padding: 11px 14px 12px; min-width: 0; overflow: hidden; }
+.crm-shell .bwi .strip .st.tok { border-top-color: var(--bw-ok); }
+.crm-shell .bwi .strip .st.tbad { border-top-color: var(--bw-ba); }
+.crm-shell .bwi .strip .st.twarn { border-top-color: var(--bw-wa); }
+.crm-shell .bwi .st label { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: .04em; font-weight: 600; color: var(--bw-mu); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.crm-shell .bwi .st b { display: block; font-size: 22px; font-weight: 600; letter-spacing: -.01em; margin-top: 2px; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crm-shell .bwi .st b.tok { color: var(--bw-ok); }
+.crm-shell .bwi .st b.tbad { color: var(--bw-ba); }
+.crm-shell .bwi .st b.twarn { color: var(--bw-wa); }
+.crm-shell .bwi .st i { display: inline-block; margin: 3px 0 0; padding: 0 7px; border-radius: 9px; font-size: 11px; font-weight: 600; font-style: normal; white-space: nowrap; background: color-mix(in srgb, currentColor 10%, transparent); color: var(--bw-mu); }
+
+/* tables (prototype tbl()) */
+.crm-shell .bwi table.t, .crm-shell .bwi-ov table.t { width: 100%; border-collapse: collapse; }
+.crm-shell .bwi .t th, .crm-shell .bwi-ov .t th { position: sticky; top: 0; background: var(--bw-hd); text-align: left; padding: 5px 8px; border-bottom: 1px solid var(--bw-ln); white-space: nowrap; z-index: 1;
+  text-transform: uppercase; font-size: 10.5px; letter-spacing: .06em; color: var(--bw-mu); font-weight: 600; }
+.crm-shell .bwi .t td, .crm-shell .bwi-ov .t td { padding: 4px 8px; height: 33px; border-bottom: 1px solid var(--bw-ln2); white-space: nowrap; max-width: 300px; overflow: hidden; text-overflow: ellipsis; font-variant-numeric: tabular-nums; vertical-align: middle; }
+.crm-shell .bwi .t th.r, .crm-shell .bwi .t td.r { text-align: right; }
+.crm-shell .bwi .t td.wr { white-space: normal; }
+.crm-shell .bwi .t tbody tr { transition: background .12s; }
+.crm-shell .bwi .t tbody tr:hover { background: color-mix(in srgb, var(--bw-ac) 6%, var(--bw-sf)); }
+.crm-shell .bwi .t tr[data-a] { cursor: pointer; }
+.crm-shell .bwi .t tr[data-a]:focus-visible { outline: 2px solid var(--bw-ac); outline-offset: -2px; }
+.crm-shell .bwi .bar { display: inline-block; width: 60px; height: 6px; background: var(--bw-ln2); border-radius: 4px; vertical-align: middle; margin-right: 5px; overflow: hidden; }
+.crm-shell .bwi .bar i { display: block; height: 100%; background: var(--bw-ac); border-radius: 4px; }
+.crm-shell .bwi .pm { width: 100%; height: 8px; background: var(--bw-ln2); border-radius: 4px; overflow: hidden; display: flex; }
+.crm-shell .bwi .pm i { display: block; height: 100%; border-radius: 4px; }
+
+/* charts */
+.crm-shell .bwi .hbr { display: flex; align-items: center; gap: 8px; padding: 4px 0; }
+.crm-shell .bwi .hbl { flex: none; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; }
+.crm-shell .bwi .hbt { flex: 1; height: 10px; background: var(--bw-ln2); border-radius: 6px; overflow: hidden; }
+.crm-shell .bwi .hbt i { display: block; height: 100%; border-radius: 6px; transition: width .5s cubic-bezier(.2, .8, .2, 1); }
+.crm-shell .bwi .hbv { flex: none; text-align: right; font-size: 12px; font-variant-numeric: tabular-nums; }
+.crm-shell .bwi .fnl2 .frow { display: grid; grid-template-columns: 104px 1fr; gap: 8px; align-items: center; }
+.crm-shell .bwi .fln { font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.crm-shell .bwi .ftr { display: flex; justify-content: center; }
+.crm-shell .bwi .fbar { height: 24px; border-radius: 6px; display: grid; place-items: center; color: #fff; font-size: 12px; min-width: 30px; transition: width .5s; }
+.crm-shell .bwi .fbar b { font-weight: 600; }
+.crm-shell .bwi .fcv { text-align: center; font-size: 10.5px; color: var(--bw-mu); height: 13px; line-height: 13px; }
+.crm-shell .bwi .dlg { flex: 1; min-width: 0; }
+.crm-shell .bwi .dlr { display: flex; align-items: center; gap: 7px; padding: 3px 0; font-size: 12px; }
+.crm-shell .bwi .dlr i { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+.crm-shell .bwi .dll { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.crm-shell .bwi .dlr small { width: 34px; text-align: right; color: var(--bw-mu); }
+.crm-shell .bwi .lgd { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 6px; font-size: 11.5px; color: var(--bw-mu); }
+.crm-shell .bwi .lgd i { display: inline-block; width: 10px; height: 3px; border-radius: 2px; margin-right: 5px; vertical-align: middle; }
+
+/* lists & timeline */
+.crm-shell .bwi .list > div, .crm-shell .bwi-ov .list > div { display: flex; gap: 8px; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--bw-ln2); transition: background .12s; }
+.crm-shell .bwi .list > div:last-child { border-bottom: 0; }
+.crm-shell .bwi .list .dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+.crm-shell .bwi .tl, .crm-shell .bwi-ov .tl { border-left: 2px solid var(--bw-ln); margin-left: 6px; padding-left: 12px; }
+.crm-shell .bwi .tl > div, .crm-shell .bwi-ov .tl > div { position: relative; padding: 0 0 10px; }
+.crm-shell .bwi .tl > div::before, .crm-shell .bwi-ov .tl > div::before { content: ""; position: absolute; left: -18px; top: 4px; width: 8px; height: 8px; border-radius: 50%; background: var(--bw-ac); }
+.crm-shell .bwi .note { border-radius: 8px; padding: 9px 13px; line-height: 1.5; font-size: 12px; }
+.crm-shell .bwi .note.inf { background: color-mix(in srgb, var(--bw-ac) 8%, var(--bw-sf)); border: 1px solid color-mix(in srgb, var(--bw-ac) 30%, var(--bw-ln)); }
+.crm-shell .bwi .fg { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px 12px; }
+.crm-shell .bwi .fg .f1 { grid-column: 1 / -1; }
+.crm-shell .bwi .fg label, .crm-shell .bwi .lb { display: block; font-size: 12px; color: var(--bw-mu); margin-bottom: 2px; }
+
+/* customer header (prototype .chd) */
+.crm-shell .bwi .chd { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 18px; align-items: start; background: var(--bw-sf); border: 1px solid var(--bw-ln); border-radius: 14px; padding: 16px 18px; margin: 4px 0 14px; box-shadow: var(--bw-sh1); }
+.crm-shell .bwi .chd-r { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.crm-shell .bwi .chd-r small { color: var(--bw-mu); font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; font-weight: 700; }
+.crm-shell .bwi .chd-t { display: flex; align-items: center; gap: 10px; }
+.crm-shell main .bwi .chd-t h1 { font-size: 22px; font-weight: 600; letter-spacing: -.015em; margin: 0; line-height: 1.2; }
+.crm-shell .bwi .chd .cpath { margin: 6px 0 0; }
+.crm-shell .bwi .chd-f { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px 18px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--bw-ln2); }
+.crm-shell .bwi .chd-f label { display: block; font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--bw-mu); font-weight: 700; margin-bottom: 2px; }
+.crm-shell .bwi .chd-f span { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+.crm-shell .bwi .chd-a { display: grid; gap: 6px; min-width: 150px; }
+@media (max-width: 1100px) { .crm-shell .bwi .chd { grid-template-columns: auto 1fr; } .crm-shell .bwi .chd-a { grid-column: 1 / -1; grid-template-columns: repeat(4, auto); justify-content: start; } }
+@media (max-width: 640px) { .crm-shell .bwi .chd { grid-template-columns: 1fr; } .crm-shell .bwi .chd-a { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.crm-shell .bwi .lvb { display: inline-grid; place-items: center; min-width: 34px; height: 20px; padding: 0 5px; border-radius: 6px; font-size: 9.5px; font-weight: 800; letter-spacing: .04em; color: #fff; }
+.crm-shell .bwi .lvb.l1 { background: #2F6FED; } .crm-shell .bwi .lvb.l2 { background: #8B5CF6; } .crm-shell .bwi .lvb.l3 { background: #0FA5A0; }
+.crm-shell .bwi .lvb.l4 { background: #F29A2E; } .crm-shell .bwi .lvb.l5 { background: #64748B; }
+.crm-shell .bwi .cpath { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 12.5px; margin: 3px 0 2px; }
+.crm-shell .bwi .cpath a { color: var(--bw-ac); cursor: pointer; font-weight: 600; }
+
+/* hierarchy tree */
+.crm-shell .bwi .htree { padding: 6px 4px; }
+.crm-shell .bwi .hnode { display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 9px; margin: 2px 0; border: 1px solid transparent; transition: .15s; }
+.crm-shell .bwi .hnode:hover { background: color-mix(in srgb, var(--bw-ac) 6%, var(--bw-sf)); border-color: var(--bw-ln); }
+.crm-shell .bwi .hnode.me { background: color-mix(in srgb, var(--bw-ac) 10%, var(--bw-sf)); border-color: var(--bw-ac); }
+.crm-shell .bwi .hico { width: 26px; height: 26px; border-radius: 8px; background: color-mix(in srgb, var(--bw-ac) 12%, var(--bw-sf)); color: var(--bw-ac); display: grid; place-items: center; flex: none; }
+.crm-shell .bwi .hkam { display: flex; align-items: center; gap: 5px; font-size: 12px; width: 190px; flex: none; }
+.crm-shell .bwi .hnum { width: 120px; text-align: right; font-weight: 600; flex: none; }
+.crm-shell .bwi .hnum small { display: block; font-weight: 400; }
+@media (max-width: 700px) { .crm-shell .bwi .hkam { width: auto; } .crm-shell .bwi .hnum { width: auto; } .crm-shell .bwi .hnode { flex-wrap: wrap; } }
+
+/* journey stepper (prototype journeyHTML / jchip) */
+.crm-shell .bwi .jtr, .crm-shell .bwi-ov .jtr { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.crm-shell .bwi .jtr > div { border: 1px solid var(--bw-ln); border-radius: 10px; padding: 8px 10px; background: var(--bw-sf); min-width: 0; }
+.crm-shell .bwi .jtr > div.on { border-color: color-mix(in srgb, var(--bw-ac) 55%, var(--bw-ln)); background: color-mix(in srgb, var(--bw-ac) 6%, var(--bw-sf)); }
+.crm-shell .bwi .jtr > div[role=button] { cursor: pointer; }
+.crm-shell .bwi .jtr b { display: flex; gap: 6px; align-items: center; font-size: 12px; }
+.crm-shell .bwi .jtr .k { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; font-size: 10px; font-weight: 700; background: var(--bw-ln2); color: var(--bw-mu); }
+.crm-shell .bwi .jtr .on .k { background: var(--bw-ac); color: #fff; }
+.crm-shell .bwi .jdots { letter-spacing: 1px; color: var(--bw-ac); font-size: 11px; }
+@media (max-width: 700px) { .crm-shell .bwi .jtr { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* buying centre */
+.crm-shell .bwi .bc-role { margin-bottom: 10px; }
+.crm-shell .bwi .bc-role > small { font-weight: 600; letter-spacing: .04em; }
+.crm-shell .bwi .chip .av { width: 16px; height: 16px; font-size: 8px; margin-right: 4px; }
+
+/* segment matrix */
+.crm-shell .bwi .tw { overflow-x: auto; }
+.crm-shell .bwi td.me { background: color-mix(in srgb, var(--bw-ac) 16%, var(--bw-sf)); outline: 2px solid var(--bw-ac); outline-offset: -2px; font-weight: 700; }
+
+/* list toolbar status filter beside BwGrid tools */
+.crm-shell .bwi .ctools select { height: 24px; font-size: 12px; width: 140px; }
+
+/* customer grid: hierarchy cell + level marker (prototype Customer / Level columns) */
+.crm-shell .bwi .ctree { white-space: nowrap; }
+.crm-shell .bwi .ctree .lvb { height: 18px; min-width: 30px; font-size: 9px; vertical-align: middle; }
+.crm-shell .bwi .clvl { display: inline-flex; align-items: center; gap: 6px; }
+.crm-shell .bwi .lvd { width: 8px; height: 8px; border-radius: 2px; flex: none; }
+.crm-shell .bwi .lvd.l1 { background: #2F6FED; } .crm-shell .bwi .lvd.l2 { background: #8B5CF6; } .crm-shell .bwi .lvd.l3 { background: #0FA5A0; }
+.crm-shell .bwi .lvd.l4 { background: #F29A2E; } .crm-shell .bwi .lvd.l5 { background: #64748B; }
+
+/* customer form – prototype formPage() (.fph .fpi .fp-grid .fsec .fsh .fsi .fp-side .fmbar .chg .err .tips) */
+.crm-shell .bwi.fpage .fph { display: flex; gap: 14px; align-items: center; margin-bottom: 14px; }
+.crm-shell main .bwi.fpage .fph h1 { font-size: 22px; font-weight: 600; margin: 0; letter-spacing: -.015em; }
+.crm-shell .bwi.fpage .fpi { width: 46px; height: 46px; border-radius: 12px; background: color-mix(in srgb, var(--bw-ac) 14%, var(--bw-sf)); color: var(--bw-ac); display: grid; place-items: center; flex: none; }
+.crm-shell .bwi.fpage .fp-grid { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 14px; align-items: start; padding-bottom: 14px; }
+@media (max-width: 1100px) { .crm-shell .bwi.fpage .fp-grid { grid-template-columns: 1fr; } }
+.crm-shell .bwi.fpage .fsec { background: var(--bw-sf); border: 1px solid var(--bw-ln); border-radius: 10px; padding: 14px 16px 16px; margin: 0 0 12px; box-shadow: var(--bw-sh1);
+  font-size: 14px; color: var(--bw-mu); text-transform: uppercase; letter-spacing: .06em; }
+.crm-shell .bwi.fpage .fsh { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--bw-ln2); }
+.crm-shell .bwi.fpage .fsh b { color: var(--bw-tx); font-weight: 600; }
+.crm-shell .bwi.fpage .fsh small { font-size: 11px; }
+.crm-shell .bwi.fpage .fsi { width: 34px; height: 34px; border-radius: 7px; background: color-mix(in srgb, var(--bw-ac) 12%, var(--bw-sf)); color: var(--bw-ac); display: grid; place-items: center; flex: none; }
+.crm-shell .bwi.fpage .fsec .fg { gap: 9px 12px; }
+.crm-shell .bwi.fpage .fsec .fg label { font-size: 12px; color: var(--bw-mu); margin-bottom: 2px; display: block; }
+.crm-shell .bwi.fpage .fsec .fg label b { color: var(--bw-ba); }
+.crm-shell .bwi.fpage .fsec .fg small { display: block; font-size: 11px; margin-top: 3px; color: var(--bw-mu); }
+.crm-shell .bwi.fpage .fsec .in { text-transform: none; letter-spacing: normal; font-size: 13px; color: var(--bw-tx); }
+.crm-shell .bwi.fpage .fsec .fg > div { padding: 2px 4px; margin: -2px -4px; border-radius: 8px; transition: background .2s, box-shadow .2s; }
+.crm-shell .bwi.fpage .chg { background: color-mix(in srgb, var(--bw-wa) 11%, transparent); box-shadow: 0 0 0 5px color-mix(in srgb, var(--bw-wa) 11%, transparent); }
+.crm-shell .bwi.fpage .in.err { border-color: var(--bw-ba) !important; box-shadow: 0 0 0 3px color-mix(in srgb, var(--bw-ba) 18%, transparent) !important; }
+.crm-shell .bwi.fpage .fp-side { position: sticky; top: 8px; }
+.crm-shell .bwi.fpage .fp-side .mt { margin-top: 10px; }
+.crm-shell .bwi.fpage .fp-side .note { display: block; }
+.crm-shell .bwi.fpage .tips { margin: 0; padding-left: 16px; line-height: 1.6; font-size: 12.5px; list-style: disc; }
+.crm-shell .bwi.fpage .fmbar { position: sticky; bottom: 0; margin: 8px 0 0; background: var(--bw-sf); border-top: 1px solid var(--bw-ln); padding: 10px 18px; display: flex; gap: 8px;
+  align-items: center; box-shadow: 0 -8px 20px rgba(16, 24, 40, .07); z-index: 6; color: var(--bw-tx); }
+@media (max-width: 640px) { .crm-shell .bwi.fpage .fmbar { flex-wrap: wrap; } .crm-shell .bwi.fpage .fmbar .fl { flex-basis: 100%; height: 0; } }

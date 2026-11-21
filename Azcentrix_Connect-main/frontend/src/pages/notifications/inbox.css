@@ -1,0 +1,144 @@
+/* Inbox & Notifications – Bidwise prototype v17 (final theme layer) on the CRM shell.
+   Scoped to .bwi so the prototype class names (.btn, .chip, .tab, .panel …) never leak into other modules.
+   Tokens come from .crm-shell (styles/crm-shell.css) and switch with its light / dark theme. */
+
+.crm-shell .bwi { color: var(--bw-tx); }
+.crm-shell .bwi .fl { flex: 1; min-width: 0; }
+.crm-shell .bwi .mu { color: var(--bw-mu); }
+.crm-shell .bwi small { font-size: 11px; color: var(--bw-mu); }
+.crm-shell .bwi .row { display: flex; align-items: center; gap: 8px; }
+.crm-shell .bwi .wrap { flex-wrap: wrap; }
+.crm-shell .bwi .mb { margin-bottom: 8px; }
+.crm-shell .bwi .mt { margin-top: 8px; }
+.crm-shell .bwi a { color: var(--bw-ac); cursor: pointer; text-decoration: none; }
+.crm-shell .bwi a:hover { text-decoration: underline; }
+.crm-shell .bwi h2 { font-size: 14px; font-weight: 600; }
+.crm-shell .bwi h3 { font-size: 13px; font-weight: 600; }
+.crm-shell .bwi svg.ic { vertical-align: -3px; }
+
+/* page header (prototype .pg / .crumb / h1) */
+.crm-shell .bwi .pg { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+.crm-shell .bwi .crumb { font-size: 12px; color: var(--bw-mu); margin-bottom: 2px; }
+.crm-shell main .bwi .pg h1 { font-size: 22px; font-weight: 600; letter-spacing: -.015em; line-height: 1.2; white-space: normal; margin: 0;
+  background: linear-gradient(90deg, var(--bw-tx), color-mix(in srgb, var(--bw-ac) 70%, var(--bw-tx))); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* controls */
+.crm-shell .bwi .btn { display: inline-flex; align-items: center; gap: 5px; height: 30px; min-height: 0; padding: 0 12px; border: 1px solid var(--bw-ln); background: var(--bw-sf); color: var(--bw-tx);
+  border-radius: 6px; cursor: pointer; white-space: nowrap; font: 500 13px/1 var(--font-family); transition: background .15s, box-shadow .15s, border-color .15s, transform .05s; }
+.crm-shell .bwi .btn:hover { background: var(--bw-hd); border-color: color-mix(in srgb, var(--bw-ac) 35%, var(--bw-ln)); }
+.crm-shell .bwi .btn:active { transform: translateY(1px); }
+.crm-shell .bwi .btn:disabled { opacity: .55; cursor: default; transform: none; }
+.crm-shell .bwi .btn.p { background: linear-gradient(180deg, color-mix(in srgb, var(--bw-ac) 90%, #fff), var(--bw-ac)); border-color: var(--bw-ac); color: #fff;
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--bw-ac) 40%, transparent); }
+.crm-shell .bwi .btn.p:hover { filter: brightness(1.1); }
+.crm-shell .bwi .btn.d { color: var(--bw-ba); border-color: color-mix(in srgb, var(--bw-ba) 40%, var(--bw-ln)); }
+.crm-shell .bwi .btn.s { height: 26px; padding: 0 9px; border-radius: 5px; font-size: 12px; }
+.crm-shell .bwi .btn.g { border-color: transparent; background: none; }
+.crm-shell .bwi .btn.g:hover { background: var(--bw-hd); border-color: transparent; }
+.crm-shell .bwi .btn:focus-visible, .crm-shell .bwi .in:focus-visible, .crm-shell .bwi .chip:focus-visible, .crm-shell .bwi .tab:focus-visible,
+.crm-shell .bwi .mi:focus-visible { outline: 2px solid var(--bw-ac); outline-offset: 1px; }
+.crm-shell .bwi .in { height: 30px; min-height: 0; width: 100%; min-width: 0; padding: 0 8px; border: 1px solid var(--bw-ln); border-radius: 6px; background: var(--bw-sf); color: var(--bw-tx);
+  font: 13px var(--font-family); transition: border-color .15s, box-shadow .15s; }
+.crm-shell .bwi .in:focus { outline: none; border-color: var(--bw-ac); box-shadow: 0 0 0 3px color-mix(in srgb, var(--bw-ac) 18%, transparent); }
+.crm-shell .bwi .in.sm { height: 26px; font-size: 12px; }
+.crm-shell .bwi select.in { padding: 0 4px; }
+.crm-shell .bwi textarea.in { height: auto; padding: 6px 8px; resize: vertical; line-height: 1.5; }
+.crm-shell .bwi .in.bad { border-color: var(--bw-ba); }
+.crm-shell .bwi .chip { display: inline-flex; align-items: center; gap: 4px; height: 24px; padding: 0 8px; border: 1px solid var(--bw-ln); border-radius: 11px;
+  background: var(--bw-sf); color: var(--bw-tx); cursor: pointer; font-size: 12px; white-space: nowrap; transition: background .15s, border-color .15s; }
+.crm-shell .bwi .chip:hover { border-color: var(--bw-ac); }
+.crm-shell .bwi .chip.on { background: var(--bw-ac); border-color: var(--bw-ac); color: #fff; }
+.crm-shell .bwi .chip.on a { color: #fff; text-decoration: underline; }
+.crm-shell .bwi .pill { display: inline-block; padding: 1px 9px; border-radius: 9px; font-size: 11px; font-weight: 600; line-height: 18px; letter-spacing: .01em; white-space: nowrap; }
+.crm-shell .bwi .pill.ac { color: var(--bw-ac); background: color-mix(in srgb, var(--bw-ac) 12%, var(--bw-sf)); }
+.crm-shell .bwi .pill.mu { color: var(--bw-mu); background: var(--bw-hd); border: 1px solid var(--bw-ln2); }
+.crm-shell .bwi .pill.inf { color: var(--bw-in); background: color-mix(in srgb, var(--bw-in) 13%, var(--bw-sf)); }
+.crm-shell .bwi .pill.ok { color: var(--bw-ok); background: color-mix(in srgb, var(--bw-ok) 14%, var(--bw-sf)); }
+.crm-shell .bwi .pill.wa { color: var(--bw-wa); background: color-mix(in srgb, var(--bw-wa) 15%, var(--bw-sf)); }
+.crm-shell .bwi .pill.ba { color: var(--bw-ba); background: color-mix(in srgb, var(--bw-ba) 13%, var(--bw-sf)); }
+/* switch (prototype .sw) */
+.crm-shell .bwi .sw { position: relative; display: inline-block; width: 30px; height: 16px; flex: none; }
+.crm-shell .bwi .sw input { opacity: 0; width: 0; height: 0; position: absolute; }
+.crm-shell .bwi .sw i { position: absolute; inset: 0; background: var(--bw-ln); border-radius: 9px; cursor: pointer; transition: .15s; }
+.crm-shell .bwi .sw i::after { content: ""; position: absolute; left: 2px; top: 2px; width: 12px; height: 12px; background: #fff; border-radius: 50%; transition: .15s; }
+.crm-shell .bwi .sw input:checked + i { background: var(--bw-ac); }
+.crm-shell .bwi .sw input:checked + i::after { left: 16px; }
+.crm-shell .bwi .sw input:focus-visible + i { outline: 2px solid var(--bw-ac); outline-offset: 1px; }
+.crm-shell .bwi .sw input:disabled + i { opacity: .6; cursor: default; }
+
+/* panels, grid, tabs, lists */
+.crm-shell .bwi .g { display: grid; gap: 8px; }
+.crm-shell .bwi .g > * { min-width: 0; }
+.crm-shell .bwi .g21 { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+@media (max-width: 1000px) { .crm-shell .bwi .g21 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 700px) { .crm-shell .bwi .g21 { grid-template-columns: minmax(0, 1fr); } }
+.crm-shell .bwi .panel { background: var(--bw-sf); border: 1px solid var(--bw-ln); border-radius: 12px; box-shadow: var(--bw-sh1); overflow: hidden; min-width: 0; align-self: start; }
+.crm-shell .bwi .panel > .ph { display: flex; align-items: center; gap: 8px; min-height: 38px; padding: 11px 14px; font-size: 13px; font-weight: 700;
+  background: linear-gradient(180deg, var(--bw-sf), color-mix(in srgb, var(--bw-ac) 4%, var(--bw-sf))); border-bottom: 1px solid var(--bw-ln2); }
+.crm-shell .bwi .panel > .pb { padding: 14px; }
+.crm-shell .bwi .panel > .pb.z { padding: 0; }
+.crm-shell .bwi .tabs { display: flex; flex-wrap: nowrap; gap: 2px; padding: 0 6px; overflow-x: auto; overflow-y: hidden; scrollbar-width: thin;
+  background: var(--bw-sf); border-bottom: 1px solid var(--bw-ln); border-radius: 8px 8px 0 0; }
+.crm-shell .bwi .tabs.mb { border: 1px solid var(--bw-ln); border-radius: 8px; box-shadow: var(--bw-sh1); }
+.crm-shell .bwi .tab { flex: none; display: inline-flex; align-items: center; gap: 6px; padding: 10px 14px; cursor: pointer; color: var(--bw-mu); white-space: nowrap; font-weight: 500;
+  border: 0; border-bottom: 2px solid transparent; border-radius: 6px 6px 0 0; background: none; transition: color .15s, background .15s, border-color .15s; }
+.crm-shell .bwi .tab:hover { color: var(--bw-tx); background: color-mix(in srgb, var(--bw-ac) 6%, transparent); }
+.crm-shell .bwi .tab.on { color: var(--bw-ac); border-bottom-color: var(--bw-ac); font-weight: 600; }
+.crm-shell .bwi .list > div { display: flex; gap: 8px; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--bw-ln2); transition: background .12s; }
+.crm-shell .bwi .list > div:last-child { border-bottom: 0; }
+.crm-shell .bwi .list > div:hover { background: color-mix(in srgb, var(--bw-ac) 4%, var(--bw-sf)); }
+.crm-shell .bwi .list > div.un { background: color-mix(in srgb, var(--bw-ac) 7%, var(--bw-sf)); }
+.crm-shell .bwi .empty { padding: 30px; text-align: center; color: var(--bw-mu); }
+.crm-shell .bwi .note { background: color-mix(in srgb, var(--bw-wa) 10%, var(--bw-sf)); border: 1px solid color-mix(in srgb, var(--bw-wa) 35%, var(--bw-ln)); padding: 6px 10px; border-radius: 3px; font-size: 12px; }
+.crm-shell .bwi .note.inf { background: color-mix(in srgb, var(--bw-ac) 8%, var(--bw-sf)); border-color: color-mix(in srgb, var(--bw-ac) 30%, var(--bw-ln)); }
+.crm-shell .bwi .note.bad { background: color-mix(in srgb, var(--bw-ba) 8%, var(--bw-sf)); border-color: color-mix(in srgb, var(--bw-ba) 30%, var(--bw-ln)); }
+
+/* ── Mail (prototype mailTab(): toolbar + 168px folders · 330px list · reading pane) ── */
+.crm-shell .bwi .tbr { display: flex; gap: 6px; align-items: center; padding: 6px 8px; border-bottom: 1px solid var(--bw-ln); flex-wrap: wrap; }
+.crm-shell .bwi .tbr .in { width: 240px; }
+.crm-shell .bwi .mail3 { display: grid; grid-template-columns: 168px 330px minmax(0, 1fr); min-height: 560px; }
+.crm-shell .bwi .mfol { border-right: 1px solid var(--bw-ln); padding: 6px 0; }
+.crm-shell .bwi .mi { cursor: pointer; }
+.crm-shell .bwi .mi.on { background: color-mix(in srgb, var(--bw-ac) 10%, var(--bw-sf)); }
+.crm-shell .bwi .mfol .mi { display: flex; align-items: center; gap: 8px; padding: 8px 14px; }
+.crm-shell .bwi .mfol .mi.on { font-weight: 700; }
+.crm-shell .bwi .mfol .mi:hover:not(.on) { background: var(--bw-hd); }
+.crm-shell .bwi .mfol .hint { font-size: 11px; padding: 12px 14px; line-height: 1.5; color: var(--bw-mu); }
+.crm-shell .bwi .ml { border-right: 1px solid var(--bw-ln); overflow: auto; max-height: 600px; }
+.crm-shell .bwi .ml .mi { padding: 9px 12px; border-bottom: 1px solid var(--bw-ln2); }
+.crm-shell .bwi .ml .mi:hover:not(.on) { background: color-mix(in srgb, var(--bw-ac) 4%, var(--bw-sf)); }
+.crm-shell .bwi .ml .mi .ell { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crm-shell .bwi .ml .mi.un .subj { font-weight: 700; }
+.crm-shell .bwi .ml .star { color: var(--bw-mu); background: none; border: 0; padding: 0 2px; cursor: pointer; font-size: 14px; line-height: 1; }
+.crm-shell .bwi .ml .star.on { color: var(--bw-wa); }
+.crm-shell .bwi .mread { overflow: auto; max-height: 600px; padding: 16px 20px; }
+.crm-shell .bwi .mread .body { white-space: pre-wrap; line-height: 1.6; padding: 10px 0; border-top: 1px solid var(--bw-ln); overflow-wrap: anywhere; }
+.crm-shell .bwi .mread .thr { padding: 6px 8px; border: 1px solid var(--bw-ln); margin-bottom: 4px; cursor: pointer; border-radius: 3px; }
+.crm-shell .bwi .mread .thr:hover { background: var(--bw-hd); }
+@media (max-width: 1180px) { .crm-shell .bwi .mail3 { grid-template-columns: 150px 280px minmax(0, 1fr); } }
+@media (max-width: 900px) {
+  .crm-shell .bwi .mail3 { grid-template-columns: minmax(0, 1fr); }
+  .crm-shell .bwi .mfol { display: flex; overflow-x: auto; border-right: 0; border-bottom: 1px solid var(--bw-ln); padding: 0; }
+  .crm-shell .bwi .mfol .mi { flex: none; padding: 9px 12px; }
+  .crm-shell .bwi .mfol .hint { display: none; }
+  .crm-shell .bwi .ml { border-right: 0; border-bottom: 1px solid var(--bw-ln); max-height: 360px; }
+  .crm-shell .bwi .mread { max-height: none; padding: 14px; }
+  .crm-shell .bwi .mread > .row.mb > h2 { flex-basis: 100%; }
+  .crm-shell .bwi .tbr .in { width: 100%; order: 2; }
+}
+
+/* ── Modal (prototype .ov / .md) ── */
+.crm-shell .bwi-ov { position: fixed; inset: 0; z-index: 120; display: flex; justify-content: center; align-items: flex-start; padding: 5vh 12px; overflow: auto;
+  background: rgba(8,14,22,.5); backdrop-filter: blur(2px); }
+.crm-shell .bwi-ov .md { width: min(560px, 100%); background: var(--bw-sf); color: var(--bw-tx); border: 1px solid var(--bw-ln); border-radius: 12px; box-shadow: 0 24px 60px rgba(16,24,40,.28); animation: bw-in .16s ease; }
+.crm-shell .bwi-ov .md > .ph { display: flex; align-items: center; padding: 14px 18px; border-bottom: 1px solid var(--bw-ln); font-weight: 600; font-size: 15px; }
+.crm-shell .bwi-ov .md > .pb { padding: 16px 18px; }
+.crm-shell .bwi-ov .md > .pf { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: flex-end; padding: 12px 18px; border-top: 1px solid var(--bw-ln); background: var(--bw-hd); border-radius: 0 0 12px 12px; }
+.crm-shell .bwi-ov .fg { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px 12px; }
+.crm-shell .bwi-ov .fg .f1 { grid-column: 1 / -1; }
+.crm-shell .bwi-ov .fg label, .crm-shell .bwi-ov .lb { display: block; font-size: 12px; color: var(--bw-mu); margin-bottom: 2px; }
+.crm-shell .bwi-ov .fg label.row { display: flex; }
+.crm-shell .bwi-ov .err { color: var(--bw-ba); font-size: 11.5px; margin-top: 3px; }
+.crm-shell .bwi-ov .attl { gap: 4px; max-height: 84px; overflow: auto; }
+.crm-shell .bwi-ov input[type=checkbox] { accent-color: var(--bw-ac); }
+@media (max-width: 640px) { .crm-shell .bwi-ov .fg { grid-template-columns: minmax(0, 1fr); } .crm-shell .bwi-ov .md > .pf .fl { display: none; } }

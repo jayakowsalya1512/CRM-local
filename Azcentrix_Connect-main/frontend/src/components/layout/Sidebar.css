@@ -1,0 +1,288 @@
+.app-sidebar {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-sidebar) 6%, white) 0%,
+      color-mix(in srgb, var(--color-sidebar) 9%, white) 52%,
+      color-mix(in srgb, var(--color-accent) 10%, white) 100%
+    );
+  border-right: 1px solid color-mix(in srgb, var(--color-sidebar) 16%, white);
+  color: #334155;
+  box-shadow: 12px 0 34px rgba(15, 23, 42, .08);
+}
+
+.app-sidebar-brand {
+  min-height: 56px;
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-accent) 12%, white) 0%,
+      rgba(255, 255, 255, .92) 100%
+    );
+  border-bottom-color: color-mix(in srgb, var(--color-sidebar) 16%, white);
+  backdrop-filter: blur(12px);
+}
+
+.app-sidebar-logo {
+  border: 1px solid color-mix(in srgb, var(--color-accent) 20%, white);
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--color-primary) 14%, transparent);
+}
+
+.app-sidebar-company-name {
+  color: #0f172a;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0px;
+  letter-spacing: 0;
+}
+
+.app-sidebar-company-name-primary {
+  color: #0f172a;
+  font-weight: 900;
+}
+
+.app-sidebar-company-name-accent {
+  position: relative;
+  color: #2563eb;
+  font-weight: 900;
+  background: linear-gradient(90deg, #ff00b8 0%, #8b1dff 52%, #2563eb 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.app-sidebar-company-name-accent::after {
+  content: none;
+}
+
+.app-sidebar-credit {
+  color: var(--color-accent);
+  font-weight: 800;
+}
+
+.app-sidebar-toggle {
+  width: 28px;
+  height: 28px;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--color-sidebar) 16%, white);
+  border-radius: 10px;
+  color: #64748b;
+  background: #fff;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, .06);
+  transition: background .16s ease, border-color .16s ease, color .16s ease, transform .16s ease;
+}
+
+.app-sidebar-toggle:hover {
+  color: var(--color-primary);
+  border-color: color-mix(in srgb, var(--color-accent) 34%, white);
+  background: color-mix(in srgb, var(--color-accent) 10%, white);
+  transform: translateY(-1px);
+}
+
+.app-sidebar-nav {
+  padding: 12px 10px 16px;
+}
+
+.app-sidebar-section-label {
+  color: #94a3b8;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.app-sidebar-item-shell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 4px 0;
+  border-radius: 12px;
+  transition: background .16s ease, box-shadow .16s ease;
+}
+
+.app-sidebar-grip {
+  color: #cbd5e1;
+}
+
+.app-sidebar-item-shell:hover .app-sidebar-grip {
+  color: #94a3b8;
+}
+
+.app-sidebar-link {
+  position: relative;
+  width: 100%;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 12px;
+  border-radius: 12px;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: background .16s ease, border-color .16s ease, color .16s ease, box-shadow .16s ease, transform .16s ease;
+}
+
+.app-sidebar-link svg {
+  color: #64748b;
+  transition: color .16s ease;
+}
+
+.app-sidebar-link:hover {
+  color: #0f172a;
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+  transform: translateX(2px);
+}
+
+.app-sidebar-link:hover svg {
+  color: var(--color-accent);
+}
+
+.app-sidebar-link.is-active {
+  color: #fff;
+  background:
+    linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+  border-color: rgba(255, 255, 255, .5);
+  box-shadow: 0 12px 24px color-mix(in srgb, var(--color-primary) 22%, transparent);
+}
+
+.app-sidebar-link.is-active svg {
+  color: #fff;
+}
+
+.app-sidebar-link.is-active::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  border-radius: 99px;
+  background: var(--color-accent);
+}
+
+.app-sidebar-link.is-collapsed {
+  justify-content: center;
+  padding: 0;
+}
+
+.app-sidebar-link.is-collapsed.is-active::before {
+  left: -7px;
+}
+
+.app-sidebar-badge {
+  flex-shrink: 0;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: var(--color-accent);
+  font-size: 10px;
+  font-weight: 900;
+  line-height: 1;
+  box-shadow: 0 8px 16px color-mix(in srgb, var(--color-accent) 22%, transparent);
+}
+
+.app-sidebar-badge.is-collapsed {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+}
+
+.app-sidebar-hover-pill {
+  position: fixed;
+  z-index: 10080;
+  transform: translateY(-50%) translateX(-4px);
+  height: 34px;
+  min-width: auto;
+  padding: 0 12px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1;
+  pointer-events: none;
+  box-shadow: 0 14px 30px color-mix(in srgb, var(--color-primary) 26%, transparent);
+  animation: sidebarHoverPillIn .16s ease-out forwards;
+}
+
+.app-sidebar-hover-pill svg {
+  color: #fff;
+}
+
+.app-sidebar-hover-badge {
+  min-width: 22px;
+  height: 22px;
+  padding: 0 7px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  color: #fff;
+  background: var(--color-accent);
+  font-size: 10px;
+  font-weight: 900;
+  box-shadow: 0 8px 18px color-mix(in srgb, var(--color-accent) 24%, transparent);
+}
+
+@keyframes sidebarHoverPillIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) translateX(-10px) scale(.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0) scale(1);
+  }
+}
+
+.app-sidebar-separator {
+  margin: 11px 9px;
+  border-top: 1px solid color-mix(in srgb, var(--color-sidebar) 16%, white);
+}
+
+
+/* FROM: */
+/* (the scrollbar is always visible via Tailwind's scrollbar-thin class) */
+
+/* TO: add these rules */
+
+.app-sidebar-nav {
+  scrollbar-width: none; /* Firefox — hide by default */
+}
+
+.app-sidebar-nav::-webkit-scrollbar {
+  width: 0px; /* Chrome — hide by default */
+}
+
+.app-sidebar-nav:hover {
+  scrollbar-width: thin; /* Firefox — show on hover */
+  scrollbar-color: color-mix(in srgb, var(--color-accent) 26%, white) transparent;
+}
+
+.app-sidebar-nav:hover::-webkit-scrollbar {
+  width: 4px; /* Chrome — show on hover */
+}
+
+.app-sidebar-nav:hover::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--color-accent) 26%, white);
+  border-radius: 99px;
+}
+
+.app-sidebar-nav:hover::-webkit-scrollbar-track {
+  background: transparent;
+}

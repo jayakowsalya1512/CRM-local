@@ -1,0 +1,1 @@
+{"change_set": 1, "tenant_id": 21, "database": "digitcrm_test", "created_at": "2026-11-03T10:39:23.920221", "tables": {"lead_sources": {"pk": "id", "columns": ["id", "name", "description", "is_active", "created_at"], "rows": [[1, "GEM Portal", null, 1, {"$dt": "2026-10-29T16:53:46"}]]}}}

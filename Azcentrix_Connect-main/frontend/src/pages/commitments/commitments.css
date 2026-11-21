@@ -1,0 +1,96 @@
+/* Commitments – prototype v18 cm8-* rules (Field Sales 360 → Commitments, Dashboard → Commitments, entry modal, drawer),
+   mapped onto the theme tokens so light and dark both work. Panels, tables, pills, chips and seg8 come from
+   customers/c360.css, notifications/inbox.css and instruments/instruments.css. */
+.crm-shell .bwi .mbar8 { position: relative; display: block; width: 100%; height: 6px; border-radius: 4px; background: var(--bw-ln2); overflow: hidden; margin: 6px 0 4px; }
+.crm-shell .bwi .mbar8 i { display: block; height: 100%; border-radius: 4px; background: var(--bw-ac); transition: width .3s; }
+.crm-shell .bwi .mbar8 em { position: absolute; top: 0; bottom: 0; width: 2px; background: var(--bw-tx); opacity: .45; z-index: 1; }
+
+.crm-shell .bwi .cm8-bar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 12px; }
+.crm-shell .bwi .cm8-wk { display: inline-flex; align-items: center; gap: 8px; padding: 4px; background: var(--bw-sf); border: 1px solid var(--bw-ln); border-radius: 10px; }
+.crm-shell .bwi .cm8-wk > div { display: flex; flex-direction: column; min-width: 190px; text-align: center; line-height: 1.25; }
+.crm-shell .bwi .cm8-wk small { color: var(--bw-mu); font-size: 11px; }
+.crm-shell .bwi .cm8-wk a { font-size: 12px; padding-right: 6px; cursor: pointer; }
+
+.crm-shell .bwi .cm8-kp { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 10px; margin-bottom: 12px; }
+.crm-shell .bwi .cm8-kp > div { background: var(--bw-sf); border: 1px solid var(--bw-ln); border-radius: 12px; padding: 11px 13px; box-shadow: var(--bw-sh1); display: flex; flex-direction: column; min-width: 0; }
+.crm-shell .bwi .cm8-kp > div > b { font-size: 19px; margin-top: 4px; line-height: 1.25; font-variant-numeric: tabular-nums; }
+.crm-shell .bwi .cm8-kp > div > b small { font-size: 12px; color: var(--bw-mu); font-weight: 500; }
+.crm-shell .bwi .cm8-kp small { font-size: 11.5px; }
+.crm-shell .bwi .cm8-ki { width: 24px; height: 24px; border-radius: 7px; display: inline-grid; place-items: center; background: color-mix(in srgb, var(--bw-ac) 12%, var(--bw-sf)); color: var(--bw-ac); flex: none; }
+.crm-shell .bwi .cm8-ki svg { width: 13px; height: 13px; }
+.crm-shell .bwi .cm8-pp { font-size: 13px; }
+.crm-shell .bwi .cm8-cmp { border-style: dashed !important; }
+
+.crm-shell .bwi .cm8-d2 { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 14px; margin-bottom: 14px; align-items: stretch; }
+.crm-shell .bwi .cm8-stk { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.crm-shell .bwi .cm8-stk > .panel:last-child { flex: 1; }
+.crm-shell .bwi .cm8-note { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--bw-ln); font-size: 11.5px; color: var(--bw-mu); }
+.crm-shell .bwi .cm8-note span { display: inline-flex; gap: 4px; align-items: center; }
+.crm-shell .bwi .cm8-note svg { width: 12px; height: 12px; color: var(--bw-ac); }
+.crm-shell .bwi .cm8-sbs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.crm-shell .bwi .cm8-sb { border: 1px solid var(--bw-ln2); border-radius: 10px; padding: 10px 12px; }
+.crm-shell .bwi .cm8-sb small { color: var(--bw-mu); font-size: 11px; }
+.crm-shell .bwi .cm8-sb b { display: block; font-size: 20px; }
+.crm-shell .bwi .cm8-sb b small { font-size: 12px; }
+.crm-shell .bwi .cm8-miss { margin-top: 12px; }
+@media (max-width: 1000px) { .crm-shell .bwi .cm8-d2 { grid-template-columns: 1fr; } }
+
+.crm-shell .bwi .cm8-mx td { vertical-align: middle; }
+.crm-shell .bwi .cm8-mx th { white-space: nowrap; }
+.crm-shell .bwi .cm8-mx th svg { width: 12px; height: 12px; vertical-align: -1px; color: var(--bw-ac); }
+.crm-shell .bwi .cm8-c { min-width: 112px; }
+.crm-shell .bwi .cm8-cl { display: flex; align-items: baseline; gap: 2px; white-space: nowrap; }
+.crm-shell .bwi .cm8-c b { font-variant-numeric: tabular-nums; }
+.crm-shell .bwi .cm8-c small { color: var(--bw-mu); }
+.crm-shell .bwi .cm8-c .mbar8 { margin: 4px 0 0; height: 5px; }
+.crm-shell .bwi .cm8-p { font-weight: 700; font-size: 11px; margin-left: auto; padding-left: 8px; }
+.crm-shell .bwi .cm8-gr td { background: var(--bw-hd); border-top: 1px solid var(--bw-ln); }
+.crm-shell .bwi .cm8-pr { cursor: pointer; }
+.crm-shell .bwi .cm8-pr:hover td { background: color-mix(in srgb, var(--bw-ac) 4%, var(--bw-sf)); }
+.crm-shell .bwi .cm8-sc { display: inline-block; min-width: 46px; text-align: center; padding: 2px 8px; border-radius: 10px; font-weight: 700; font-size: 12px; color: var(--c); background: color-mix(in srgb, var(--c) 13%, var(--bw-sf)); }
+.crm-shell .bwi .cm8-wt td, .crm-shell .bwi .cm8-wt th { white-space: nowrap; }
+.crm-shell .bwi .cm8-h { display: inline-block; min-width: 44px; padding: 2px 6px; border-radius: 6px; font-weight: 700; font-size: 12px; color: #fff; background: var(--c); }
+.crm-shell .bwi .cm8-h0 { font-size: 11px; color: var(--bw-mu); }
+.crm-shell .bwi .cm8-who { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.crm-shell .bwi .cm8-who .av { width: 40px; height: 40px; font-size: 14px; }
+.crm-shell .bwi .cm8-who h2 { font-size: 17px; margin: 0; }
+.crm-shell .bwi .cm8-lt { display: inline-flex; align-items: center; gap: 3px; margin-right: 10px; font-size: 12px; white-space: nowrap; }
+.crm-shell .bwi .cm8-lt svg { width: 12px; height: 12px; color: var(--bw-ac); }
+
+/* entry modal */
+.crm-shell .bwi .cm8-hd { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 12px; }
+.crm-shell .bwi .cm8-hd > div { flex: 1 1 190px; min-width: 0; }
+.crm-shell .bwi .cm8-hd > div:has(.seg8) { flex: 2 1 340px; }
+.crm-shell .bwi .cm8-hd small { display: block; margin-top: 3px; }
+.crm-shell .bwi .cm8-hd .seg8 { display: flex; flex-wrap: nowrap; }
+.crm-shell .bwi .cm8-hd .seg8 button { flex: 1; padding: 5px 4px; font-size: 12px; }
+.crm-shell .bwi .cm8-tg { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--bw-ln2); border: 1px solid var(--bw-ln2); border-radius: 10px; overflow: hidden; margin-bottom: 12px; }
+.crm-shell .bwi .cm8-tg > div { background: var(--bw-hd); padding: 10px 12px; display: flex; flex-direction: column; }
+.crm-shell .bwi .cm8-tg small { color: var(--bw-mu); font-size: 11px; font-weight: 600; }
+.crm-shell .bwi .cm8-tg b { font-size: 16px; }
+.crm-shell .bwi .cm8-tg span { font-size: 11.5px; }
+.crm-shell .bwi .cm8-blk { border: 1px solid var(--bw-ln); border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
+.crm-shell .bwi .cm8-bh { display: flex; align-items: center; gap: 10px; padding: 9px 12px; background: color-mix(in srgb, var(--bw-ac) 4%, var(--bw-sf)); border-bottom: 1px solid var(--bw-ln2); }
+.crm-shell .bwi .cm8-bh b { display: block; }
+.crm-shell .bwi .cm8-bh small { font-size: 11.5px; }
+.crm-shell .bwi .cm8-bi { width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; background: var(--bw-ac); color: #fff; flex: none; }
+.crm-shell .bwi .cm8-sum { display: flex; flex-direction: column; align-items: flex-end; font-weight: 600; font-size: 13px; white-space: nowrap; }
+.crm-shell .bwi .cm8-sum small { font-weight: 400; font-size: 11px; }
+.crm-shell .bwi .cm8-ln { display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-end; padding: 8px 12px; border-bottom: 1px solid var(--bw-ln2); }
+.crm-shell .bwi .cm8-ln:last-child { border: 0; }
+.crm-shell .bwi .cm8-ln > div { flex: 1 1 110px; min-width: 0; }
+.crm-shell .bwi .cm8-ln > div.w { flex: 2 1 190px; }
+.crm-shell .bwi .cm8-ln > button { flex: none; margin-bottom: 2px; }
+.crm-shell .bwi .cm8-ln label { display: block; font-size: 11px; color: var(--bw-mu); margin-bottom: 2px; }
+.crm-shell .bwi .cm8-none { padding: 9px 12px; font-size: 12px; color: var(--bw-mu); }
+@media (max-width: 900px) { .crm-shell .bwi .cm8-tg { grid-template-columns: 1fr; } }
+
+/* heat-map (prototype .hm) */
+.crm-shell .bwi .cm8-hm { display: grid; gap: 2px; }
+.crm-shell .bwi .cm8-hm small { font-size: 11px; color: var(--bw-mu); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crm-shell .bwi .cm8-hm small.c { text-align: center; }
+.crm-shell .bwi .cm8-hm i { display: block; height: 13px; border-radius: 3px; background: color-mix(in srgb, var(--bw-ac) calc(var(--v) * 1%), var(--bw-ln2)); }
+
+/* drawer width (prototype dw.style.width = min(860px, 100%)) */
+.crm-shell .bwi .bwi-dw.cm8-dw { width: min(860px, 100%); }
+.crm-shell .bwi .cm8-dw .cm8-kp { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }

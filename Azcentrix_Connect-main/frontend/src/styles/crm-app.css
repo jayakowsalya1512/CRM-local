@@ -1,0 +1,76 @@
+/* ── CRM application: Bidwise prototype v9 theme on the existing shell components ──
+   Theme adoption only: the original sidebar (backend modules, sections, rename, drag-reorder, badges) and
+   announcements footer keep their markup and behaviour; these rules restyle them. Tokens come from .crm-shell. */
+
+/* Sidebar – prototype .sb: navy rail, uppercase group titles, 8px rounded items, accent bar on the active item */
+.crm-shell .app-sidebar { background: var(--bw-sb); border-right: 0; color: var(--bw-sbt); box-shadow: none; }
+.crm-shell .app-sidebar-brand { min-height: 48px; height: 48px; background: var(--bw-sb); border-bottom: 1px solid rgba(255,255,255,.06); backdrop-filter: none; }
+.crm-shell .app-sidebar-logo { border: 0; border-radius: 6px; box-shadow: 0 4px 12px color-mix(in srgb, var(--bw-ac) 45%, transparent); }
+.crm-shell .app-sidebar-company-name, .crm-shell .app-sidebar-company-name-primary { color: #fff; font-size: 14px; font-weight: 600; letter-spacing: -.01em; }
+.crm-shell .app-sidebar-company-name-accent { color: #fff; background: none; -webkit-text-fill-color: currentColor; }
+.crm-shell .app-sidebar-company-name-accent::after { display: none; }
+.crm-shell .app-sidebar-credit { color: #6F7F90; }
+.crm-shell .app-sidebar-toggle { color: var(--bw-sbt); background: transparent; border-color: rgba(255,255,255,.1); }
+.crm-shell .app-sidebar-toggle:hover { color: #fff; background: rgba(255,255,255,.06); }
+.crm-shell .app-sidebar-nav { padding: 6px 0 16px; }
+.crm-shell .app-sidebar-section-label { color: #6D7E91; font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+.crm-shell .app-sidebar-item-shell { margin: 1px 10px; border-radius: 8px; }
+.crm-shell .app-sidebar-grip, .crm-shell .app-sidebar-item-shell:hover .app-sidebar-grip { color: #6D7E91; }
+.crm-shell .app-sidebar-link { min-height: 32px; padding: 0 10px; gap: 10px; border-radius: 8px; border: 0; color: var(--bw-sbt); font-size: 13px; font-weight: 400; }
+.crm-shell .app-sidebar-link svg { color: currentColor; opacity: .85; }
+.crm-shell .app-sidebar-link:hover { color: #fff; background: rgba(255,255,255,.06); border-color: transparent; transform: none; }
+.crm-shell .app-sidebar-link:hover svg { color: currentColor; opacity: 1; }
+.crm-shell .app-sidebar-link.is-active { color: #fff; font-weight: 500; background: rgba(255,255,255,.1); border-color: transparent; box-shadow: inset 3px 0 0 var(--bw-ac); }
+.crm-shell .app-sidebar-link.is-active svg { color: #fff; opacity: 1; }
+.crm-shell .app-sidebar-link.is-active::before { display: none; }
+.crm-shell .app-sidebar-link.is-collapsed.is-active { box-shadow: none; background: color-mix(in srgb, var(--bw-ac) 38%, rgba(255,255,255,.06)); }
+.crm-shell .app-sidebar-badge, .crm-shell .app-sidebar-hover-badge { background: var(--bw-ba); color: #fff; box-shadow: none; font-weight: 600; }
+.crm-shell .app-sidebar-hover-pill { background: var(--bw-sbh); color: #fff; border-color: rgba(255,255,255,.08); box-shadow: 0 14px 36px rgba(0,0,0,.3); }
+.crm-shell .app-sidebar-separator { border-top-color: rgba(255,255,255,.09); }
+.crm-shell .app-sidebar-nav:hover::-webkit-scrollbar-thumb { background: rgba(255,255,255,.18); }
+/* the inline rename box keeps a light field on the dark rail */
+.crm-shell .app-sidebar input { background: #fff !important; color: #0f172a !important; }
+
+/* Header pop-ups (prototype .pop .it) */
+.crm-top .pop { position: absolute; right: 0; top: calc(100% + 4px); z-index: 80; min-width: 220px; max-width: calc(100vw - 24px); overflow: hidden; background: var(--bw-sf); color: var(--bw-tx); border: 1px solid var(--bw-ln); border-radius: 10px; box-shadow: var(--bw-sh2); animation: bw-in .16s ease; }
+.crm-top .pop .it { display: flex; width: 100%; gap: 8px; align-items: center; padding: 8px 12px; border-bottom: 1px solid var(--bw-ln2); text-align: left; cursor: pointer; }
+.crm-top .pop .it:last-child { border-bottom: 0; }
+.crm-top .pop .it:hover { background: var(--bw-hd); }
+
+/* Header: the prototype search box opens the existing global search palette, whose own trigger is hidden here;
+   the sticky-notes trigger takes the .ib icon-button look. */
+.crm-top .crm-gs > div > button:first-child { display: none; }
+.crm-top .crm-sticky .sn-header-button { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 8px; border: 0; background: none; color: var(--bw-mu); padding: 0; }
+.crm-top .crm-sticky .sn-header-button:hover, .crm-top .crm-sticky .sn-header-button.sn-header-active { background: var(--bw-hd); color: var(--bw-tx); }
+.crm-top .crm-sticky .sn-header-button svg { width: 16px; height: 16px; }
+
+/* Header "+ Create" – prototype .btn.p.s in the top bar (v17) */
+.crm-top .crm-create { display: inline-flex; align-items: center; gap: 5px; height: 26px; padding: 0 9px; border-radius: 5px; border: 1px solid var(--bw-ac);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--bw-ac) 90%, #fff), var(--bw-ac)); color: #fff; font-size: 12px; font-weight: 500; white-space: nowrap; cursor: pointer;
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--bw-ac) 40%, transparent); transition: filter .15s, transform .05s; }
+.crm-top .crm-create:hover { filter: brightness(1.1); }
+.crm-top .crm-create:active { transform: translateY(1px); }
+@media (max-width: 640px) { .crm-top .crm-create { padding: 0 7px; font-size: 0; gap: 0; } .crm-top .crm-create svg { width: 15px; height: 15px; } }
+
+/* Sidebar – prototype v17 final "sidebar: tighter" layer: 232px rail (64px collapsed), 9.5px group titles,
+   12.5px items with 5px/10px padding and 16px icons. Desktop only – the phone drawer keeps its width. */
+@media (min-width: 768px) {
+  .crm-shell .app-sidebar { width: 232px; }
+  .crm-shell.sbc .app-sidebar { width: 64px; }
+}
+.crm-shell .app-sidebar-nav { padding: 4px 0 10px; }
+.crm-shell .app-sidebar-nav > div > div:has(> .app-sidebar-section-label) { padding: 10px 8px 3px; }
+.crm-shell .app-sidebar-section-label { font-size: 9.5px; }
+.crm-shell .app-sidebar-item-shell { margin: 0 10px; }
+.crm-shell .app-sidebar-link { min-height: 0; padding: 5px 10px; font-size: 12.5px; line-height: 1.35; }
+.crm-shell .app-sidebar-link svg { width: 16px; height: 16px; }
+.crm-shell .app-sidebar-link.is-collapsed svg { width: 18px; height: 18px; }
+/* Sidebar – prototype v17: no left gutter and no scrollbar (.sb{scrollbar-width:none} · .nav h6{padding:10px 18px 3px}).
+   The drag-to-reorder grips overlay the row instead of taking width, so labels / icons start where the prototype's do. */
+.crm-shell .app-sidebar, .crm-shell .app-sidebar-nav, .crm-shell .app-sidebar-nav:hover { scrollbar-width: none; }
+.crm-shell .app-sidebar::-webkit-scrollbar, .crm-shell .app-sidebar-nav::-webkit-scrollbar,
+.crm-shell .app-sidebar-nav:hover::-webkit-scrollbar { display: none; width: 0; height: 0; }
+.crm-shell .app-sidebar-nav > div > div:has(> .app-sidebar-section-label) { position: relative; padding: 10px 18px 3px; gap: 0; }
+.crm-shell .app-sidebar-grip { position: absolute; left: 4px; top: 50%; transform: translateY(-50%); margin: 0; z-index: 1; pointer-events: auto; }
+.crm-shell .app-sidebar-nav > div > div:has(> .app-sidebar-section-label) > .app-sidebar-grip { top: calc(50% + 3px); left: 5px; }
+.crm-shell .app-sidebar-item-shell > .app-sidebar-grip { left: -9px; }

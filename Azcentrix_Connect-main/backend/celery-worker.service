@@ -1,0 +1,17 @@
+[Unit]
+Description=Azcentrix Connect - Celery worker (notification email/push queue)
+After=network.target redis.service
+Wants=redis.service
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/azcentrix-connect/backend
+Environment="PATH=/var/www/azcentrix-connect/backend/venv/bin"
+ExecStart=/var/www/azcentrix-connect/backend/venv/bin/celery -A app.celery_app worker --loglevel=info --concurrency=4
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

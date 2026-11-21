@@ -1,0 +1,58 @@
+/* Field Sales 360 – prototype v17 pieces not already in pages/notifications/inbox.css + pages/customers/c360.css
+   (scoped to .bwi.fs360): KPI sparklines, heat-map, visit map, log-activity composer (atiles, kv, fg). */
+
+/* KPI strip: prototype .sth / .spw sparkline (top-right of the card) */
+.crm-shell .bwi.fs360 .strip .st .sth { display: block; }
+.crm-shell .bwi.fs360 .strip .st .sth label { display: block; margin: 0; }
+.crm-shell .bwi.fs360 .strip .st .spw { position: absolute; right: 10px; bottom: 9px; opacity: .9; }
+.crm-shell .bwi.fs360 .strip .st .spw svg { display: block; width: 74px; height: 24px; }
+.crm-shell .bwi.fs360 .strip .st.has-sp i { max-width: calc(100% - 80px); }
+.crm-shell .bwi.fs360 .strip .st i.tok { color: var(--bw-ok); }
+.crm-shell .bwi.fs360 .strip .st i.twarn { color: var(--bw-wa); }
+.crm-shell .bwi.fs360 .strip .st i.tbad { color: var(--bw-ba); }
+.crm-shell .bwi.fs360 .strip .st.tok > b { color: var(--bw-ok); }
+.crm-shell .bwi.fs360 .strip .st.twarn > b { color: var(--bw-wa); }
+.crm-shell .bwi.fs360 .strip .st.tbad > b { color: var(--bw-ba); }
+.crm-shell .bwi.fs360 .strip .st b.na { color: var(--bw-mu); }
+
+/* Heat-map (prototype .hm) */
+.crm-shell .bwi.fs360 .hm { display: grid; gap: 2px; }
+.crm-shell .bwi.fs360 .hm small { font-size: 11px; color: var(--bw-mu); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crm-shell .bwi.fs360 .hm small.c { text-align: center; }
+.crm-shell .bwi.fs360 .hm i { display: block; height: 13px; border-radius: 3px; background: color-mix(in srgb, var(--bw-ac) calc(var(--v) * 1%), var(--bw-ln2)); }
+.crm-shell .bwi.fs360 .hmw { overflow-x: auto; }
+
+/* Visit / check-in map (prototype mapSvg) */
+.crm-shell .bwi.fs360 svg.fsmap { display: block; background: var(--bw-hd); border: 1px solid var(--bw-ln); color: var(--bw-tx); }
+.crm-shell .bwi.fs360 .fsmap-note { margin-top: 6px; font-size: 11px; color: var(--bw-mu); }
+
+.crm-shell .bwi.fs360 .tabs.mb { border: 1px solid var(--bw-ln); overflow-x: auto; }
+.crm-shell .bwi.fs360 .tba { color: var(--bw-mu); font-style: italic; }
+.crm-shell .bwi.fs360 .mu { color: var(--bw-mu); }
+.crm-shell .bwi.fs360 .t td a { color: var(--bw-ac); cursor: pointer; }
+.crm-shell .bwi.fs360 .t td .in.sm { display: inline-block; height: 26px; vertical-align: middle; }
+.crm-shell .bwi.fs360 .t td .in.sm.bad { border-color: var(--bw-ba); }
+.crm-shell .bwi.fs360 .avn { display: inline-flex; align-items: center; gap: 6px; }
+.crm-shell .bwi.fs360 .err-box { padding: 14px; color: var(--bw-ba); }
+.crm-shell .bwi.fs360 .busy { opacity: .55; transition: opacity .15s; }
+.crm-shell .bwi.fs360 .btn.xs { height: 22px; padding: 0 7px; font-size: 11.5px; }
+
+/* Log activity composer (prototype R.__act) */
+.crm-shell .bwi.fs360 .atiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; }
+.crm-shell .bwi.fs360 .atiles.s { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 640px) { .crm-shell .bwi.fs360 .atiles.s { grid-template-columns: repeat(2, 1fr); } }
+.crm-shell .bwi.fs360 .atile b { font-size: 13px; }
+.crm-shell .bwi.fs360 .fg { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px 12px; }
+.crm-shell .bwi.fs360 .fg .f1 { grid-column: 1 / -1; }
+.crm-shell .bwi.fs360 .fg label, .crm-shell .bwi.fs360 .lb { display: block; font-size: 12px; color: var(--bw-mu); margin-bottom: 2px; }
+@media (max-width: 640px) { .crm-shell .bwi.fs360 .fg { grid-template-columns: minmax(0, 1fr); } }
+.crm-shell .bwi.fs360 .kv { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 18px; }
+.crm-shell .bwi.fs360 .fp-side .kv { grid-template-columns: minmax(0, 1fr); }
+.crm-shell .bwi.fs360 .kv > div { display: flex; justify-content: space-between; gap: 10px; padding: 5px 0; border-bottom: 1px solid var(--bw-ln2); font-size: 12.5px; }
+.crm-shell .bwi.fs360 .kv > div > span:first-child { color: var(--bw-mu); }
+.crm-shell .bwi.fs360 .kv > div > span:last-child { text-align: right; }
+.crm-shell .bwi.fs360 .chip.on a { color: #fff; margin-left: 4px; }
+.crm-shell .bwi.fs360 .in.bad { border-color: var(--bw-ba); }
+.crm-shell .bwi.fs360 .tl { border-left: 2px solid var(--bw-ln); margin-left: 6px; padding-left: 12px; }
+.crm-shell .bwi.fs360 .tl > div { position: relative; padding: 0 0 10px; font-size: 12px; }
+.crm-shell .bwi.fs360 .tl > div::before { content: ""; position: absolute; left: -18px; top: 4px; width: 8px; height: 8px; border-radius: 50%; background: var(--bw-ac); }

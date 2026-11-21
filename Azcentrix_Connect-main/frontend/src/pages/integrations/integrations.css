@@ -1,0 +1,21 @@
+/* Marketplace & API – Bidwise prototype v17 (R.integrations: subnav, category chips, .g3 app cards with .logo, API keys / webhooks / OAuth tables).
+   Scoped to .bwi; base classes from notifications/inbox.css, customers/c360.css, settings/appSettings.css and settings/admin360.css (.snav .fg .mono). */
+
+.crm-shell .bwi .g.g3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+@media (max-width: 1200px) { .crm-shell .bwi .g.g3 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 700px) { .crm-shell .bwi .g.g3 { grid-template-columns: minmax(0, 1fr); } }
+.crm-shell .bwi .g.g2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+@media (max-width: 820px) { .crm-shell .bwi .g.g2 { grid-template-columns: minmax(0, 1fr); } }
+.crm-shell .bwi .logo { width: 32px; height: 32px; border-radius: 7px; background: var(--bw-ac); display: grid; place-items: center; font-size: 13px; font-weight: 700; color: #fff; flex: none; }
+.crm-shell .bwi .appc > .pb { display: flex; align-items: flex-start; gap: 10px; }
+.crm-shell .bwi .appc .mu { display: block; font-size: 12px; margin-top: 1px; }
+.crm-shell .bwi .appc .row.mt { gap: 8px; }
+.crm-shell .bwi .pill.ac { color: var(--bw-ac); background: color-mix(in srgb, var(--bw-ac) 12%, var(--bw-sf)); }
+.crm-shell .bwi .t td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; }
+.crm-shell .bwi .t td .ucell { display: inline-flex; gap: 6px; align-items: center; }
+.crm-shell .bwi .t td.r, .crm-shell .bwi .t th.r { text-align: right; }
+.crm-shell .bwi .keybox { display: flex; gap: 6px; align-items: center; background: var(--bw-hd); border: 1px solid var(--bw-ln); border-radius: 8px; padding: 8px 10px; }
+.crm-shell .bwi .keybox code { flex: 1; min-width: 0; word-break: break-all; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; }
+.crm-shell .bwi .fg .chk { display: flex; flex-wrap: wrap; gap: 6px 14px; }
+.crm-shell .bwi .fg .chk label { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; color: var(--bw-tx); margin: 0; }
+.crm-shell .bwi .pg .cnt { color: var(--bw-mu); }

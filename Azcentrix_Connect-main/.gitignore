@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+.env
+.env.*
+*.log
+
+# React / Node
+node_modules/
+dist/
+build/
+
+# Uploads
+uploads/
+media/
+storage_quarantine/
+# Release pipeline: deployment step results/logs, and the version stamp the deployment service writes
+deploy_state/
+backend/VERSION
+backend/service-account.json
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# test
+# Logs (rotated files like error.log.1 aren't caught by *.log)
+logs/
+backend/logs/
+
+# Build previews
+dist-preview/
+frontend/dist-preview/
+
+# Claude Code agent worktrees
+.claude/worktrees/
+
+# Local AI tool config (empty dirs, not project code)
+.agents/
+.codex/
+
+# Possible backup/duplicate source folder — confirm before ignoring
+frontend/src_02/
+
+# Local temp/scratch files
+*.tmp
+
+# Local dev config overrides (tracked historically but diverges per machine)
+frontend/vite.config.ts
+frontend/package-lock.json
+/backend/backups/exports/
+backend/backups/exports/

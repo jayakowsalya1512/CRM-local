@@ -1,0 +1,90 @@
+/* Intelligence → Funnel & analytics – prototype v17 (p31 journey, p33 views, p34 polish) on the .crm-shell tokens.
+   The Funnel view itself uses the dashboard Funnel board styles (dashboard/v9/boards/funnel.css). */
+.crm-shell .fmod .mu { color: var(--bw-mu); }
+.crm-shell .fmod .tok { color: var(--bw-ok); } .crm-shell .fmod .tbad { color: var(--bw-ba); }
+.crm-shell .fmod .mt { margin-top: 14px; }
+.crm-shell .fmod .fempty { padding: 40px 0; text-align: center; color: var(--bw-mu); }
+
+/* six view buttons (.fvt) */
+.crm-shell .fmod .fvt { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; border-bottom: 1px solid var(--bw-ln); padding-bottom: 10px; }
+.crm-shell .fmod .fvt button { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--bw-ln); background: var(--bw-sf); border-radius: 10px; padding: 8px 14px; font-weight: 600; font-size: 13px; color: var(--bw-mu); cursor: pointer; }
+.crm-shell .fmod .fvt button:hover { color: var(--bw-tx); }
+.crm-shell .fmod .fvt button.on { background: var(--bw-ac); border-color: var(--bw-ac); color: #fff; }
+.crm-shell .fmod .fvt button:focus-visible { outline: 2px solid var(--bw-ac); outline-offset: 2px; }
+
+/* notes, section heading, chips */
+.crm-shell .fmod .fnote { display: flex; align-items: center; gap: 6px; background: color-mix(in srgb, var(--bw-ac) 8%, var(--bw-sf)); border: 1px solid color-mix(in srgb, var(--bw-ac) 30%, var(--bw-ln)); border-radius: 8px; padding: 9px 13px; line-height: 1.5; font-size: 12px; }
+.crm-shell .fmod .fnote svg { flex: none; }
+.crm-shell .fmod .fsec { background: var(--bw-sf); border: 1px solid var(--bw-ln); border-radius: 10px; padding: 14px 16px 16px; box-shadow: var(--bw-sh1); font-size: 14px; margin: 18px 0 10px; color: var(--bw-mu); text-transform: uppercase; letter-spacing: .06em; font-weight: 600; }
+.crm-shell .fmod .fchips { display: flex; flex-wrap: wrap; gap: 6px; }
+.crm-shell .fmod .flink { color: var(--bw-ac); cursor: pointer; }
+.crm-shell .fmod .fgo { margin-left: 10px; font-size: 12.5px; font-weight: 500; }
+
+/* journey funnel bars (.fnl3) */
+.crm-shell .fmod .fnl3 { padding: 4px 2px; }
+.crm-shell .fmod .frow2 { display: grid; grid-template-columns: 168px minmax(0, 1fr) 50px; gap: 10px; align-items: center; cursor: pointer; padding: 3px 0; }
+.crm-shell .fmod .frow2:hover .fbar2 { filter: brightness(1.08); }
+.crm-shell .fmod .fl2 { font-size: 12.5px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.crm-shell .fmod .fbar2 { height: 34px; border-radius: 8px; display: flex; align-items: center; gap: 8px; padding: 0 12px; color: #fff; background: linear-gradient(90deg, color-mix(in srgb, var(--bw-ac) 88%, #fff), var(--bw-ac)); min-width: 64px; transition: width .5s cubic-bezier(.2, .8, .2, 1); }
+.crm-shell .fmod .fbar2 b { font-size: 14px; color: #fff; }
+.crm-shell .fmod .fbar2 small { color: rgba(255, 255, 255, .92); font-size: 11.5px; }
+.crm-shell .fmod .fc2 { text-align: right; font-size: 12px; font-weight: 600; color: var(--bw-mu); }
+
+/* conversion by sales flow */
+.crm-shell .fmod .flcmp { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.crm-shell .fmod .flch { display: flex; align-items: center; gap: 8px; padding-bottom: 6px; border-bottom: 1px solid var(--bw-ln2); }
+.crm-shell .fmod .flr { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--bw-ln2); }
+.crm-shell .fmod .flr small { display: block; }
+.crm-shell .fmod .flr-b { width: 150px; flex: none; }
+
+/* segment / vertical / customer funnel tables */
+.crm-shell .fmod .fmx-w { overflow-x: auto; }
+.crm-shell .fmod .fmx td { vertical-align: middle; }
+.crm-shell .fmod .fmx .mini { display: flex; gap: 2px; height: 4px; margin-top: 5px; max-width: 220px; }
+.crm-shell .fmod .fmx .mini i { display: block; height: 100%; border-radius: 2px; min-width: 2px; }
+.crm-shell .fmod .fscroll-l { max-height: 520px; overflow: auto; }
+.crm-shell .fmod .fscroll-l thead th { position: sticky; top: 0; z-index: 1; background: var(--bw-hd); }
+.crm-shell .fmod tfoot td { border-top: 1px solid var(--bw-ln); background: var(--bw-hd); }
+
+/* vertical bars (.vb) */
+.crm-shell .fmod .vb-r { display: grid; grid-template-columns: 150px 1fr 110px; gap: 8px; align-items: center; margin: 6px 0; font-size: 12px; }
+.crm-shell .fmod .vb-r span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crm-shell .fmod .vb-r > div { display: flex; height: 12px; background: var(--bw-ln2); border-radius: 6px; overflow: hidden; }
+.crm-shell .fmod .vb-r i { display: block; height: 100%; }
+.crm-shell .fmod .vb-r i.p { background: var(--bw-ac); } .crm-shell .fmod .vb-r i.w { background: var(--bw-ok); }
+.crm-shell .fmod .vb-r i.c { background: #8B5CF6; border-radius: 6px; }
+.crm-shell .fmod .vb-r b { text-align: right; }
+.crm-shell .fmod .vb-k { display: flex; gap: 14px; font-size: 11.5px; color: var(--bw-mu); margin-top: 6px; }
+.crm-shell .fmod .vb-k i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
+.crm-shell .fmod .vb-k i.p { background: var(--bw-ac); } .crm-shell .fmod .vb-k i.w { background: var(--bw-ok); }
+
+/* health vs revenue scatter (.sc) */
+.crm-shell .fmod .sc { position: relative; height: 220px; border-left: 1px solid var(--bw-ln); border-bottom: 1px solid var(--bw-ln); margin: 6px 6px 18px 18px; }
+.crm-shell .fmod .sc i { position: absolute; width: 11px; height: 11px; border-radius: 50%; transform: translate(-50%, 50%); opacity: .85; border: 1.5px solid var(--bw-sf); }
+.crm-shell .fmod .sc .sx { position: absolute; right: 0; bottom: -18px; font-size: 11px; color: var(--bw-mu); }
+.crm-shell .fmod .sc .sy { position: absolute; left: -16px; top: 0; font-size: 11px; color: var(--bw-mu); writing-mode: vertical-rl; transform: rotate(180deg); }
+
+/* forecast to target (.ft2) */
+.crm-shell .fmod .ft2 { position: relative; display: flex; height: 22px; border-radius: 8px; background: var(--bw-ln2); overflow: visible; margin-top: 8px; }
+.crm-shell .fmod .ft2 i { display: block; height: 100%; }
+.crm-shell .fmod .ft2 i:first-child { border-radius: 8px 0 0 8px; }
+.crm-shell .fmod .ft2 em { position: absolute; top: -5px; width: 2px; height: 32px; background: var(--bw-tx); }
+.crm-shell .fmod .fleg { display: flex; flex-wrap: wrap; gap: 10px; font-size: 12px; margin-top: 10px; }
+.crm-shell .fmod .fdot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 4px; }
+.crm-shell .fmod .ftgt { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 12px; }
+
+/* segment × vertical heat-map (.hmx) */
+.crm-shell .fmod .hmx td.c, .crm-shell .fmod .hmx th.c { text-align: center; }
+.crm-shell .fmod .hmx td.c { font-size: 12px; min-width: 84px; }
+.crm-shell .fmod .hmx td.c small { color: var(--bw-mu); font-size: 10.5px; }
+
+/* deep-dive mini funnel (.dfn) */
+.crm-shell .fmod .dfn > div { display: grid; grid-template-columns: 120px 1fr 34px 36px; gap: 8px; align-items: center; font-size: 12px; margin: 6px 0; }
+.crm-shell .fmod .dfn span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crm-shell .fmod .dfn > div > div { height: 12px; background: var(--bw-ln2); border-radius: 6px; }
+.crm-shell .fmod .dfn i { display: block; height: 100%; border-radius: 6px; background: linear-gradient(90deg, color-mix(in srgb, var(--bw-ac) 65%, #fff), var(--bw-ac)); }
+.crm-shell .fmod .dfn b { text-align: right; }
+.crm-shell .fmod .dfn small { color: var(--bw-mu); text-align: right; }
+
+@media (max-width: 900px) { .crm-shell .fmod .flcmp { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .crm-shell .fmod .frow2 { grid-template-columns: 110px minmax(0, 1fr) 40px; } .crm-shell .fmod .vb-r { grid-template-columns: 100px 1fr 80px; } }

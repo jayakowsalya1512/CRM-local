@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(///192.168.11.31/d/saas-crm/**)",
+      "Bash(npx tsc *)",
+      "PowerShell(net use | Select-String -Pattern \"OK\\\\s+\\\\w:\" | ForEach-Object { $_ })",
+      "PowerShell(net use Z: /delete /y 2>&1)",
+      "PowerShell($true)",
+      "Bash(find \"\\\\\\\\192.168.11.31\\\\d\\\\saas-crm\\\\frontend\\\\src\\\\pages\" -type f -name \"*.tsx\")",
+      "Bash(find \"\\\\\\\\192.168.11.31\\\\d\\\\saas-crm\\\\frontend\\\\src\\\\pages\" -type f \\\\\\( -name \"*ogin*\" -o -name \"*auth*\" \\\\\\))"
+    ]
+  }
+}

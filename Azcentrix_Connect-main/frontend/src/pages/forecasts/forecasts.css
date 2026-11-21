@@ -1,0 +1,30 @@
+/* Forecasts – prototype v17 R.forecast(). Base controls (.pg .chip .btn .panel .in) come from notifications/inbox.css, the
+   KPI strip, tables, bar(), av() and donut() legend from customers/c360.css. Colours use the theme tokens (light + dark). */
+
+/* KPI strip: the six cards stay on one row on desktop (prototype one-row strip); phones keep the prototype auto-fit wrap */
+.crm-shell .bwi.fcst .strip .st .sth { display: block; }
+@media (min-width: 701px) { .crm-shell .bwi.fcst .strip { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+
+/* tone of the card value + % chip (prototype .st.tok / .st i.tok / .st i.tbad) */
+.crm-shell .bwi.fcst .strip .st.tok b, .crm-shell .bwi.fcst .strip .st i.tok { color: var(--bw-ok); }
+.crm-shell .bwi.fcst .strip .st.tbad b, .crm-shell .bwi.fcst .strip .st i.tbad { color: var(--bw-ba); }
+
+/* panel header helper text (prototype small{font-size:11px;color:var(--mu)} inside the semibold .ph) */
+.crm-shell .bwi.fcst .panel > .ph small { font-size: 11px; color: var(--bw-mu); text-transform: none; letter-spacing: normal; }
+
+/* Forecast by rep: prototype rows (33px), inline Manager adj. input 100px, right-aligned numbers */
+.crm-shell .bwi.fcst .t td .rn { max-width: 123px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }   /* long names keep Attainment in view */
+.crm-shell .bwi.fcst .t td .in.sm { height: 26px; padding: 0 6px; font-variant-numeric: tabular-nums; }
+.crm-shell .bwi.fcst .t td.empty { height: auto; text-align: center; white-space: normal; max-width: none; }
+.crm-shell .bwi.fcst .fadj { transition: border-color .2s, box-shadow .2s, opacity .2s; }
+.crm-shell .bwi.fcst .fadj:disabled { background: var(--bw-hd); color: var(--bw-mu); cursor: not-allowed; }
+.crm-shell .bwi.fcst .fadj.saving { opacity: .6; cursor: progress; }
+.crm-shell .bwi.fcst .fadj.ok { border-color: var(--bw-ok); box-shadow: 0 0 0 2px color-mix(in srgb, var(--bw-ok) 22%, transparent); }
+.crm-shell .bwi.fcst .fadj.err { border-color: var(--bw-ba); box-shadow: 0 0 0 2px color-mix(in srgb, var(--bw-ba) 22%, transparent); }
+
+/* doughnut segments (prototype .dseg hover) */
+.crm-shell .bwi.fcst svg circle[stroke-dasharray] { transition: stroke-width .15s; }
+.crm-shell .bwi.fcst svg circle[stroke-dasharray]:hover { stroke-width: 18; }
+
+/* period switch: keep the current numbers visible while the new period loads */
+.crm-shell .bwi.fcst .fbusy { opacity: .55; pointer-events: none; transition: opacity .15s; }

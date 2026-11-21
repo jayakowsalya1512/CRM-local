@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd \"\\\\\\\\192.168.11.31\\\\d\\\\saas-crm\\\\frontend\\\\src\")",
+      "Read(///192.168.11.31/d/192.168.11.31/d/saas-crm/frontend/**)",
+      "Bash(xargs grep *)",
+      "Bash(ls -la \"\\\\\\\\192.168.11.31\\\\d\\\\saas-crm\\\\frontend\\\\src\\\\pages\\\\dashboard\\\\tabs\\\\*.tsx\")",
+      "Bash(find \"\\\\\\\\192.168.11.31\\\\d\\\\saas-crm\" -name \"models.py\" -type f)",
+      "Bash(ls -la \"\\\\\\\\192.168.11.31\\\\d\\\\saas-crm\")",
+      "Bash(ls -la \"\\\\\\\\192.168.11.31\\\\d\\\\saas-crm\\\\backend\")",
+      "Bash(ls -la \"\\\\\\\\192.168.11.31\\\\d\\\\saas-crm\\\\backend\\\\app\")",
+      "Bash(find \"\\\\\\\\192.168.11.31\\\\d\\\\saas-crm\\\\backend\\\\app\" -name \"*.py\" -type f)",
+      "Bash(find \"\\\\\\\\192.168.11.31\\\\d\\\\saas-crm\\\\backend\\\\app\\\\routers\" -name \"*router.py\" -type f)",
+      "Bash(Get-ChildItem -Path \"\\\\\\\\192.168.11.31\\\\d\\\\saas-crm\\\\backend\\\\app\\\\routers\" -Filter \"*.py\")",
+      "Bash(Select-Object Name)",
+      "Bash(ls -la \"\\\\\\\\192.168.11.31/d/saas-crm/backend/app/routers/\")",
+      "Bash(ls -la \"\\\\\\\\192.168.11.31/d/saas-crm/backend/app/schemas/\")",
+      "Bash(find \"\\\\\\\\192.168.11.31/d/saas-crm/backend/app\" -name \"schemas\" -type d)",
+      "Bash(ls -la \"\\\\\\\\192.168.11.31/d/saas-crm/backend/app/\")",
+      "Bash(ls -la \"\\\\\\\\192.168.11.31/d/saas-crm/backend/app/models/\")",
+      "Bash(cd \"\\\\\\\\192.168.11.31\\\\d\\\\saas-crm\")",
+      "Read(///192.168.11.31/d/192.168.11.31/d/saas-crm/backend/app/**)",
+      "Bash(cd \"\\\\\\\\192.168.11.31\\\\d\\\\saas-crm\\\\backend\\\\app\\\\routers\")",
+      "Bash(ls \"\\\\\\\\192.168.11.31\\\\d\\\\saas-crm\")",
+      "Bash(ls \"\\\\\\\\192.168.11.31\\\\d\\\\saas-crm\\\\backend\")",
+      "Bash(ls \"\\\\\\\\192.168.11.31\\\\d\\\\saas-crm\\\\frontend\")",
+      "Bash(ls \"\\\\\\\\192.168.11.31\\\\d\\\\saas-crm\\\\backend\\\\app\")",
+      "Bash(ls \"\\\\\\\\192.168.11.31\\\\d\\\\saas-crm\\\\frontend\\\\src\")",
+      "Bash(ls \"\\\\\\\\192.168.11.31\\\\d\\\\saas-crm\\\\frontend\\\\src\\\\services\")",
+      "Bash(ls \"\\\\\\\\192.168.11.31\\\\d\\\\saas-crm\\\\frontend\\\\src\\\\pages\")",
+      "Bash(python -m py_compile app/routers/reports_router.py)"
+    ]
+  }
+}

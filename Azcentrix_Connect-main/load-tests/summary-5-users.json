@@ -1,0 +1,181 @@
+{
+    "metrics": {
+        "http_req_duration{expected_response:true}": {
+            "p(95)": 517.0004099999996,
+            "avg": 207.44284196078453,
+            "min": 9.7387,
+            "med": 115.9653,
+            "max": 4697.0584,
+            "p(90)": 450.30282
+        },
+        "http_req_receiving": {
+            "p(95)": 15.35206,
+            "avg": 5.474663424124516,
+            "min": 0,
+            "med": 1.6345,
+            "max": 105.4296,
+            "p(90)": 12.962900000000001
+        },
+        "vus_max": {
+            "value": 5,
+            "min": 5,
+            "max": 5
+        },
+        "data_received": {
+            "count": 77096629,
+            "rate": 597382.5604078291
+        },
+        "iteration_duration": {
+            "min": 3747.0181,
+            "med": 12035.21835,
+            "max": 16856.4437,
+            "p(90)": 13868.384419999998,
+            "p(95)": 14175.853114999998,
+            "avg": 11951.513165384617
+        },
+        "vus": {
+            "value": 1,
+            "min": 1,
+            "max": 5
+        },
+        "http_req_blocked": {
+            "min": 0,
+            "med": 0,
+            "max": 6.8307,
+            "p(90)": 0.4293,
+            "p(95)": 0.5945199999999997,
+            "avg": 0.1467420233463035
+        },
+        "http_req_tls_handshaking": {
+            "p(90)": 0,
+            "p(95)": 0,
+            "avg": 0,
+            "min": 0,
+            "med": 0,
+            "max": 0
+        },
+        "http_req_waiting": {
+            "avg": 204.7267871595331,
+            "min": 1.5688,
+            "med": 111.7186,
+            "max": 4695.5899,
+            "p(90)": 432.81426,
+            "p(95)": 516.70296
+        },
+        "http_reqs": {
+            "count": 257,
+            "rate": 1.991362268573534
+        },
+        "checks": {
+            "fails": 2,
+            "passes": 205,
+            "thresholds": {
+                "rate>0.98": false
+            },
+            "value": 0.9903381642512077
+        },
+        "http_req_connecting": {
+            "avg": 0.12682957198443576,
+            "min": 0,
+            "med": 0,
+            "max": 6.2916,
+            "p(90)": 0.34810000000000035,
+            "p(95)": 0.57948
+        },
+        "data_sent": {
+            "count": 116377,
+            "rate": 901.7461740458449
+        },
+        "group_duration": {
+            "med": 8700.48465,
+            "max": 11630.3952,
+            "p(90)": 10315.91446,
+            "p(95)": 10734.19464,
+            "avg": 8760.185048,
+            "min": 6485.6935
+        },
+        "iterations": {
+            "count": 52,
+            "rate": 0.40292154850515083
+        },
+        "http_req_duration": {
+            "med": 115.9861,
+            "max": 4697.0584,
+            "p(90)": 453.58788000000004,
+            "p(95)": 538.7596599999998,
+            "avg": 211.5557268482492,
+            "min": 9.7387,
+            "thresholds": {
+                "p(95)<3000": false
+            }
+        },
+        "http_req_sending": {
+            "avg": 1.35427626459144,
+            "min": 0,
+            "med": 0,
+            "max": 328.1477,
+            "p(90)": 0,
+            "p(95)": 0.5338999999999999
+        },
+        "http_req_failed": {
+            "passes": 2,
+            "fails": 255,
+            "thresholds": {
+                "rate<0.02": false
+            },
+            "value": 0.007782101167315175
+        }
+    },
+    "root_group": {
+        "path": "",
+        "id": "d41d8cd98f00b204e9800998ecf8427e",
+        "groups": {
+            "CRM user journey": {
+                "groups": {},
+                "checks": {
+                        "dashboard returned 2xx or 3xx": {
+                            "fails": 0,
+                            "name": "dashboard returned 2xx or 3xx",
+                            "path": "::CRM user journey::dashboard returned 2xx or 3xx",
+                            "id": "37dcfa06d0f987f2ed4b1a54c1637824",
+                            "passes": 50
+                        },
+                        "customers returned 2xx or 3xx": {
+                            "name": "customers returned 2xx or 3xx",
+                            "path": "::CRM user journey::customers returned 2xx or 3xx",
+                            "id": "68c0231a6c891f6e98881ce89ace61a3",
+                            "passes": 50,
+                            "fails": 0
+                        },
+                        "leads returned 2xx or 3xx": {
+                            "name": "leads returned 2xx or 3xx",
+                            "path": "::CRM user journey::leads returned 2xx or 3xx",
+                            "id": "9220d3b71b109c696e0ef7477b766a49",
+                            "passes": 50,
+                            "fails": 0
+                        },
+                        "global_search returned 2xx or 3xx": {
+                            "name": "global_search returned 2xx or 3xx",
+                            "path": "::CRM user journey::global_search returned 2xx or 3xx",
+                            "id": "f6e86f02578534720efc5f57585a600e",
+                            "passes": 50,
+                            "fails": 0
+                        }
+                    },
+                "name": "CRM user journey",
+                "path": "::CRM user journey",
+                "id": "7254f45809a60193351e823a8469c48c"
+            }
+        },
+        "checks": {
+            "login returned success status": {
+                "id": "9ce43b429db5cd9f2b4575f100c6375a",
+                "passes": 5,
+                "fails": 2,
+                "name": "login returned success status",
+                "path": "::login returned success status"
+            }
+        },
+        "name": ""
+    }
+}

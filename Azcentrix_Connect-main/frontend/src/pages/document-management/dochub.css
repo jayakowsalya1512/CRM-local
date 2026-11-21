@@ -1,0 +1,18 @@
+/* Document Hub – Bidwise prototype v17 (R.docs: .split with folder .side, .tbr search, file table, drawer with preview + version history).
+   Scoped to .bwi; base classes from inbox.css, c360.css, leads.css (drawer), appSettings.css (.split .side), approvals.css (drawer kv / list). */
+
+.crm-shell .bwi .dside .side > div { gap: 6px; }
+.crm-shell .bwi .dside .side > div .pill.mu { font-size: 9px; padding: 0 6px; line-height: 15px; margin-left: 4px; vertical-align: middle; }
+.crm-shell .bwi .dside .side h6 { margin: 0; padding: 8px 10px 3px; font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--bw-mu); border-bottom: 1px solid var(--bw-ln2); }
+.crm-shell .bwi .dside .side > div a.x { color: var(--bw-mu); display: inline-flex; }
+.crm-shell .bwi .dside .side > div a.x:hover { color: var(--bw-ac); }
+.crm-shell .bwi .tw { overflow: auto; max-height: calc(100vh - 230px); }
+.crm-shell .bwi .t td .pill.mu { font-size: 10px; }
+.crm-shell .bwi .pgn { display: flex; align-items: center; gap: 6px; padding: 6px 8px; border-top: 1px solid var(--bw-ln); color: var(--bw-mu); font-size: 12px; }
+.crm-shell .bwi .tbr b { white-space: nowrap; }
+.crm-shell .bwi-dw .prev { background: var(--bw-hd); border: 1px solid var(--bw-ln); border-radius: 10px; min-height: 160px; display: grid; place-items: center; overflow: hidden; }
+.crm-shell .bwi-dw .prev img { max-width: 100%; max-height: 320px; display: block; }
+.crm-shell .bwi-dw .prev iframe { width: 100%; height: 320px; border: 0; background: #fff; }
+.crm-shell .bwi-dw .prev .ph { text-align: center; color: var(--bw-mu); padding: 20px; }
+.crm-shell .bwi-dw .prev .ph small { display: block; }
+.crm-shell .bwi-dw a.btn { text-decoration: none; }
