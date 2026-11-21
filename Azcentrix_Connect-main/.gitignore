@@ -54,5 +54,6 @@ frontend/src_02/
 # Local dev config overrides (tracked historically but diverges per machine)
 frontend/vite.config.ts
 frontend/package-lock.json
+!/frontend/package-lock.json
 /backend/backups/exports/
 backend/backups/exports/
