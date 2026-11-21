@@ -15,6 +15,7 @@ from app.database import Base, get_master_db_dep
 from app.models.tenant import PlatformSession, PlatformSetting, SuperAdmin
 from app.routers import platform_router
 from app.services import platform_login_security as ls
+from app.services import platform_password_policy as password_policy
 
 PASSWORD = "Str0ng!Passw0rd"
 DEVICE = "device-a"
@@ -24,6 +25,8 @@ DEVICE = "device-a"
 def env(monkeypatch):
     engine = create_engine("sqlite://", connect_args={"check_same_thread": False}, poolclass=StaticPool)
     Base.metadata.create_all(bind=engine)
+    monkeypatch.setattr(password_policy, "master_engine", engine)
+    monkeypatch.setattr(password_policy, "_ready", {})
     SessionLocal = sessionmaker(bind=engine)
     ls._tables_ready = False
 
@@ -214,7 +217,7 @@ def test_password_change_cannot_skip_otp(env):
 
 def test_password_lockout(env):
     client = env["client"]
-    for _ in range(ls.USERNAME_MAX_FAILURES):
+    for _ in range(ls.lockout_policy(env["db"])[0]):
         assert client.post("/platform/login", json={"username": "root", "password": "nope", "device_id": DEVICE}).status_code == 401
     res = _login(client)
     assert res.status_code == 429 and res.json()["detail"]["code"] == "locked"

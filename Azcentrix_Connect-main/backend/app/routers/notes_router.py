@@ -16,7 +16,7 @@ from typing import Literal, Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Request
 from pydantic import BaseModel, Field
-from sqlalchemy import text
+from sqlalchemy import inspect, text
 from sqlalchemy.orm import Session
 
 from app.core.logging import log_audit_db
@@ -50,13 +50,20 @@ def ensure_notes_schema(db: Session) -> None:
         bind = db.get_bind()
         StickyNote.__table__.create(bind=bind, checkfirst=True)
         with bind.begin() as conn:
-            for ddl in (
-                "ALTER TABLE sticky_notes ADD COLUMN IF NOT EXISTS link_module VARCHAR(30) NULL",
-                "ALTER TABLE sticky_notes ADD COLUMN IF NOT EXISTS link_record_id INT NULL",
-                "ALTER TABLE sticky_notes ADD COLUMN IF NOT EXISTS link_label VARCHAR(300) NULL",
-                "CREATE INDEX IF NOT EXISTS idx_sticky_notes_user_pin ON sticky_notes (user_id, pinned, updated_at)",
+            columns = {column["name"] for column in inspect(conn).get_columns("sticky_notes")}
+            for name, ddl in (
+                ("link_module", "VARCHAR(30) NULL"),
+                ("link_record_id", "INTEGER NULL"),
+                ("link_label", "VARCHAR(300) NULL"),
             ):
-                conn.execute(text(ddl))
+                if name not in columns:
+                    conn.execute(text(f"ALTER TABLE sticky_notes ADD COLUMN {name} {ddl}"))
+            indexes = {index["name"] for index in inspect(conn).get_indexes("sticky_notes")}
+            if "idx_sticky_notes_user_pin" not in indexes:
+                conn.execute(text(
+                    "CREATE INDEX idx_sticky_notes_user_pin "
+                    "ON sticky_notes (user_id, pinned, updated_at)"
+                ))
         db.commit()
         _READY.add(slug)
 

@@ -50,7 +50,7 @@ class PlatformCaseEvidence(Base):
     tenant_id = Column(Integer, nullable=True, index=True)
     kind = Column(String(40), nullable=False)                                     # report_note | user_snapshot | tenant_export
     description = Column(String(500), nullable=False)
-    content = Column(LONGTEXT, nullable=True)                                     # canonical JSON the hash covers
+    content = Column(Text().with_variant(LONGTEXT(), "mysql"), nullable=True)    # canonical JSON the hash covers
     sha256 = Column(String(64), nullable=True)
     export_job_id = Column(Integer, nullable=True)                                # tenant_export: the TenantExportJob
     legal_hold = Column(Boolean, nullable=False, default=True)

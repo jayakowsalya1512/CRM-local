@@ -1,6 +1,6 @@
 # CI/CD
 
-GitHub Actions runs backend tests, the frontend production build, and both Docker image builds on every pull request targeting `main` and every push to `main`. The staging job runs after those checks pass when `STAGING_DEPLOY_ENABLED` is set to `true`.
+The workflow lives at the repository root in `.github/workflows/ci-cd.yml`. It runs backend tests (with a temporary MySQL service), the frontend production build, and both Docker image builds on every pull request targeting `main` and every push to `main`. The staging job runs after those checks pass when `STAGING_DEPLOY_ENABLED` is set to `true`.
 
 ## Enable staging deployment
 
@@ -20,7 +20,7 @@ Add these repository variables:
 | `STAGING_DEPLOY_ENABLED` | `true` to enable automatic deployment |
 | `STAGING_DEPLOY_PATH` | Absolute path to the server-side Git checkout |
 
-The server checkout must have the GitHub repository as `origin`, Docker Engine with the Compose plugin, a valid `backend/.env`, and the external networks named in `docker-compose.staging.yml`. The workflow checks out the tested commit in that directory, builds both images there, and recreates the staging services. The SSH account needs permission to run Docker commands.
+`STAGING_DEPLOY_PATH` should point to the repository checkout root. The server checkout must have the GitHub repository as `origin`, Docker Engine with the Compose plugin, a valid `Azcentrix_Connect-main/backend/.env`, and the external networks named in `Azcentrix_Connect-main/docker-compose.staging.yml`. The workflow checks out the tested commit in that directory, builds both images there, and recreates the staging services. The SSH account needs permission to run Docker commands.
 
 The Compose file currently bind-mounts `/home/ascent/crm-docker-staging/main.staging.py` over the backend image's `app/main.py`. That server-side file takes precedence over the checked-out backend entry point and must be kept in sync when deploying changes to the application entry point. The uploads and media volumes persist across deployments.
 

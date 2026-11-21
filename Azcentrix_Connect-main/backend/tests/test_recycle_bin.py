@@ -7,14 +7,14 @@ from sqlalchemy import create_engine, event
 from sqlalchemy.orm import Session
 from starlette.requests import Request
 
-from app.models.all_models import AuditLog, Customer, Lead, Tender, OEM, LetterTemplate, DocumentManagementFile, DocumentTrash, DocumentShare, DocumentStar, User
+from app.models.all_models import AuditLog, Customer, Lead, Tender, OEM, Letter, LetterTemplate, DocumentManagementFile, DocumentTrash, DocumentShare, DocumentStar, User
 from app.routers.recycle_bin_router import list_recycle_bin, _mutate, _bulk, BulkRequest
 
 
 @pytest.fixture
 def db():
     engine = create_engine('sqlite:///:memory:')
-    for model in (User, AuditLog, Customer, Lead, Tender, OEM, LetterTemplate, DocumentManagementFile, DocumentTrash, DocumentShare, DocumentStar):
+    for model in (User, AuditLog, Customer, Lead, Tender, OEM, LetterTemplate, Letter, DocumentManagementFile, DocumentTrash, DocumentShare, DocumentStar):
         model.__table__.create(engine)
     with Session(engine) as session:
         yield session

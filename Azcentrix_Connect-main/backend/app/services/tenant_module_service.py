@@ -30,7 +30,7 @@ SYSTEM_MODULES = {"dashboard", "users", "settings", "roles"}
 # application modules. Keep only genuinely global modules in this set.
 # Notes & Pinboard holds each user's own notes (no permission key), like the header note editor before it.
 # Process Designer and Customization Studio are administration (like Settings / Roles): always present, gated by their permissions.
-ALWAYS_ENABLED_PERMISSION_MODULES = SYSTEM_MODULES | {"approvals", "oems", "notes", "announcements", "team_chat", "workflow", "form_builder", "datahub", "document_management", "letter_management", "automation_studio", "funnel_analytics"}
+ALWAYS_ENABLED_PERMISSION_MODULES = SYSTEM_MODULES | {"approvals", "oems", "notes", "announcements", "team_chat", "workflow", "form_builder", "datahub", "automation_studio", "funnel_analytics"}
 # NOTE: "team_chat" stays in this set so its PERMISSIONS are always seeded/available
 # (the footer widget and /team-chat route still need team_chat.use etc.) — it's removed
 # from DEFAULT_TENANT_MODULES instead, which is what actually controls the sidebar row.

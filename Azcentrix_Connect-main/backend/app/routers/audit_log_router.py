@@ -154,9 +154,12 @@ def list_audit_logs(
         ]))
     # shared grid: per-column quick filters (f), advanced filter (adv) and column sorting (sorts)
     try:
-        quick = json.loads(f) if f else {}
-        advf = json.loads(adv) if adv else {}
-        order = json.loads(sorts) if sorts else []
+        # Direct service calls in tests and internal code don't pass through
+        # FastAPI's dependency/default resolution, so Query objects can arrive
+        # here instead of the declared string defaults.
+        quick = json.loads(f) if isinstance(f, str) and f else {}
+        advf = json.loads(adv) if isinstance(adv, str) and adv else {}
+        order = json.loads(sorts) if isinstance(sorts, str) and sorts else []
     except ValueError:
         raise HTTPException(422, "Invalid filter or sort")
     cols = _grid_columns()
@@ -188,6 +191,11 @@ def list_audit_logs(
         if isinstance(item, (list, tuple)) and len(item) == 2 and item[0] in cols:
             ordering.append(cols[item[0]].desc() if item[1] == -1 else cols[item[0]].asc())
     ordering += [AuditLog.created_at.desc(), AuditLog.id.desc()]
+    # Ignore FastAPI parameter descriptors when this handler is called as a
+    # plain function (for example, from unit tests).
+    offset = offset if isinstance(offset, int) and offset >= 0 else None
+    page = page if isinstance(page, int) and page >= 1 else 1
+    page_size = page_size if isinstance(page_size, int) and page_size >= 1 else 50
     start = offset if offset is not None else (page - 1) * page_size
     rows = query.order_by(*ordering).offset(start).limit(page_size).all()
 

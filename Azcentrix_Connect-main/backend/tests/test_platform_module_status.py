@@ -12,6 +12,7 @@ os.environ.setdefault("DEBUG", "false")
 from app.database import Base, get_master_db_dep
 from app.models.tenant import Feature, Plan, PlanFeature, Tenant, TenantFeature
 from app.routers import platform_router
+from app.services.platform_access import enforce_platform_access
 from app.services import platform_module_status as ms
 
 
@@ -37,6 +38,7 @@ def client(monkeypatch):
 
     app.dependency_overrides[get_master_db_dep] = override
     app.dependency_overrides[platform_router.require_platform_super_admin] = lambda: None
+    app.dependency_overrides[enforce_platform_access] = lambda: None
     yield TestClient(app), db
     db.close()
 

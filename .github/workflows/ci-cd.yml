@@ -14,12 +14,31 @@ concurrency:
   group: azcentrix-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  PROJECT_DIR: Azcentrix_Connect-main
+
 jobs:
   backend:
     name: Backend tests
     runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_ROOT_PASSWORD: ci
+          MYSQL_DATABASE: azcentrix_ci
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -pci"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
     env:
-      MASTER_DATABASE_URL: mysql+pymysql://ci:ci@127.0.0.1:3306/azcentrix_ci
+      MASTER_DATABASE_URL: mysql+pymysql://root:ci@127.0.0.1:3306/azcentrix_ci
+      TENANT_DB_HOST: 127.0.0.1
+      TENANT_DB_USER: root
+      TENANT_DB_PASSWORD: ci
     steps:
       - name: Check out source
         uses: actions/checkout@v4
@@ -29,13 +48,13 @@ jobs:
         with:
           python-version: "3.11"
           cache: pip
-          cache-dependency-path: backend/requirements.txt
+          cache-dependency-path: Azcentrix_Connect-main/backend/requirements.txt
 
       - name: Install backend dependencies
-        run: python -m pip install -r backend/requirements.txt pytest
+        run: python -m pip install -r "$PROJECT_DIR/backend/requirements.txt" pytest
 
       - name: Run backend tests
-        working-directory: backend
+        working-directory: Azcentrix_Connect-main/backend
         run: python -m pytest tests
 
   frontend:
@@ -50,14 +69,14 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: frontend/package-lock.json
+          cache-dependency-path: Azcentrix_Connect-main/frontend/package-lock.json
 
       - name: Install frontend dependencies
-        working-directory: frontend
+        working-directory: Azcentrix_Connect-main/frontend
         run: npm ci
 
       - name: Build frontend
-        working-directory: frontend
+        working-directory: Azcentrix_Connect-main/frontend
         run: npm run build
 
   images:
@@ -68,10 +87,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build backend image
-        run: docker build -t azcentrix-crm-backend:ci ./backend
+        run: docker build -t azcentrix-crm-backend:ci "$PROJECT_DIR/backend"
 
       - name: Build frontend image
-        run: docker build -t azcentrix-crm-frontend:ci ./frontend
+        run: docker build -t azcentrix-crm-frontend:ci "$PROJECT_DIR/frontend"
 
   staging:
     name: Deploy staging
@@ -102,4 +121,4 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519 ~/.ssh/known_hosts
 
           ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes "$STAGING_USER@$STAGING_HOST" \
-            "cd '$STAGING_DEPLOY_PATH' && git fetch origin '$DEPLOY_SHA' && git checkout --detach '$DEPLOY_SHA' && docker compose -f docker-compose.staging.yml build && docker compose -f docker-compose.staging.yml up -d --remove-orphans"
+            "cd '$STAGING_DEPLOY_PATH/$PROJECT_DIR' && git fetch origin '$DEPLOY_SHA' && git checkout --detach '$DEPLOY_SHA' && docker compose -f docker-compose.staging.yml build && docker compose -f docker-compose.staging.yml up -d --remove-orphans"

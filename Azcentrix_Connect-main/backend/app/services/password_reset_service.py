@@ -560,6 +560,7 @@ def _refresh_reset_window(
     *,
     initialize_if_missing: bool,
 ) -> bool:
+    normalized_now = as_ist_naive(now)
     current_start = _as_utc(getattr(user, "reset_window_start", None))
     if current_start is None:
         if initialize_if_missing:
@@ -568,7 +569,7 @@ def _refresh_reset_window(
             return True
         return False
 
-    if now >= current_start + timedelta(days=_tenant_reset_limit_days(tenant)):
+    if normalized_now >= current_start + timedelta(days=_tenant_reset_limit_days(tenant)):
         user.reset_count = 0
         user.reset_window_start = now if initialize_if_missing else None
         return True
